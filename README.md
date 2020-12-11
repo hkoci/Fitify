@@ -14,6 +14,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/HHBaxter"><img src="https://avatars0.githubusercontent.com/u/74308806?v=4" width="100px;" alt=""/><br /><sub><b>HHBaxter</b></sub></a><br /><a href="https://github.com/hkoci/CS2001-Group7/commits?author=HHBaxter" title="Code">💻</a></td>
+    <td align="center"><a href="http://henrikoci.co.uk"><img src="https://avatars1.githubusercontent.com/u/74716541?v=4" width="100px;" alt=""/><br /><sub><b>Henri Koci</b></sub></a><br /><a href="https://github.com/hkoci/CS2001-Group7/commits?author=hkoci" title="Code">💻</a></td>
   </tr>
 </table>
 

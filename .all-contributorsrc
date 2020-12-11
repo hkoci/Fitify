@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "hkoci",
+      "name": "Henri Koci",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/74716541?v=4",
+      "profile": "http://henrikoci.co.uk",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "CS2001-Group7",
+  "projectOwner": "hkoci",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

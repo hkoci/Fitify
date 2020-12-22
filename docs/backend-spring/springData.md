@@ -38,7 +38,7 @@ TestContainers is only run when your IDE is on 'test' build and not a standard p
 
 The entities used in the application are shown on the relational database model below. This will be how our SQL database layout is made.
 
-![Relational database model](SPRINGDATA.assets/DatabaseModel.png.png)
+![Relational database model](SPRINGDATA.assets/DatabaseModel.png)
 
 ## Data Objects and Controllers
 

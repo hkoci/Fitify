@@ -2,7 +2,20 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-A Spring Boot web application to tackle the UN's Sustainable Development goal of 'Good Health and Wellbeing'
+
+## Introduction
+A full-stack web application to tackle the UN's Sustainable Development goal of 'Good Health and Wellbeing' using Spring Boot on Apache Maven and React.
+
+## 📘 Documentation
+
+### Back-end (Spring)
+This section contains all documentation related to the back-end development of this web application.
+ - [Spring Data repository and initial back-end project planning](docs/backend-spring/springData.md)
+
+### Front-end (React)
+This section contains all documentation related to the back-end development of this web application.
+
+ - TODO: Front-end docs
 
 ## Contributors ✨
 

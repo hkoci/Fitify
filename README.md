@@ -2,6 +2,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+[![Java CI Testing Badge](https://github.com/hkoci/CS2001-Group7/workflows/Java%20CI%20with%20Maven/badge.svg)](https://github.com/hkoci/CS2001-Group7/actions?query=workflow%3A%22Java+CI+with+Maven%22)
 
 ## Introduction
 A full-stack web application to tackle the UN's Sustainable Development goal of 'Good Health and Wellbeing' using Spring Boot on Apache Maven and React.

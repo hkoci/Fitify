@@ -10,4 +10,4 @@ Wireframes are designed on Balsamiq Wireframes which was recommended to Professo
 
 The login page has been designed with a simple layout including the username/password form and links for registering and resetting users. We have included the Single Sign-on images from Google and Twitter which we will implement. The desktop version has a different layout to the mobile version - we have chosen to do this as part of responsive design to differentiate the versions and make it more accessible between devices of different size.
 
-![Login Wireframe](assets\wireframe-Login.png)
+![Login Wireframe](assets/wireframe-Login.png)

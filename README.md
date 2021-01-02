@@ -11,12 +11,12 @@ A full-stack web application to tackle the UN's Sustainable Development goal of 
 
 ### Back-end (Spring)
 This section contains all documentation related to the back-end development of this web application.
- - [Spring Data repository and initial back-end project planning](docs/backend-spring/springData.md)
+ - [Initial back-end project planning with Spring Data](docs/backend-spring/springData.md)
 
 ### Front-end (React)
-This section contains all documentation related to the back-end development of this web application.
+This section contains all documentation related to the front-end development of this web application.
 
- - TODO: Front-end docs
+ - [Wireframe Design](docs/frontend-spring/wireframeFrontend.md)
 
 ## Contributors ✨
 

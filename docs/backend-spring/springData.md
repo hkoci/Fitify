@@ -1,4 +1,4 @@
-# Spring Data repository
+# Spring Data Planning
 
 The Spring Data repo has been planned out in Bootify.io, where you declare data entities, objects, controllers, and general Java development configuration (such as JDK, DBMS and any further dependencies). It allows us to design our algorithm by making us specify the data attributes and will generate a UML class diagram showing this.
 
@@ -38,7 +38,7 @@ TestContainers is only run when your IDE is on 'test' build and not a standard p
 
 The entities used in the application are shown on the relational database model below. This will be how our SQL database layout is made.
 
-![Relational database model](SPRINGDATA.assets/DatabaseModel.png)
+![Relational database model](assets/DatabaseModel.png)
 
 ## Data Objects and Controllers
 

@@ -3,16 +3,11 @@
 
 name: Java CI with Maven
 
-# GitHub Actions will run on the following branches
+# This workflow is triggered when there are push changes to the Java source code
 on:
   push:
-    branches:
-      - main
-      - dev
-  pull_request:
-    branches:
-      -  main
-      -  dev
+    paths:
+    - '**.java'
 
 # Set the default directory to the back-end code at the backend folder
 defaults:

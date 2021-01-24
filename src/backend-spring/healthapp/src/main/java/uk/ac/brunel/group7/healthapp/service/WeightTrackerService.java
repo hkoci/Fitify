@@ -1,12 +1,12 @@
 package uk.ac.brunel.group7.healthapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import uk.ac.brunel.group7.healthapp.config.CustomNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 import uk.ac.brunel.group7.healthapp.domain.WeightTracker;
 import uk.ac.brunel.group7.healthapp.model.WeightTrackerDTO;
 import uk.ac.brunel.group7.healthapp.repos.WeightTrackerRepository;
@@ -17,7 +17,6 @@ public class WeightTrackerService {
 
     private final WeightTrackerRepository weightTrackerRepository;
 
-    @Autowired
     public WeightTrackerService(final WeightTrackerRepository weightTrackerRepository) {
         this.weightTrackerRepository = weightTrackerRepository;
     }
@@ -32,7 +31,7 @@ public class WeightTrackerService {
     public WeightTrackerDTO get(final Long id) {
         return weightTrackerRepository.findById(id)
                 .map(weightTracker -> mapToDTO(weightTracker, new WeightTrackerDTO()))
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     public Long create(final WeightTrackerDTO weightTrackerDTO) {
@@ -43,7 +42,7 @@ public class WeightTrackerService {
 
     public void update(final Long id, final WeightTrackerDTO weightTrackerDTO) {
         final WeightTracker weightTracker = weightTrackerRepository.findById(id)
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         mapToEntity(weightTrackerDTO, weightTracker);
         weightTrackerRepository.save(weightTracker);
     }

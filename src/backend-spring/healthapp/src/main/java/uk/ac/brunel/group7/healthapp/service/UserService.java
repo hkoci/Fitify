@@ -1,25 +1,28 @@
 package uk.ac.brunel.group7.healthapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import uk.ac.brunel.group7.healthapp.config.CustomNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 import uk.ac.brunel.group7.healthapp.domain.User;
 import uk.ac.brunel.group7.healthapp.model.UserDTO;
 import uk.ac.brunel.group7.healthapp.repos.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public UserService(final UserRepository userRepository) {
+    public UserService(final UserRepository userRepository,
+                       final PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<UserDTO> findAll() {
@@ -32,7 +35,7 @@ public class UserService {
     public UserDTO get(final Long id) {
         return userRepository.findById(id)
                 .map(user -> mapToDTO(user, new UserDTO()))
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     public Long create(final UserDTO userDTO) {
@@ -43,7 +46,7 @@ public class UserService {
 
     public void update(final Long id, final UserDTO userDTO) {
         final User user = userRepository.findById(id)
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         mapToEntity(userDTO, user);
         userRepository.save(user);
     }
@@ -55,27 +58,34 @@ public class UserService {
     private UserDTO mapToDTO(final User user, final UserDTO userDTO) {
         userDTO.setId(user.getId());
         userDTO.setUsername(user.getUsername());
-        userDTO.setPassword(user.getPassword());
+        userDTO.setRole(user.getRole());
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());
         userDTO.setGender(user.getGender());
         userDTO.setEmailAddress(user.getEmailAddress());
         userDTO.setDob(user.getDob());
-        userDTO.setUserCreated(user.getUserCreated());
-        userDTO.setUserLastAuth(user.getUserLastAuth());
+        userDTO.setHeight(user.getHeight());
+        userDTO.setBodyMassIndex(user.getBodyMassIndex());
+        userDTO.setFitPoints(user.getFitPoints());
+        userDTO.setMoodScore(user.getMoodScore());
+        userDTO.setWeightTarget(user.getWeightTarget());
         return userDTO;
     }
 
     private User mapToEntity(final UserDTO userDTO, final User user) {
         user.setUsername(userDTO.getUsername());
-        user.setPassword(userDTO.getPassword());
+        user.setPasswordHash(passwordEncoder.encode(userDTO.getPasswordHash()));
+        user.setRole(userDTO.getRole());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setGender(userDTO.getGender());
         user.setEmailAddress(userDTO.getEmailAddress());
         user.setDob(userDTO.getDob());
-        user.setUserCreated(userDTO.getUserCreated());
-        user.setUserLastAuth(userDTO.getUserLastAuth());
+        user.setHeight(userDTO.getHeight());
+        user.setBodyMassIndex(userDTO.getBodyMassIndex());
+        user.setFitPoints(userDTO.getFitPoints());
+        user.setMoodScore(userDTO.getMoodScore());
+        user.setWeightTarget(userDTO.getWeightTarget());
         return user;
     }
 

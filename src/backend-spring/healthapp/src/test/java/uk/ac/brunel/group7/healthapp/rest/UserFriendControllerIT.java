@@ -17,9 +17,9 @@ public class UserFriendControllerIT extends BaseIT {
     @Test
     @Sql("/data/userFriendData.sql")
     public void getAllUserFriends_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<List<UserFriendDTO>> response = restTemplate.exchange(
-                "/api/userFriends", HttpMethod.GET, request, new ParameterizedTypeReference<>() {});
+                "/api/userFriends", HttpMethod.GET, request, new ParameterizedTypeReference<List<UserFriendDTO>>() {});
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals((long)1600, response.getBody().get(0).getId());
@@ -28,22 +28,22 @@ public class UserFriendControllerIT extends BaseIT {
     @Test
     @Sql("/data/userFriendData.sql")
     public void getUserFriend_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<UserFriendDTO> response = restTemplate.exchange(
                 "/api/userFriends/1600", HttpMethod.GET, request, UserFriendDTO.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals((long)98, response.getBody().getFriendIds());
+        assertEquals((long)97, response.getBody().getFriendIds());
     }
 
     @Test
     public void getUserFriend_notFound() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<RestExceptionHandler.ErrorResponse> response = restTemplate.exchange(
                 "/api/userFriends/85", HttpMethod.GET, request, RestExceptionHandler.ErrorResponse.class);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals("CustomNotFoundException", response.getBody().getException());
+        assertEquals("ResponseStatusException", response.getBody().getException());
     }
 
     @Test
@@ -64,13 +64,13 @@ public class UserFriendControllerIT extends BaseIT {
                 "/api/userFriends/1600", HttpMethod.PUT, request, Void.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals((long)98, userFriendRepository.findById((long)1600).get().getFriendIds());
+        assertEquals((long)96, userFriendRepository.findById((long)1600).get().getFriendIds());
     }
 
     @Test
     @Sql("/data/userFriendData.sql")
     public void deleteUserFriend_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<Void> response = restTemplate.exchange(
                 "/api/userFriends/1600", HttpMethod.DELETE, request, Void.class);
 

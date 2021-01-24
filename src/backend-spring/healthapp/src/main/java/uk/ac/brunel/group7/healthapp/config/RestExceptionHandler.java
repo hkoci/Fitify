@@ -1,9 +1,11 @@
 package uk.ac.brunel.group7.healthapp.config;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,13 +14,12 @@ import java.util.stream.Collectors;
 @RestControllerAdvice(annotations = RestController.class)
 public class RestExceptionHandler {
 
-    @ExceptionHandler(CustomNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleNotFound(final CustomNotFoundException exception) {
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<ErrorResponse> handleNotFound(final ResponseStatusException exception) {
         final ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setHttpStatus(HttpStatus.NOT_FOUND.value());
+        errorResponse.setHttpStatus(exception.getStatus().value());
         errorResponse.setException(exception.getClass().getSimpleName());
-        return errorResponse;
+        return new ResponseEntity<>(errorResponse, exception.getStatus());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

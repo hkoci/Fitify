@@ -1,12 +1,12 @@
 package uk.ac.brunel.group7.healthapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import uk.ac.brunel.group7.healthapp.config.CustomNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 import uk.ac.brunel.group7.healthapp.domain.Step;
 import uk.ac.brunel.group7.healthapp.model.StepDTO;
 import uk.ac.brunel.group7.healthapp.repos.StepRepository;
@@ -17,7 +17,6 @@ public class StepService {
 
     private final StepRepository stepRepository;
 
-    @Autowired
     public StepService(final StepRepository stepRepository) {
         this.stepRepository = stepRepository;
     }
@@ -32,7 +31,7 @@ public class StepService {
     public StepDTO get(final Long id) {
         return stepRepository.findById(id)
                 .map(step -> mapToDTO(step, new StepDTO()))
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     public Long create(final StepDTO stepDTO) {
@@ -43,7 +42,7 @@ public class StepService {
 
     public void update(final Long id, final StepDTO stepDTO) {
         final Step step = stepRepository.findById(id)
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         mapToEntity(stepDTO, step);
         stepRepository.save(step);
     }

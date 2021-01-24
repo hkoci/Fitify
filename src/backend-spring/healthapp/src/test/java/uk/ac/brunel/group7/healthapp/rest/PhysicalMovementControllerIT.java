@@ -17,9 +17,9 @@ public class PhysicalMovementControllerIT extends BaseIT {
     @Test
     @Sql("/data/physicalMovementData.sql")
     public void getAllPhysicalMovements_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<List<PhysicalMovementDTO>> response = restTemplate.exchange(
-                "/api/physicalMovements", HttpMethod.GET, request, new ParameterizedTypeReference<>() {});
+                "/api/physicalMovements", HttpMethod.GET, request, new ParameterizedTypeReference<List<PhysicalMovementDTO>>() {});
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals((long)1300, response.getBody().get(0).getId());
@@ -28,7 +28,7 @@ public class PhysicalMovementControllerIT extends BaseIT {
     @Test
     @Sql("/data/physicalMovementData.sql")
     public void getPhysicalMovement_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<PhysicalMovementDTO> response = restTemplate.exchange(
                 "/api/physicalMovements/1300", HttpMethod.GET, request, PhysicalMovementDTO.class);
 
@@ -38,12 +38,12 @@ public class PhysicalMovementControllerIT extends BaseIT {
 
     @Test
     public void getPhysicalMovement_notFound() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<RestExceptionHandler.ErrorResponse> response = restTemplate.exchange(
                 "/api/physicalMovements/85", HttpMethod.GET, request, RestExceptionHandler.ErrorResponse.class);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals("CustomNotFoundException", response.getBody().getException());
+        assertEquals("ResponseStatusException", response.getBody().getException());
     }
 
     @Test
@@ -75,13 +75,13 @@ public class PhysicalMovementControllerIT extends BaseIT {
                 "/api/physicalMovements/1300", HttpMethod.PUT, request, Void.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", physicalMovementRepository.findById((long)1300).get().getMovementLocationDetails());
+        assertEquals("Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.", physicalMovementRepository.findById((long)1300).get().getMovementLocationDetails());
     }
 
     @Test
     @Sql("/data/physicalMovementData.sql")
     public void deletePhysicalMovement_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<Void> response = restTemplate.exchange(
                 "/api/physicalMovements/1300", HttpMethod.DELETE, request, Void.class);
 

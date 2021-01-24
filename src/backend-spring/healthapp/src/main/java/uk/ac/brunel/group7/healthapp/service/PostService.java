@@ -1,12 +1,12 @@
 package uk.ac.brunel.group7.healthapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import uk.ac.brunel.group7.healthapp.config.CustomNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 import uk.ac.brunel.group7.healthapp.domain.Post;
 import uk.ac.brunel.group7.healthapp.domain.User;
 import uk.ac.brunel.group7.healthapp.model.PostDTO;
@@ -20,7 +20,6 @@ public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
 
-    @Autowired
     public PostService(final PostRepository postRepository,
                        final UserRepository userRepository) {
         this.postRepository = postRepository;
@@ -37,7 +36,7 @@ public class PostService {
     public PostDTO get(final Long id) {
         return postRepository.findById(id)
                 .map(post -> mapToDTO(post, new PostDTO()))
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     public Long create(final PostDTO postDTO) {
@@ -48,7 +47,7 @@ public class PostService {
 
     public void update(final Long id, final PostDTO postDTO) {
         final Post post = postRepository.findById(id)
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         mapToEntity(postDTO, post);
         postRepository.save(post);
     }
@@ -77,9 +76,9 @@ public class PostService {
         post.setTags(postDTO.getTags());
         post.setUserLiked(postDTO.getUserLiked());
         if (postDTO.getUserPosts() != null &&
-                (post.getUserPosts() == null || post.getUserPosts().getId() != postDTO.getUserPosts())) {
+                (post.getUserPosts() == null || !post.getUserPosts().getId().equals(postDTO.getUserPosts()))) {
             final User userPosts = userRepository.findById(postDTO.getUserPosts())
-                    .orElseThrow(CustomNotFoundException::new);
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
             post.setUserPosts(userPosts);
         }
         return post;

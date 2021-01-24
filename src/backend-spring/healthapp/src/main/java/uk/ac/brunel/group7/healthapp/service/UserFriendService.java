@@ -1,12 +1,12 @@
 package uk.ac.brunel.group7.healthapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import uk.ac.brunel.group7.healthapp.config.CustomNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 import uk.ac.brunel.group7.healthapp.domain.User;
 import uk.ac.brunel.group7.healthapp.domain.UserFriend;
 import uk.ac.brunel.group7.healthapp.model.UserFriendDTO;
@@ -20,7 +20,6 @@ public class UserFriendService {
     private final UserFriendRepository userFriendRepository;
     private final UserRepository userRepository;
 
-    @Autowired
     public UserFriendService(final UserFriendRepository userFriendRepository,
                              final UserRepository userRepository) {
         this.userFriendRepository = userFriendRepository;
@@ -37,7 +36,7 @@ public class UserFriendService {
     public UserFriendDTO get(final Long id) {
         return userFriendRepository.findById(id)
                 .map(userFriend -> mapToDTO(userFriend, new UserFriendDTO()))
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     public Long create(final UserFriendDTO userFriendDTO) {
@@ -48,7 +47,7 @@ public class UserFriendService {
 
     public void update(final Long id, final UserFriendDTO userFriendDTO) {
         final UserFriend userFriend = userFriendRepository.findById(id)
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         mapToEntity(userFriendDTO, userFriend);
         userFriendRepository.save(userFriend);
     }
@@ -67,9 +66,9 @@ public class UserFriendService {
     private UserFriend mapToEntity(final UserFriendDTO userFriendDTO, final UserFriend userFriend) {
         userFriend.setFriendIds(userFriendDTO.getFriendIds());
         if (userFriendDTO.getUserfriends() != null &&
-                (userFriend.getUserfriends() == null || userFriend.getUserfriends().getId() != userFriendDTO.getUserfriends())) {
+                (userFriend.getUserfriends() == null || !userFriend.getUserfriends().getId().equals(userFriendDTO.getUserfriends()))) {
             final User userfriends = userRepository.findById(userFriendDTO.getUserfriends())
-                    .orElseThrow(CustomNotFoundException::new);
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
             userFriend.setUserfriends(userfriends);
         }
         return userFriend;

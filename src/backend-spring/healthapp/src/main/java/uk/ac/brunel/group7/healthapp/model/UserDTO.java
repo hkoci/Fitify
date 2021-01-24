@@ -1,7 +1,6 @@
 package uk.ac.brunel.group7.healthapp.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -15,8 +14,11 @@ public class UserDTO {
     private String username;
 
     @NotNull
+    private String passwordHash;
+
+    @NotNull
     @Size(max = 255)
-    private String password;
+    private String role;
 
     @NotNull
     private String firstName;
@@ -34,11 +36,15 @@ public class UserDTO {
     @NotNull
     private LocalDate dob;
 
-    @NotNull
-    private LocalDateTime userCreated;
+    private Double height;
 
-    @NotNull
-    private LocalDateTime userLastAuth;
+    private Double bodyMassIndex;
+
+    private Integer fitPoints;
+
+    private Double moodScore;
+
+    private Double weightTarget;
 
     public Long getId() {
         return id;
@@ -56,12 +62,20 @@ public class UserDTO {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword(final String password) {
-        this.password = password;
+    public void setPasswordHash(final String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(final String role) {
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -104,20 +118,44 @@ public class UserDTO {
         this.dob = dob;
     }
 
-    public LocalDateTime getUserCreated() {
-        return userCreated;
+    public Double getHeight() {
+        return height;
     }
 
-    public void setUserCreated(final LocalDateTime userCreated) {
-        this.userCreated = userCreated;
+    public void setHeight(final Double height) {
+        this.height = height;
     }
 
-    public LocalDateTime getUserLastAuth() {
-        return userLastAuth;
+    public Double getBodyMassIndex() {
+        return bodyMassIndex;
     }
 
-    public void setUserLastAuth(final LocalDateTime userLastAuth) {
-        this.userLastAuth = userLastAuth;
+    public void setBodyMassIndex(final Double bodyMassIndex) {
+        this.bodyMassIndex = bodyMassIndex;
+    }
+
+    public Integer getFitPoints() {
+        return fitPoints;
+    }
+
+    public void setFitPoints(final Integer fitPoints) {
+        this.fitPoints = fitPoints;
+    }
+
+    public Double getMoodScore() {
+        return moodScore;
+    }
+
+    public void setMoodScore(final Double moodScore) {
+        this.moodScore = moodScore;
+    }
+
+    public Double getWeightTarget() {
+        return weightTarget;
+    }
+
+    public void setWeightTarget(final Double weightTarget) {
+        this.weightTarget = weightTarget;
     }
 
 }

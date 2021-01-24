@@ -10,5 +10,5 @@ DELETE FROM step;
 
 DELETE FROM user_friend;
 
-DELETE FROM "USER";
+DELETE FROM user;
 

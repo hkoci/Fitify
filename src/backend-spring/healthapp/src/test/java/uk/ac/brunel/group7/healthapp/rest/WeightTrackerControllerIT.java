@@ -17,9 +17,9 @@ public class WeightTrackerControllerIT extends BaseIT {
     @Test
     @Sql("/data/weightTrackerData.sql")
     public void getAllWeightTrackers_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<List<WeightTrackerDTO>> response = restTemplate.exchange(
-                "/api/weightTrackers", HttpMethod.GET, request, new ParameterizedTypeReference<>() {});
+                "/api/weightTrackers", HttpMethod.GET, request, new ParameterizedTypeReference<List<WeightTrackerDTO>>() {});
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals((long)1200, response.getBody().get(0).getId());
@@ -28,22 +28,22 @@ public class WeightTrackerControllerIT extends BaseIT {
     @Test
     @Sql("/data/weightTrackerData.sql")
     public void getWeightTracker_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<WeightTrackerDTO> response = restTemplate.exchange(
                 "/api/weightTrackers/1200", HttpMethod.GET, request, WeightTrackerDTO.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(28.42d, response.getBody().getWeight());
+        assertEquals(27.42d, response.getBody().getWeight());
     }
 
     @Test
     public void getWeightTracker_notFound() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<RestExceptionHandler.ErrorResponse> response = restTemplate.exchange(
                 "/api/weightTrackers/85", HttpMethod.GET, request, RestExceptionHandler.ErrorResponse.class);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals("CustomNotFoundException", response.getBody().getException());
+        assertEquals("ResponseStatusException", response.getBody().getException());
     }
 
     @Test
@@ -75,13 +75,13 @@ public class WeightTrackerControllerIT extends BaseIT {
                 "/api/weightTrackers/1200", HttpMethod.PUT, request, Void.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(28.42d, weightTrackerRepository.findById((long)1200).get().getWeight());
+        assertEquals(26.42d, weightTrackerRepository.findById((long)1200).get().getWeight());
     }
 
     @Test
     @Sql("/data/weightTrackerData.sql")
     public void deleteWeightTracker_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<Void> response = restTemplate.exchange(
                 "/api/weightTrackers/1200", HttpMethod.DELETE, request, Void.class);
 

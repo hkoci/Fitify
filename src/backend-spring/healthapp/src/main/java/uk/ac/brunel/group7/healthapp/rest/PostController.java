@@ -1,6 +1,5 @@
 package uk.ac.brunel.group7.healthapp.rest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,6 @@ public class PostController {
 
     private final PostService postService;
 
-    @Autowired
     public PostController(final PostService postService) {
         this.postService = postService;
     }

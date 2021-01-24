@@ -2,9 +2,9 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-[![Java CI Testing Badge](https://github.com/BrunelCS/cs2001-2020_21-group7/workflows/Backend%20(Spring)/badge.svg)](https://github.com/hkoci/CS2001-Group7/actions?query=workflow%3A%22Backend+%28Spring%29%22)
+[![Java CI Testing Badge](https://github.com/BrunelCS/cs2001-2020_21-group7/workflows/Backend%20(Spring)/badge.svg)](https://github.com/BrunelCS/cs2001-2020_21-group7/actions?query=workflow%3A%22Backend+%28Spring%29%22)
 
-[![Java CI Testing Badge](https://github.com/BrunelCS/cs2001-2020_21-group7/workflows/Frontend%20(React)/badge.svg)](https://github.com/hkoci/CS2001-Group7/actions?query=workflow%3A%22Frontend+%28React%29%22)
+[![Java CI Testing Badge](https://github.com/BrunelCS/cs2001-2020_21-group7/workflows/Frontend%20(React)/badge.svg)](https://github.com/BrunelCS/cs2001-2020_21-group7/actions?query=workflow%3A%22Frontend+%28React%29%22)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/brunelcs/cs2001-2020_21-group7/badge?s=58d64a1151864beabd496c4cede07210a02a889d)](https://www.codefactor.io/repository/github/brunelcs/cs2001-2020_21-group7)
 
@@ -50,12 +50,12 @@ Hello! We are group 7. 👋
   <tr>
     <td align="center"><a href="https://github.com/anabrunel"><img src="https://avatars.githubusercontent.com/u/29124724?v=4" width="100px;" alt=""/><br /><sub><b>Anastasia Anagnostou (Tutor)</b></sub></a><br /><a href="" title="Tutor">👩‍🏫</a></td>
     <td align="center"><a href="https://github.com/FlopRe"><img src="https://avatars0.githubusercontent.com/u/19749921?v=4" width="100px;" alt=""/><br /><sub><b>Filip Reichenauer (1921760)</b></sub><br /><a href="https://github.com/BrunelCS/cs2001-2020_21-group7/commits?author=FlopRe" title="Code">💻</a></td>
-    <td align="center"><a href="http://henrikoci.co.uk"><img src="https://avatars0.githubusercontent.com/u/74716541?v=4" width="100px;" alt=""/><br /><sub><b>Henri Koci (1808346)</b></sub></a><br /><a href="https://github.com/BrunelCS/cs2001-2020_21-group7/commits?author=hkoci" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/hkoci"><img src="https://avatars0.githubusercontent.com/u/74716541?v=4" width="100px;" alt=""/><br /><sub><b>Henri Koci (1808346)</b></sub></a><br /><a href="https://github.com/BrunelCS/cs2001-2020_21-group7/commits?author=hkoci" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/HHBaxter"><img src="https://avatars0.githubusercontent.com/u/74308806?v=4" width="100px;" alt=""/><br /><sub><b>Harry Baxter Baxter (1913823)</b></sub></a><br /><a href="https://github.com/BrunelCS/cs2001-2020_21-group7/commits?author=HHBaxter" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Abznya"><img src="https://avatars.githubusercontent.com/u/58242465?v=4" width="100px;" alt=""/><br /><sub><b>Abdul Mohammed (1919948)</b></sub></a><br /><a href="https://github.com/BrunelCS/cs2001-2020_21-group7/commits?author=Abznya" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Mohamed18196"><img src="https://avatars.githubusercontent.com/u/75840765?&v=4" width="100px;" alt=""/><br /><sub><b>Mohamed Ahmed (1819617)</b></sub></a><br /><a href="https://github.com/BrunelCS/cs2001-2020_21-group7/commits?author=Mohamed18196" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/salarsalek2020"><img src="https://avatars.githubusercontent.com/u/73479407?&v=4" width="100px;" alt=""/><br /><sub><b>Salar Salekzamankhani (1830274)</b></sub></a><br /><a href="https://github.com/BrunelCS/cs2001-2020_21-group7/commits?author=salarsalek2020" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/"><img src="https://via.placeholder.com/150" width="100px;" alt=""/><br /><sub><b>Alican Gecsoyler (1907921)</b></sub></a><br /><a href="https://github.com/BrunelCS/cs2001-2020_21-group7/commits?author=" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Alican290101"><img src="https://avatars.githubusercontent.com/u/77811246?&v=4" width="100px;" alt=""/><br /><sub><b>Alican Gecsoyler (1907921)</b></sub></a><br /><a href="https://github.com/BrunelCS/cs2001-2020_21-group7/commits?author=Alican290101" title="Code">💻</a></td>
   </tr>
 </table>
 

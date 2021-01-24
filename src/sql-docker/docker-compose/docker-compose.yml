@@ -1,0 +1,27 @@
+# Custom Docker-compose SQL database template
+# Currently using v2 for Balena Cloud support for Rpi4
+#
+# Container db - includes mariaDB which is a fork of MySQL (it supports arm64)
+# Container fitifySQL - specified image of MySQLv8 which is the only version supported on arm64
+version: '2'
+volumes:
+    mysql:
+    mariadb:
+services:
+  fitifysql:
+    image: mysql/mysql-server:8.0
+    volumes:
+      - 'mysql/mysql-data:/var/lib/mysql'
+      - 'mysql/my.cnf:/etc/my.cnf'
+      - 'mysql/certs:/etc/certs'
+    network_mode: host
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: C4rRBMjcCa8MwnXD8r5jZHYVXW9axnkxBPdnJSaMdVhT34zmG9KjDEv8PQXn2sERTEVqsL9edKPx6k8t4mKYwgRaLbYGLHNcFYJat8LPUhP5mh
+      MYSQL_DATABASE: healthapp
+      MYSQL_USER: Cv6QJrdcFY
+      MYSQL_PASSWORD: FTe5tzsUhgc5RBhSQgqgsZq736NGAM4DzKCqbKn5AfnAnxVL2cKmfsMyyBuUjUS9wzw2sQeX5ndKqCy5eYZEFESgd5nWQ2tbaKJ
+      MYSQL_HOST: ddns.henrikoci.co.uk
+      MYSQL_TCP_PORT: 8888
+    ports:
+      - "8888:8888"

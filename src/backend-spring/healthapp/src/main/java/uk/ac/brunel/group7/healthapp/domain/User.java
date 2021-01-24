@@ -2,7 +2,6 @@ package uk.ac.brunel.group7.healthapp.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.Set;
 
@@ -12,24 +11,25 @@ public class User {
 
     @Id
     @Column(nullable = false, updatable = false)
-    @SequenceGenerator(name = "primary_sequence", sequenceName = "primary_sequence",
-            allocationSize = 1, initialValue = 10000)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "primary_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
-    private String password;
+    @Column(nullable = false, columnDefinition = "longtext")
+    private String passwordHash;
 
-    @Column(nullable = false, columnDefinition = "clob")
+    @Column(nullable = false, name = "\"role\"")
+    private String role;
+
+    @Column(nullable = false, columnDefinition = "longtext")
     private String firstName;
 
-    @Column(nullable = false, columnDefinition = "clob")
+    @Column(nullable = false, columnDefinition = "longtext")
     private String lastName;
 
-    @Column(nullable = false, columnDefinition = "clob")
+    @Column(nullable = false, columnDefinition = "longtext")
     private String gender;
 
     @Column(nullable = false)
@@ -38,20 +38,29 @@ public class User {
     @Column(nullable = false)
     private LocalDate dob;
 
-    @Column(nullable = false)
-    private LocalDateTime userCreated;
+    @Column
+    private Double height;
 
-    @Column(nullable = false)
-    private LocalDateTime userLastAuth;
+    @Column
+    private Double bodyMassIndex;
+
+    @Column
+    private Integer fitPoints;
+
+    @Column
+    private Double moodScore;
+
+    @Column
+    private Double weightTarget;
 
     @OneToMany(mappedBy = "userActivities", targetEntity = Activity.class)
-    private Set<Activity> activityUserActivitiess;
+    private Set<Activity> userActivitiesActivitys;
 
     @OneToMany(mappedBy = "userPosts", targetEntity = Post.class)
-    private Set<Post> postUserPostss;
+    private Set<Post> userPostsPosts;
 
     @OneToMany(mappedBy = "userfriends", targetEntity = UserFriend.class)
-    private Set<UserFriend> userFriendUserfriendss;
+    private Set<UserFriend> userfriendsUserFriends;
 
     @Column(nullable = false, updatable = false)
     protected OffsetDateTime dateCreated;
@@ -86,12 +95,20 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword(final String password) {
-        this.password = password;
+    public void setPasswordHash(final String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(final String role) {
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -134,44 +151,68 @@ public class User {
         this.dob = dob;
     }
 
-    public LocalDateTime getUserCreated() {
-        return userCreated;
+    public Double getHeight() {
+        return height;
     }
 
-    public void setUserCreated(final LocalDateTime userCreated) {
-        this.userCreated = userCreated;
+    public void setHeight(final Double height) {
+        this.height = height;
     }
 
-    public LocalDateTime getUserLastAuth() {
-        return userLastAuth;
+    public Double getBodyMassIndex() {
+        return bodyMassIndex;
     }
 
-    public void setUserLastAuth(final LocalDateTime userLastAuth) {
-        this.userLastAuth = userLastAuth;
+    public void setBodyMassIndex(final Double bodyMassIndex) {
+        this.bodyMassIndex = bodyMassIndex;
     }
 
-    public Set<Activity> getActivityUserActivitiess() {
-        return activityUserActivitiess;
+    public Integer getFitPoints() {
+        return fitPoints;
     }
 
-    public void setActivityUserActivitiess(final Set<Activity> activityUserActivitiess) {
-        this.activityUserActivitiess = activityUserActivitiess;
+    public void setFitPoints(final Integer fitPoints) {
+        this.fitPoints = fitPoints;
     }
 
-    public Set<Post> getPostUserPostss() {
-        return postUserPostss;
+    public Double getMoodScore() {
+        return moodScore;
     }
 
-    public void setPostUserPostss(final Set<Post> postUserPostss) {
-        this.postUserPostss = postUserPostss;
+    public void setMoodScore(final Double moodScore) {
+        this.moodScore = moodScore;
     }
 
-    public Set<UserFriend> getUserFriendUserfriendss() {
-        return userFriendUserfriendss;
+    public Double getWeightTarget() {
+        return weightTarget;
     }
 
-    public void setUserFriendUserfriendss(final Set<UserFriend> userFriendUserfriendss) {
-        this.userFriendUserfriendss = userFriendUserfriendss;
+    public void setWeightTarget(final Double weightTarget) {
+        this.weightTarget = weightTarget;
+    }
+
+    public Set<Activity> getUserActivitiesActivitys() {
+        return userActivitiesActivitys;
+    }
+
+    public void setUserActivitiesActivitys(final Set<Activity> userActivitiesActivitys) {
+        this.userActivitiesActivitys = userActivitiesActivitys;
+    }
+
+    public Set<Post> getUserPostsPosts() {
+        return userPostsPosts;
+    }
+
+    public void setUserPostsPosts(final Set<Post> userPostsPosts) {
+        this.userPostsPosts = userPostsPosts;
+    }
+
+    public Set<UserFriend> getUserfriendsUserFriends() {
+        return userfriendsUserFriends;
+    }
+
+    public void setUserfriendsUserFriends(final Set<UserFriend> userfriendsUserFriends) {
+        this.userfriendsUserFriends = userfriendsUserFriends;
     }
 
     public OffsetDateTime getDateCreated() {

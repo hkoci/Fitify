@@ -9,11 +9,11 @@ INSERT INTO activity (
     last_updated
 ) VALUES (
     1100,
-    61,
-    '2020-05-06 04:30:00.000',
-    '2020-05-06 04:30:00.000',
+    62,
+    '2020-05-07 04:30:00',
+    '2020-05-07 04:30:00',
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    70,
-    '2020-09-02 04:30:00.000',
-    '2020-09-02 04:30:00.000'
+    99,
+    '2020-09-03 04:30:00',
+    '2020-09-03 04:30:00'
 );

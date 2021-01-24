@@ -1,10 +1,14 @@
 {
-  "password" : "Ut pellentesque sapien...",
-  "firstName" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "lastName" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "gender" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "emailAddress" : "Cras sed interdum...",
-  "dob" : "2020-07-04",
-  "userCreated" : "2020-05-06T14:30:00",
-  "userLastAuth" : "2020-05-06T14:30:00"
+  "passwordHash" : "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+  "role" : "Cras sed interdum...",
+  "firstName" : "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+  "lastName" : "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+  "gender" : "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+  "emailAddress" : "Aenean pulvinar...",
+  "dob" : "2020-07-06",
+  "height" : 91.42,
+  "bodyMassIndex" : 38.42,
+  "fitPoints" : 30,
+  "moodScore" : 39.42,
+  "weightTarget" : 29.42
 }

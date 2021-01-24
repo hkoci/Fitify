@@ -1,12 +1,12 @@
 package uk.ac.brunel.group7.healthapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import uk.ac.brunel.group7.healthapp.config.CustomNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 import uk.ac.brunel.group7.healthapp.domain.PhysicalMovement;
 import uk.ac.brunel.group7.healthapp.model.PhysicalMovementDTO;
 import uk.ac.brunel.group7.healthapp.repos.PhysicalMovementRepository;
@@ -17,7 +17,6 @@ public class PhysicalMovementService {
 
     private final PhysicalMovementRepository physicalMovementRepository;
 
-    @Autowired
     public PhysicalMovementService(final PhysicalMovementRepository physicalMovementRepository) {
         this.physicalMovementRepository = physicalMovementRepository;
     }
@@ -32,7 +31,7 @@ public class PhysicalMovementService {
     public PhysicalMovementDTO get(final Long id) {
         return physicalMovementRepository.findById(id)
                 .map(physicalMovement -> mapToDTO(physicalMovement, new PhysicalMovementDTO()))
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     public Long create(final PhysicalMovementDTO physicalMovementDTO) {
@@ -43,7 +42,7 @@ public class PhysicalMovementService {
 
     public void update(final Long id, final PhysicalMovementDTO physicalMovementDTO) {
         final PhysicalMovement physicalMovement = physicalMovementRepository.findById(id)
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         mapToEntity(physicalMovementDTO, physicalMovement);
         physicalMovementRepository.save(physicalMovement);
     }

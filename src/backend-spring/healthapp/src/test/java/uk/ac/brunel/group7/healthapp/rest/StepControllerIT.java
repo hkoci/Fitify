@@ -17,9 +17,9 @@ public class StepControllerIT extends BaseIT {
     @Test
     @Sql("/data/stepData.sql")
     public void getAllSteps_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<List<StepDTO>> response = restTemplate.exchange(
-                "/api/steps", HttpMethod.GET, request, new ParameterizedTypeReference<>() {});
+                "/api/steps", HttpMethod.GET, request, new ParameterizedTypeReference<List<StepDTO>>() {});
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals((long)1500, response.getBody().get(0).getId());
@@ -28,22 +28,22 @@ public class StepControllerIT extends BaseIT {
     @Test
     @Sql("/data/stepData.sql")
     public void getStep_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<StepDTO> response = restTemplate.exchange(
                 "/api/steps/1500", HttpMethod.GET, request, StepDTO.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(76, response.getBody().getPedometerCount());
+        assertEquals(75, response.getBody().getPedometerCount());
     }
 
     @Test
     public void getStep_notFound() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<RestExceptionHandler.ErrorResponse> response = restTemplate.exchange(
                 "/api/steps/85", HttpMethod.GET, request, RestExceptionHandler.ErrorResponse.class);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals("CustomNotFoundException", response.getBody().getException());
+        assertEquals("ResponseStatusException", response.getBody().getException());
     }
 
     @Test
@@ -64,13 +64,13 @@ public class StepControllerIT extends BaseIT {
                 "/api/steps/1500", HttpMethod.PUT, request, Void.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(76, stepRepository.findById((long)1500).get().getPedometerCount());
+        assertEquals(74, stepRepository.findById((long)1500).get().getPedometerCount());
     }
 
     @Test
     @Sql("/data/stepData.sql")
     public void deleteStep_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<Void> response = restTemplate.exchange(
                 "/api/steps/1500", HttpMethod.DELETE, request, Void.class);
 

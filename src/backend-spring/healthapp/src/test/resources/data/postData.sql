@@ -10,12 +10,12 @@ INSERT INTO post (
     last_updated
 ) VALUES (
     1400,
-    66,
+    67,
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    TRUE,
-    TRUE,
+    0,
+    0,
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    34,
-    '2020-09-02 04:30:00.000',
-    '2020-09-02 04:30:00.000'
+    35,
+    '2020-09-03 04:30:00',
+    '2020-09-03 04:30:00'
 );

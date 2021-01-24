@@ -15,15 +15,15 @@ INSERT INTO physical_movement (
 ) VALUES (
     1300,
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    58,
-    31,
-    71,
-    56,
-    '02:30:00',
-    65.42,
-    79.42,
-    '02:30:00',
-    '02:30:00',
-    '2020-09-02 04:30:00.000',
-    '2020-09-02 04:30:00.000'
+    57,
+    30,
+    72,
+    55,
+    '03:30:00',
+    66.42,
+    80.42,
+    '03:30:00',
+    '03:30:00',
+    '2020-09-03 04:30:00',
+    '2020-09-03 04:30:00'
 );

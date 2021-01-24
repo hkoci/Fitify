@@ -1,12 +1,12 @@
 package uk.ac.brunel.group7.healthapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import uk.ac.brunel.group7.healthapp.config.CustomNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 import uk.ac.brunel.group7.healthapp.domain.Activity;
 import uk.ac.brunel.group7.healthapp.domain.PhysicalMovement;
 import uk.ac.brunel.group7.healthapp.domain.Step;
@@ -29,7 +29,6 @@ public class ActivityService {
     private final PhysicalMovementRepository physicalMovementRepository;
     private final StepRepository stepRepository;
 
-    @Autowired
     public ActivityService(final ActivityRepository activityRepository,
                            final UserRepository userRepository,
                            final WeightTrackerRepository weightTrackerRepository,
@@ -52,7 +51,7 @@ public class ActivityService {
     public ActivityDTO get(final Long id) {
         return activityRepository.findById(id)
                 .map(activity -> mapToDTO(activity, new ActivityDTO()))
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     public Long create(final ActivityDTO activityDTO) {
@@ -63,7 +62,7 @@ public class ActivityService {
 
     public void update(final Long id, final ActivityDTO activityDTO) {
         final Activity activity = activityRepository.findById(id)
-                .orElseThrow(CustomNotFoundException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         mapToEntity(activityDTO, activity);
         activityRepository.save(activity);
     }
@@ -93,27 +92,27 @@ public class ActivityService {
         activity.setActivityType(activityDTO.getActivityType());
         activity.setMoodRating(activityDTO.getMoodRating());
         if (activityDTO.getUserActivities() != null &&
-                (activity.getUserActivities() == null || activity.getUserActivities().getId() != activityDTO.getUserActivities())) {
+                (activity.getUserActivities() == null || !activity.getUserActivities().getId().equals(activityDTO.getUserActivities()))) {
             final User userActivities = userRepository.findById(activityDTO.getUserActivities())
-                    .orElseThrow(CustomNotFoundException::new);
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
             activity.setUserActivities(userActivities);
         }
         if (activityDTO.getWeightTracker() != null &&
-                (activity.getWeightTracker() == null || activity.getWeightTracker().getId() != activityDTO.getWeightTracker())) {
+                (activity.getWeightTracker() == null || !activity.getWeightTracker().getId().equals(activityDTO.getWeightTracker()))) {
             final WeightTracker weightTracker = weightTrackerRepository.findById(activityDTO.getWeightTracker())
-                    .orElseThrow(CustomNotFoundException::new);
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
             activity.setWeightTracker(weightTracker);
         }
         if (activityDTO.getPhysical() != null &&
-                (activity.getPhysical() == null || activity.getPhysical().getId() != activityDTO.getPhysical())) {
+                (activity.getPhysical() == null || !activity.getPhysical().getId().equals(activityDTO.getPhysical()))) {
             final PhysicalMovement physical = physicalMovementRepository.findById(activityDTO.getPhysical())
-                    .orElseThrow(CustomNotFoundException::new);
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
             activity.setPhysical(physical);
         }
         if (activityDTO.getSteps() != null &&
-                (activity.getSteps() == null || activity.getSteps().getId() != activityDTO.getSteps())) {
+                (activity.getSteps() == null || !activity.getSteps().getId().equals(activityDTO.getSteps()))) {
             final Step steps = stepRepository.findById(activityDTO.getSteps())
-                    .orElseThrow(CustomNotFoundException::new);
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
             activity.setSteps(steps);
         }
         return activity;

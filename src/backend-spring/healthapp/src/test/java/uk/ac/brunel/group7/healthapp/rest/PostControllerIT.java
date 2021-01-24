@@ -17,9 +17,9 @@ public class PostControllerIT extends BaseIT {
     @Test
     @Sql("/data/postData.sql")
     public void getAllPosts_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<List<PostDTO>> response = restTemplate.exchange(
-                "/api/posts", HttpMethod.GET, request, new ParameterizedTypeReference<>() {});
+                "/api/posts", HttpMethod.GET, request, new ParameterizedTypeReference<List<PostDTO>>() {});
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals((long)1400, response.getBody().get(0).getId());
@@ -28,22 +28,22 @@ public class PostControllerIT extends BaseIT {
     @Test
     @Sql("/data/postData.sql")
     public void getPost_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<PostDTO> response = restTemplate.exchange(
                 "/api/posts/1400", HttpMethod.GET, request, PostDTO.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals((long)66, response.getBody().getUserPosted());
+        assertEquals((long)67, response.getBody().getUserPosted());
     }
 
     @Test
     public void getPost_notFound() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<RestExceptionHandler.ErrorResponse> response = restTemplate.exchange(
                 "/api/posts/85", HttpMethod.GET, request, RestExceptionHandler.ErrorResponse.class);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals("CustomNotFoundException", response.getBody().getException());
+        assertEquals("ResponseStatusException", response.getBody().getException());
     }
 
     @Test
@@ -75,13 +75,13 @@ public class PostControllerIT extends BaseIT {
                 "/api/posts/1400", HttpMethod.PUT, request, Void.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals((long)66, postRepository.findById((long)1400).get().getUserPosted());
+        assertEquals((long)68, postRepository.findById((long)1400).get().getUserPosted());
     }
 
     @Test
     @Sql("/data/postData.sql")
     public void deletePost_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<String> request = new HttpEntity<>(null, headers());
         final ResponseEntity<Void> response = restTemplate.exchange(
                 "/api/posts/1400", HttpMethod.DELETE, request, Void.class);
 

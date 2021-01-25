@@ -30,7 +30,7 @@ public class UserController {
         return userService.get(id);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Long createUser(@RequestBody @Valid final UserDTO userDTO) {
         return userService.create(userDTO);

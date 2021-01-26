@@ -6,10 +6,14 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 //Stylesheets
 import './index.css';
 
-//Components (react-router)
+//Home Components
 import Landing from './components/home/Landing';
 import About from './components/home/About';
 import Help from './components/home/Help';
+
+//Fitify Components
+import Login from './components/fitify-app/Login';
+import Dashboard from './components/fitify-app/Dashboard';
 
 //Setup React Router routes
 const routs = (
@@ -18,6 +22,8 @@ const routs = (
          <Route exact path="/" component={Landing} />
          <Route path="/about" component={About} />
          <Route path="/help" component={Help} />
+         <Route path="/app/login" component={Login} />
+         <Route path="/app/dashboard" component={Dashboard} />
       </div>
    </Router>
 );

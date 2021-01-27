@@ -7,7 +7,7 @@ name: Frontend (React)
 on:
   push:
     paths:
-    - '**.js'
+    - '**.jsx'
 
 # Set the default directory to the front-end code at the backend folder
 defaults:

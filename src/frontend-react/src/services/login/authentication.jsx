@@ -5,6 +5,8 @@ import axios from 'axios'
 const SpringHostURL = 'http://localhost:8080'
 
 //Authentication service class
+//Rebased off (TODO: Ref in report) https://github.com/in28minutes/spring-boot-react-fullstack-examples/blob/master/spring-boot-react-basic-auth-login-logout/frontend-spring-boot-react-basic-auth-login-logout/src/service/AuthenticationService.js
+//My implementation works differently by getting JWT access tokens from the Spring endpoint - if no token is return, the credentials are incorrect.
 class Authentication {
 
     //Method to get Authorisation Bearer token from JWT
@@ -55,67 +57,3 @@ class Authentication {
 }
 
 export default new Authentication()
-/*
-
-
-executeBasicAuthenticationService(username, password) {
-    return axios.get(`${SpringHostURL}/basicauth`,
-        { headers: { authorization: this.createBasicAuthToken(username, password) } })
-}
-
-executeJwtAuthenticationService(username, password) {
-    console.log(username);
-    return axios.post(`${SpringHostURL}/authenticate`, {
-        username,
-        password
-    })
-}
-
-createBasicAuthToken(username, password) {
-    return 'Basic ' + window.btoa(username + ":" + password)
-}
-
-registerSuccessfulLogin(username, password) {
-    //let basicAuthHeader = 'Basic ' +  window.btoa(username + ":" + password)
-    //console.log('registerSuccessfulLogin')
-    sessionStorage.setItem(authenticationSession, username)
-    this.setupAxiosInterceptors(this.createBasicAuthToken(username, password))
-}
-
-registerSuccessfulLoginForJwt(username, token) {
-    sessionStorage.setItem(authenticationSession, username)
-    this.setupAxiosInterceptors(this.createJWTToken(token))
-}
-
-createJWTToken(token) {
-    return 'Bearer ' + token
-}
-
-
-logout() {
-    sessionStorage.removeItem(authenticationSession);
-}
-
-isUserLoggedIn() {
-    let user = sessionStorage.getItem(authenticationSession)
-    if (user === null) return false
-    return true
-}
-
-getLoggedInUserName() {
-    let user = sessionStorage.getItem(authenticationSession)
-    if (user === null) return ''
-    return user
-}
-
-setupAxiosInterceptors(token) {
-    axios.interceptors.request.use(
-        (config) => {
-            if (this.isUserLoggedIn()) {
-                config.headers.authorization = token
-            }
-            return config
-        }
-    )
-}
-}*/

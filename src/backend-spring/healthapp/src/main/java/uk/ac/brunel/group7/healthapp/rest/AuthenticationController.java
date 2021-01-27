@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import uk.ac.brunel.group7.healthapp.model.AuthenticationRequest;
 import uk.ac.brunel.group7.healthapp.model.AuthenticationResponse;
@@ -34,6 +35,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/authenticate")
+    @CrossOrigin(origins = "http://localhost:3000")
     public AuthenticationResponse authenticate(@RequestBody @Valid final AuthenticationRequest authenticationRequest) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(

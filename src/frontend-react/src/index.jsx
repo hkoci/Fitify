@@ -15,6 +15,9 @@ import Help from './components/home/Help';
 import Login from './components/fitify-app/Login';
 import Dashboard from './components/fitify-app/Dashboard';
 
+//Import Authentication required router
+import AuthenticationRouter from './services/login/authentication-router';
+
 //Setup React Router routes
 const routs = (
    <Router>
@@ -23,7 +26,7 @@ const routs = (
          <Route path="/about" component={About} />
          <Route path="/help" component={Help} />
          <Route path="/app/login" component={Login} />
-         <Route path="/app/dashboard" component={Dashboard} />
+         <AuthenticationRouter path="/app/dashboard" component={Dashboard} />
       </div>
    </Router>
 );

@@ -26,6 +26,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+//React Router
+import { Redirect } from 'react-router';
+
   const useStyles = theme => ({
     root: {
       height: '100vh',
@@ -109,8 +112,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
       Authentication.getBearerToken(this.state.username, this.state.password).then(() => {
           //Change state to Login successful
           this.setState({ loginSuccess: true })
-          //Go to the application dashboard
-          this.props.history.push("/app/dashboard")
       }).catch(() => {
           //Change state to Login failed
           this.setState({ loginFailed: true })
@@ -119,6 +120,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
     render(){
       const { classes } = this.props;
+
+      //Check if login was successful
+      if (this.state.loginSuccess) {
+        //Redirect to dashboard
+        return <Redirect push to="/app/dashboard" />;
+      }
 
       return(
         <Grid container component="main" className={classes.root}>

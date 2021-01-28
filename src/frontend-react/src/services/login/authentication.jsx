@@ -62,13 +62,18 @@ class Authentication {
             }
         })
     }
+
+    //Method to test if user is authenticated
+    getAuthenticationStatus(){
+        return sessionStorage.getItem("CurrentUsername") !== null
+    }
     
     //Method to setup accesstoken in header whilst using Axios
     axiosRequestTokenHeader(token) {
         //Intercept Axios request
         axios.interceptors.request.use((config) => {
             //If a username has been saved in the local storage (only after successful auth)
-            if (sessionStorage.getItem("CurrentUsername") !== null) {
+            if (Authentication.getAuthenticationStatus()) {
                 //Set authorization header to accessToken
                 config.headers.authorization = token
             }

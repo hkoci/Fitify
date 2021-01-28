@@ -19,6 +19,13 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from "@material-ui/core/styles";
 import Authentication from '../../services/login/authentication';
   
+//Dialog libraries
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
   const useStyles = theme => ({
     root: {
       height: '100vh',
@@ -186,6 +193,24 @@ import Authentication from '../../services/login/authentication';
               </form>
             </div>
           </Grid>
+          <Dialog
+        open={this.state.loginFailed}
+        onClose={() => this.setState({ loginFailed: false })}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Incorrect Credentials"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              You have entered a incorrect username and/or password combination. Please try again, if you do not have a Fitify account - sign up instead.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => this.setState({ loginFailed: false })} color="primary" autoFocus>
+              Try again
+            </Button>
+          </DialogActions>
+        </Dialog>
         </Grid>
       );
     }

@@ -47,13 +47,18 @@ class Authentication {
 
             if(error.response.status === 401){
                 console.log("Error 401 - Incorrect user credentials")
+                throw error
                 //Incorrect username/password
-                //Redirect to login component and warn user that combination is incorrect
-            }else if(error.response.status===400){
-                console.log("Error 400 - Incorrect React fronend arguments")
+            }else if(error.response.status === 400){
+                console.error("Error 400 - Incorrect React fronend arguments")
+                throw error
                 //Axios returned incorrect arguments
                 //Check our code in the data arguments to make sure username and password is named correctly.
                 //Mainly react server error
+            }else{
+                console.error("Error: " + error.response.status + " - " + error.response)
+                //Some other error to report back
+                throw error
             }
         })
     }

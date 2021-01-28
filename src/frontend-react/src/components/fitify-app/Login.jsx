@@ -72,7 +72,9 @@ import Authentication from '../../services/login/authentication';
       //Set user credentials states
       this.state = {
           username: '',
-          password: ''
+          password: '',
+          loginFailed: false,
+          loginSuccess: false
       }
 
       //Bind states to change methods
@@ -91,19 +93,21 @@ import Authentication from '../../services/login/authentication';
       this.setState({ password : event.target.value});
     }
 
-
     loginSubmit() {
-      Authentication
-      .getBearerToken(this.state.username, this.state.password)
-      .then(() => {
-          Authentication.registerSuccessfulLogin(this.state.username, this.state.password)
-          this.props.history.push(`/courses`)
+      //Reset message visibility
+      this.setState({ loginSuccess: false })
+      this.setState({ loginFailed: false })
+      
+      //Attempt JWT Token authentication
+      Authentication.getBearerToken(this.state.username, this.state.password).then(() => {
+          //Change state to Login successful
+          this.setState({ loginSuccess: true })
+          //Go to the application dashboard
+          this.props.history.push("/app/dashboard")
       }).catch(() => {
-          this.setState({ showSuccessMessage: false })
-          this.setState({ hasLoginFailed: true })
+          //Change state to Login failed
+          this.setState({ loginFailed: true })
       })
-        //TODO: Catch errors (incorrect details)
-        //Goto dashboard
     }
 
     render(){
@@ -121,7 +125,8 @@ import Authentication from '../../services/login/authentication';
               <Typography component="h1" variant="h5">
                 Welcome back!
               </Typography>
-              <Typography>Let's get fit once again with Fitify! {"\n"}To use this application, please login with your credentials.</Typography>
+              <Typography>Let's get fit once again with Fitify!</Typography>
+              <Typography>To use this application, please login with your credentials.</Typography>
               <form className={classes.form} noValidate>
                 <TextField
                   variant="outlined"

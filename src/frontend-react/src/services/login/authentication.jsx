@@ -24,9 +24,14 @@ class Authentication {
             }
         }).then((response) => {
             //The post method was successful and the AccessToken is recieved
-            console.log(response.data.accessToken)
+            //Debug (Log AccessToken to console for debug)
+            //console.log(response.data.accessToken)
 
-            //TODO: Something with the AccessToken to be stored and used permanently for later communication to endpoints
+            //Store username in localStorage
+            sessionStorage.setItem("CurrentUsername", username)
+
+            //Change Axios configuration to use accesstoken as Authorisation Bearer
+            this.axiosRequestTokenHeader("Bearer " + response.data.accessToken)
         })
         .catch((error) => {
             //The post method was not successful and some error has occured
@@ -51,8 +56,21 @@ class Authentication {
                 //Mainly react server error
             }
         })
-    }   
-
+    }
+    
+    //Method to setup accesstoken in header whilst using Axios
+    axiosRequestTokenHeader(token) {
+        //Intercept Axios request
+        axios.interceptors.request.use((config) => {
+            //If a username has been saved in the local storage (only after successful auth)
+            if (sessionStorage.getItem("CurrentUsername") !== null) {
+                //Set authorization header to accessToken
+                config.headers.authorization = token
+            }
+                return config
+            }
+        )
+    }
 
 }
 

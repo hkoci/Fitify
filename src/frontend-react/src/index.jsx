@@ -26,8 +26,8 @@ const routs = (
          <Route exact path="/" component={Landing} />
          <Route path="/about" component={About} />
          <Route path="/help" component={Help} />
-         <Route path="/app/login" component={Login} />
-         <Route path="/app/register" component={Register} />
+         <RedirectRoute path="/app/login" component={Login} />
+         <RedirectRoute path="/app/register" component={Register} />
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />
       </div>
    </Router>
@@ -43,7 +43,19 @@ function AuthenticatedRoute({ component: Component, ...rest }) {
        }
      />
    );
- }
+}
+
+//Redirected Sign-on users to dashboard routing
+function RedirectRoute({ component: Component, ...rest }) {
+   return (
+     <Route {...rest} render={props => !Authentication.getAuthenticationStatus() ? (<Component {...props} />) 
+         : (
+           <Redirect to={{ pathname: "/app/dashboard", state: { from: props.location } }} />
+         )
+       }
+     />
+   );
+}
 
 //Render the Routes in the document root
 ReactDOM.render(routs, document.getElementById('root'));

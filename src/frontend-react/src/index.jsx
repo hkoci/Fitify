@@ -14,7 +14,6 @@ import Help from './components/home/Help';
 //Fitify Components
 import Login from './components/fitify-app/Login';
 import Register from './components/fitify-app/Register';
-import Stepper from './components/fitify-app/stepper';
 import Dashboard from './components/fitify-app/Dashboard';
 
 //Import Authentication class to determine if user is authenticated
@@ -29,7 +28,6 @@ const routs = (
          <Route path="/help" component={Help} />
          <Route path="/app/login" component={Login} />
          <Route path="/app/register" component={Register} />
-         <Route path="/app/stepper" component={Stepper} />
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />
       </div>
    </Router>

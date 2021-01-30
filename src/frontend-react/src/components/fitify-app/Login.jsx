@@ -26,8 +26,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-//React Router
-import { Redirect } from 'react-router';
+//Login preloader libraries
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
   const useStyles = theme => ({
     root: {
@@ -58,6 +59,10 @@ import { Redirect } from 'react-router';
     submit: {
       margin: theme.spacing(3, 0, 2),
     },
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
+    },
   });
   
   function Copyright() {
@@ -83,6 +88,7 @@ import { Redirect } from 'react-router';
       this.state = {
           username: '',
           password: '',
+          loginPreloader: false,
           loginFailed: false,
           loginSuccess: false
       }
@@ -105,17 +111,23 @@ import { Redirect } from 'react-router';
 
     loginSubmit() {
       //Reset message visibility
+      this.setState({ loginPreloader: true })
       this.setState({ loginSuccess: false })
       this.setState({ loginFailed: false })
       
-      //Attempt JWT Token authentication
-      Authentication.getBearerToken(this.state.username, this.state.password).then(() => {
-          //Change state to Login successful
-          this.setState({ loginSuccess: true })
-      }).catch(() => {
-          //Change state to Login failed
-          this.setState({ loginFailed: true })
-      })
+      //Delay by 0.5 seconds to allow time for animations to work
+      setTimeout(function() {
+        //Attempt JWT Token authentication
+        Authentication.getBearerToken(this.state.username, this.state.password).then(() => {
+            //Change state to Login successful
+            this.setState({ loginPreloader: false })
+            this.setState({ loginSuccess: true })
+        }).catch(() => {
+            //Change state to Login failed
+            this.setState({ loginPreloader: false })
+            this.setState({ loginFailed: true })
+        })
+      }.bind(this), 500)
     }
 
     render(){
@@ -124,7 +136,7 @@ import { Redirect } from 'react-router';
       //Check if login was successful
       if (this.state.loginSuccess) {
         //Redirect to dashboard
-        return <Redirect push to="/app/dashboard" />;
+        this.props.history.push('/app/dashboard')
       }
 
       return(
@@ -189,7 +201,7 @@ import { Redirect } from 'react-router';
                     </Link>
                   </Grid>
                   <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link href="register" variant="body2">
                       {"Don't have an account? Sign Up"}
                     </Link>
                   </Grid>
@@ -200,12 +212,10 @@ import { Redirect } from 'react-router';
               </form>
             </div>
           </Grid>
-          <Dialog
-        open={this.state.loginFailed}
-        onClose={() => this.setState({ loginFailed: false })}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        >
+          <Backdrop className={classes.backdrop} open={this.state.loginPreloader} >
+            <CircularProgress color="inherit" />
+          </Backdrop>
+          <Dialog open={this.state.loginFailed} onClose={() => this.setState({ loginFailed: false })} aria-labelledby="incorrect-credentials" aria-describedby="login-failure">
           <DialogTitle id="alert-dialog-title">{"Incorrect Credentials"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">

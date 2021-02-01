@@ -82,6 +82,9 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080","http://localhost:3000","localhost:8080","localhost:3000"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","DELETE","PUT"));
+        configuration.setAllowCredentials(true);
+        configuration.setExposedHeaders(Arrays.asList("Authorization", "content-type"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "content-type"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

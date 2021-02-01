@@ -18,6 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import uk.ac.brunel.group7.healthapp.service.JwtUserDetailsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Arrays;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import static uk.ac.brunel.group7.healthapp.service.JwtUserDetailsService.USER;
 
 
@@ -52,7 +56,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
+    
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.cors().and()
@@ -70,6 +74,17 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
                     response.getOutputStream().println(objectMapper.writeValueAsString(errorResponse));
                 }).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+    }
+    
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() 
+    {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080","http://localhost:3000","localhost:8080","localhost:3000"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST","DELETE","PUT"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
 }

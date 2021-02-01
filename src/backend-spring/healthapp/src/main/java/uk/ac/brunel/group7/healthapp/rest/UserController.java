@@ -11,7 +11,6 @@ import uk.ac.brunel.group7.healthapp.service.UserService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/api/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 

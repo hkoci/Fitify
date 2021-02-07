@@ -12,7 +12,7 @@ on:
 # Set the default directory to the back-end code at the backend folder
 defaults:
   run:
-    working-directory: src/backend-spring/healthapp
+    working-directory: src/backend-spring/fitify
 
 # Workflow Jobs
 jobs:

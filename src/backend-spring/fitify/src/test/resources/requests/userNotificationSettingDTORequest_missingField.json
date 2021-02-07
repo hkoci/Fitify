@@ -1,0 +1,7 @@
+{
+  "weeklyNotificationProgress" : true,
+  "monthlyNotificationProgress" : true,
+  "weightNotification" : true,
+  "progressNotification" : true,
+  "achievementsNotification" : true
+}

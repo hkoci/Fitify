@@ -1,0 +1,12 @@
+{
+  "fitPoints" : 30,
+  "age" : 13,
+  "weight" : 26.42,
+  "height" : 91.42,
+  "bodyMassIndex" : 38.42,
+  "basalMetabolicRate" : 73.42,
+  "intakeCalories" : 68,
+  "outtakeCalories" : 63,
+  "targetWeight" : 89.42,
+  "targetBMI" : 71.42
+}

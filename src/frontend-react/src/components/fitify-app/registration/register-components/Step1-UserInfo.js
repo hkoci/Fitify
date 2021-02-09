@@ -6,6 +6,7 @@ import Select from "@material-ui/core/Select"
 import InputLabel from "@material-ui/core/InputLabel"
 import MenuItem from "@material-ui/core/MenuItem"
 import Button from "@material-ui/core/Button"
+import Link from '@material-ui/core/Link';
 
 //Material-Ui Pickers
 import DateFnsUtils from '@date-io/date-fns';
@@ -153,7 +154,15 @@ const UserInfo = ({ handleNext, handleChange, values: { firstName, lastName, use
           </FormControl>
         </Grid>
       </Grid>
+
       <div style={{ display: "flex", marginTop: 50, justifyContent: "flex-end" }}>
+      <Grid container>
+          <Grid item xs>
+            <Link href="./login" variant="body2">
+              Already have an account? Login
+            </Link>
+          </Grid>
+        </Grid>
         <Button variant="contained" disabled={!isValid} color="primary" onClick={isValid ? handleNext : null}>
           Next
         </Button>

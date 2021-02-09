@@ -12,9 +12,9 @@ import About from './components/home/About';
 import Help from './components/home/Help';
 
 //Fitify Components
-import Login from './components/fitify-app/Login';
-import Register from './components/fitify-app/Register';
-import Dashboard from './components/fitify-app/Dashboard';
+import Login from './components/fitify-app/login/Login';
+import Register from './components/fitify-app/registration/Register';
+import Dashboard from './components/fitify-app/dashboard/Dashboard';
 
 //Import Authentication class to determine if user is authenticated
 import Authentication from './services/login/authentication';

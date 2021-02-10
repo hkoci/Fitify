@@ -21,7 +21,7 @@ class userCreation {
         marketingAchievements){
             //Create marketing record for this user
             //Use the marketing PostMapping to store this in the User Marketing table
-            axios.post(`${SpringHostURL}/api/users/settings/marketing`,{
+            return axios.post(`${SpringHostURL}/api/users/settings/marketing`,{
                 //Json Body content of marketing preferences
                 "marketingEmailPreference": marketingEmail,
                 "dailyEmailProgressPreference": marketingDailyEmailProgress,
@@ -36,7 +36,7 @@ class userCreation {
                     //"Access-Control-Allow-Origin": "*"
                 }
             }).then((response) => {
-                return response.data
+                //return response.data
             })
             .catch((error) => {
                 //The post method was not successful and some error has occured
@@ -60,7 +60,7 @@ class userCreation {
         notificationAchievements){
             //Create notification record for this user
             //Use the notification PostMapping to store this in the User Notification table
-            axios.post(`${SpringHostURL}​/api​/users​/settings​/notification`,{
+            return axios.post(`${SpringHostURL}​/api​/users​/settings​/notification`,{
                 //Json Body content of notification preferences
                 "dailyNotificationProgress": notificationDaily,
                 "weeklyNotificationProgress": notificationWeekly,
@@ -75,7 +75,7 @@ class userCreation {
                     //"Access-Control-Allow-Origin": "*"
                 }
             }).then((response) => {
-                return response.data
+                //return response.data
             })
             .catch((error) => {
                 //The post method was not successful and some error has occured
@@ -99,7 +99,7 @@ class userCreation {
         textSize){
             //Create appearance record for this user
             //Use the appearance PostMapping to store this in the User Appearance table
-            axios.post(`${SpringHostURL}/api/users/settings/appearance`,{
+            return axios.post(`${SpringHostURL}/api/users/settings/appearance`,{
                 //Json Body content of appearance preferences
                 "primaryHexColour": primaryColour,
                 "secondaryHexColour": secondaryColour,
@@ -114,7 +114,7 @@ class userCreation {
                     //"Access-Control-Allow-Origin": "*"
                 }
             }).then((response) => {
-                return response.data
+                //return response.data
             })
             .catch((error) => {
                 //The post method was not successful and some error has occured
@@ -132,7 +132,7 @@ class userCreation {
     createUserFriends(){
             //Create friends record for this user
             //Use the appearance PostMapping to store this in the User Friends table
-            axios.post(`${SpringHostURL}/api/users/friend`,{
+            return axios.post(`${SpringHostURL}/api/users/friend`,{
                 //Json Body content of user friends
                 //TODO: This has to later be changed to a set of integers!
                 "userFriendid": 0,
@@ -144,7 +144,7 @@ class userCreation {
                     //"Access-Control-Allow-Origin": "*"
                 }
             }).then((response) => {
-                return response.data
+                //return response.data
             })
             .catch((error) => {
                 //The post method was not successful and some error has occured
@@ -163,23 +163,28 @@ class userCreation {
         //Create friends record for this user
         //Use the appearance PostMapping to store this in the User Friends table
 
-        //Work out age of the user
+        var age = 0;
 
-        //Set current date and dob as Date objects
-        var currentDate = new Date();
-        var dateAsDate = new Date(date);
+        //Check if user has input DOB to work out age
+        if(date !== ""){
+            //Work out age of the user
 
-        //Work out age by subtracting year from today
-        var age = currentDate.getFullYear() - dateAsDate.getFullYear();
+            //Set current date and dob as Date objects
+            var currentDate = new Date();
+            var dateAsDate = new Date(date);
 
-        //Check if it is the birthday month and that the birth day has not passed
-        var monthCheck = currentDate.getMonth() - dateAsDate.getMonth();
+            //Work out age by subtracting year from today
+            age = currentDate.getFullYear() - dateAsDate.getFullYear();
 
-        if (monthCheck < 0 || (monthCheck === 0 && currentDate.getDate() < dateAsDate.getDate())) {
-            age--;
+            //Check if it is the birthday month and that the birth day has not passed
+            var monthCheck = currentDate.getMonth() - dateAsDate.getMonth();
+
+            if (monthCheck < 0 || (monthCheck === 0 && currentDate.getDate() < dateAsDate.getDate())) {
+                age--;
+            }
         }
 
-        axios.post(`${SpringHostURL}/api/users/healthplan`,{
+        return axios.post(`${SpringHostURL}/api/users/healthplan`,{
             //Json Body content of user friends
             "fitPoints": 0,
             "age": age,
@@ -198,7 +203,7 @@ class userCreation {
                 //"Access-Control-Allow-Origin": "*"
             }
         }).then((response) => {
-            return response.data
+            //return response.data
         })
         .catch((error) => {
             //The post method was not successful and some error has occured
@@ -242,6 +247,9 @@ class userCreation {
         darkmode,
         highContrast,
         textSize){
+
+            console.log(firstName)
+            console.log(lastName)
             
             //The record ID's for the one-to-one mappings required for creating the user
             //We need the marketing, notification, appearance, friends, health plan created before creating the user
@@ -270,7 +278,8 @@ class userCreation {
                 darkmode,
                 highContrast,
                 textSize)
-            
+            /*DEBUG
+
             //Create user friends record and store the record ID in friendsID
             friendsID = this.createUserFriends()
 
@@ -307,7 +316,7 @@ class userCreation {
                 Authentication.getBearerToken(username, password)
 
                 //Return user record id
-                return response.data
+                //return response.data
             })
             .catch((error) => {
                 //The post method was not successful and some error has occured
@@ -321,22 +330,8 @@ class userCreation {
                 //To get error status, we can log it to the console using console.log(error.response.status)
                 //To get the error msg, we can log it to the console using console.log(error.response.data.error)
 
-                if(error.response.status === 401){
-                    console.log("Error 401 - Incorrect user credentials")
-                    throw error
-                    //Incorrect username/password
-                }else if(error.response.status === 400){
-                    console.error("Error 400 - Incorrect React fronend arguments")
-                    throw error
-                    //Axios returned incorrect arguments
-                    //Check our code in the data arguments to make sure username and password is named correctly.
-                    //Mainly react server error
-                }else{
-                    console.error("Error: " + error.response.status + " - " + error.response)
-                    //Some other error to report back
-                    throw error
-                }
-            })
+                //throw error
+            //})
 
         }
 

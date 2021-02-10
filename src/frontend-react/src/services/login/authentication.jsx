@@ -126,6 +126,36 @@ class Authentication {
             )
         }
 
+    //Method to create user friends
+    //If successful - the record will be created and the record ID will be returned
+    createUserFriends(){
+            //Create friends record for this user
+            //Use the appearance PostMapping to store this in the User Friends table
+            axios.post(`${SpringHostURL}/api/users/friend`,{
+                //Json Body content of user friends
+                //TODO: This has to later be changed to a set of integers!
+                "userFriendid": 0,
+                "friendIds": 0
+            },{
+                headers: {
+                    //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    //"Access-Control-Allow-Origin": "*"
+                }
+            }).then((response) => {
+                return response.data
+            })
+            .catch((error) => {
+                //The post method was not successful and some error has occured
+
+                //To get error status, we can log it to the console using console.log(error.response.status)
+                //To get the error msg, we can log it to the console using console.log(error.response.data.error)
+
+                throw error
+                }
+            )
+        }
+
 
     //Registration endpoint
     createUser(
@@ -160,9 +190,10 @@ class Authentication {
         textSize){
             
             //The record ID's for the one-to-one mappings required for creating the user
-            //We need the marketing,notification and appearance created before creating the user
-            var marketingID = 0, notificationID = 0, appearanceID = 0;
+            //We need the marketing,notification, appearance and friends created before creating the user
+            var marketingID = 0, notificationID = 0, appearanceID = 0, friendsID = 0;
 
+            //Create user marketing record and store the record ID in marketingID
             marketingID = this.createUserMarketing(marketingEmail,
                 marketingDailyEmailProgress,
                 marketingWeeklyEmailProgress,
@@ -170,6 +201,7 @@ class Authentication {
                 marketingProgress,
                 marketingAchievements);
             
+            //Create user notification record and store the record ID in notificationID
             notificationID = this.createUserNotification(notificationDaily,
                 notificationWeekly,
                 notificationMonthly,
@@ -177,13 +209,16 @@ class Authentication {
                 notificationProgress,
                 notificationAchievements)
             
+            //Create user appearance record and store the record ID in appearanceID
             appearanceID = this.createUserNotification(primaryColour,
                 secondaryColour,
                 avatarColour,
                 darkmode,
                 highContrast,
                 textSize)
-
+            
+            //Create user friends record and store the record ID in appearanceID
+            friendsID = this.createUserFriends()
 
         }
 

@@ -48,6 +48,45 @@ class Authentication {
             )
         }
 
+    //Method to create user notifications preferences
+    //If successful - the record will be created and the record ID will be returned
+    createUserNotification(
+        notificationDaily,
+        notificationWeekly,
+        notificationMonthly,
+        notificationWeight,
+        notificationProgress,
+        notificationAchievements){
+            //Create notification record for this user
+            //Use the notification PostMapping to store this in the User Notification table
+            axios.post(`${SpringHostURL}/api/users/settings/marketing`,{
+                //Json Body content of notification preferences
+                "dailyNotificationProgress": notificationDaily,
+                "weeklyNotificationProgress": notificationWeekly,
+                "monthlyNotificationProgress": notificationMonthly,
+                "weightNotification": notificationWeight,
+                "progressNotification": notificationProgress,
+                "achievementsNotification": notificationAchievements
+            },{
+                headers: {
+                    //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    //"Access-Control-Allow-Origin": "*"
+                }
+            }).then((response) => {
+                return response.data
+            })
+            .catch((error) => {
+                //The post method was not successful and some error has occured
+
+                //To get error status, we can log it to the console using console.log(error.response.status)
+                //To get the error msg, we can log it to the console using console.log(error.response.data.error)
+
+                throw error
+                }
+            )
+        }
+
     //Registration endpoint
     createUser(
         //User information
@@ -85,11 +124,19 @@ class Authentication {
             var marketingID = 0, notificationID = 0, appearanceID = 0;
 
             marketingID = this.createUserMarketing(marketingEmail,
-                            marketingDailyEmailProgress,
-                            marketingWeeklyEmailProgress,
-                            marketingRoadmap,
-                            marketingProgress,
-                            marketingAchievements)
+                marketingDailyEmailProgress,
+                marketingWeeklyEmailProgress,
+                marketingRoadmap,
+                marketingProgress,
+                marketingAchievements);
+            
+            notificationID = this.createUserNotification(notificationDaily,
+                notificationWeekly,
+                notificationMonthly,
+                notificationWeight,
+                notificationProgress,
+                notificationAchievements,)
+
 
         }
 

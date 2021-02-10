@@ -9,6 +9,90 @@ const SpringHostURL = 'http://localhost:8080'
 //My implementation works differently by getting JWT access tokens from the Spring endpoint - if no token is return, the credentials are incorrect.
 class Authentication {
 
+    //Method to create user marketing preferences
+    //If successful - the record will be created and the record ID will be returned
+    createUserMarketing(
+        marketingEmail,
+        marketingDailyEmailProgress,
+        marketingWeeklyEmailProgress,
+        marketingRoadmap,
+        marketingProgress,
+        marketingAchievements){
+            //Create marketing record for this user
+            //Use the marketing PostMapping to store this in the User Marketing table
+            axios.post(`${SpringHostURL}/api/users/settings/marketing`,{
+                //Json Body content of marketing preferences
+                "marketingEmailPreference": marketingEmail,
+                "dailyEmailProgressPreference": marketingDailyEmailProgress,
+                "weeklyEmailProgressPreference": marketingWeeklyEmailProgress,
+                "marketingRoadmapPreference": marketingRoadmap,
+                "progressPreference": marketingProgress,
+                "achievementsPreference": marketingAchievements
+            },{
+                headers: {
+                    //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    //"Access-Control-Allow-Origin": "*"
+                }
+            }).then((response) => {
+                return response.data
+            })
+            .catch((error) => {
+                //The post method was not successful and some error has occured
+
+                //To get error status, we can log it to the console using console.log(error.response.status)
+                //To get the error msg, we can log it to the console using console.log(error.response.data.error)
+
+                throw error
+                }
+            )
+        }
+
+    //Registration endpoint
+    createUser(
+        //User information
+        firstName,
+        lastName,
+        username,
+        password,
+        email,
+        gender,
+        date,
+        //Marketing variables
+        marketingEmail,
+        marketingDailyEmailProgress,
+        marketingWeeklyEmailProgress,
+        marketingRoadmap,
+        marketingProgress,
+        marketingAchievements,
+        //Notification variables
+        notificationDaily,
+        notificationWeekly,
+        notificationMonthly,
+        notificationWeight,
+        notificationProgress,
+        notificationAchievements,
+        //Appearance variables
+        primaryColour,
+        secondaryColour,
+        avatarColour,
+        darkmode,
+        highContrast,
+        textSize){
+            
+            //The record ID's for the one-to-one mappings required for creating the user
+            //We need the marketing,notification and appearance created before creating the user
+            var marketingID = 0, notificationID = 0, appearanceID = 0;
+
+            marketingID = this.createUserMarketing(marketingEmail,
+                            marketingDailyEmailProgress,
+                            marketingWeeklyEmailProgress,
+                            marketingRoadmap,
+                            marketingProgress,
+                            marketingAchievements)
+
+        }
+
     //Method to get Authorisation Bearer token from JWT
     //Request it using username and password parameters
     getBearerToken(username, password){       

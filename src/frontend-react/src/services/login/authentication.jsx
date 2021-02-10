@@ -59,7 +59,7 @@ class Authentication {
         notificationAchievements){
             //Create notification record for this user
             //Use the notification PostMapping to store this in the User Notification table
-            axios.post(`${SpringHostURL}/api/users/settings/marketing`,{
+            axios.post(`${SpringHostURL}​/api​/users​/settings​/notification`,{
                 //Json Body content of notification preferences
                 "dailyNotificationProgress": notificationDaily,
                 "weeklyNotificationProgress": notificationWeekly,
@@ -86,6 +86,46 @@ class Authentication {
                 }
             )
         }
+
+    //Method to create user appearance preferences
+    //If successful - the record will be created and the record ID will be returned
+    createUserAppearance(
+        primaryColour,
+        secondaryColour,
+        avatarColour,
+        darkmode,
+        highContrast,
+        textSize){
+            //Create appearance record for this user
+            //Use the appearance PostMapping to store this in the User Appearance table
+            axios.post(`${SpringHostURL}/api/users/settings/appearance`,{
+                //Json Body content of appearance preferences
+                "primaryHexColour": primaryColour,
+                "secondaryHexColour": secondaryColour,
+                "darkMode": darkmode,
+                "highContrast": highContrast,
+                "textSize": textSize,
+                "avatarDefaultColour": avatarColour
+            },{
+                headers: {
+                    //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    //"Access-Control-Allow-Origin": "*"
+                }
+            }).then((response) => {
+                return response.data
+            })
+            .catch((error) => {
+                //The post method was not successful and some error has occured
+
+                //To get error status, we can log it to the console using console.log(error.response.status)
+                //To get the error msg, we can log it to the console using console.log(error.response.data.error)
+
+                throw error
+                }
+            )
+        }
+
 
     //Registration endpoint
     createUser(
@@ -135,7 +175,14 @@ class Authentication {
                 notificationMonthly,
                 notificationWeight,
                 notificationProgress,
-                notificationAchievements,)
+                notificationAchievements)
+            
+            appearanceID = this.createUserNotification(primaryColour,
+                secondaryColour,
+                avatarColour,
+                darkmode,
+                highContrast,
+                textSize)
 
 
         }

@@ -45,7 +45,8 @@ class userCreation {
                 //To get error status, we can log it to the console using console.log(error.response.status)
                 //To get the error msg, we can log it to the console using console.log(error.response.data.error)
 
-                throw error
+                console.error("[Error", error.response.data.error, "]", "creating marketing prefs:" + error.response.data.error)
+                return null;
                 }
             )
     }
@@ -86,7 +87,8 @@ class userCreation {
                 //To get error status, we can log it to the console using console.log(error.response.status)
                 //To get the error msg, we can log it to the console using console.log(error.response.data.error)
 
-                throw error
+                console.error("[Error", error.response.data.error, "]", "creating notification:" + error.response.data.error)
+                return null;
                 }
             )
     }
@@ -126,7 +128,8 @@ class userCreation {
                 //To get error status, we can log it to the console using console.log(error.response.status)
                 //To get the error msg, we can log it to the console using console.log(error.response.data.error)
 
-                throw error
+                console.error("[Error", error.response.data.error, "]", "creating user appearance:" + error.response.data.error)
+                return null;
                 }
             )
     }
@@ -157,7 +160,8 @@ class userCreation {
                 //To get error status, we can log it to the console using console.log(error.response.status)
                 //To get the error msg, we can log it to the console using console.log(error.response.data.error)
 
-                throw error
+                console.error("[Error", error.response.data.error, "]", "creating friends:" + error.response.data.error)
+                return null;
                 }
             )
     }
@@ -216,7 +220,8 @@ class userCreation {
             //To get error status, we can log it to the console using console.log(error.response.status)
             //To get the error msg, we can log it to the console using console.log(error.response.data.error)
 
-            throw error
+            console.error("[Error", error.response.data.error, "]", "creating healthplan:" + error.response.data.error)
+            return null;
             }
         )
     }

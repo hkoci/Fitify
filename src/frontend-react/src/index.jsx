@@ -10,6 +10,7 @@ import './index.css';
 import Landing from './components/home/Landing';
 import About from './components/home/About';
 import Help from './components/home/Help';
+import ContactUs from './components/home/ContactUs';
 
 //Fitify Components
 import Login from './components/fitify-app/login/Login';
@@ -26,6 +27,7 @@ const routs = (
          <Route exact path="/" component={Landing} />
          <Route path="/about" component={About} />
          <Route path="/help" component={Help} />
+         <Route path="/ContactUs" component={ContactUs} />
          <RedirectRoute path="/app/login" component={Login} />
          <RedirectRoute path="/app/register" component={Register} />
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />

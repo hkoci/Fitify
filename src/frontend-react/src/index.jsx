@@ -15,7 +15,6 @@ import ContactUs from './pages/ContactUs';
 //Fitify Components
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Logout from './pages/Logout';
 import Dashboard from './pages/Dashboard';
 
 //Import Authentication class to determine if user is authenticated
@@ -31,7 +30,6 @@ const routs = (
          <Route path="/ContactUs" component={ContactUs} />
          <RedirectRoute path="/app/login" component={Login} />
          <RedirectRoute path="/app/register" component={Register} />
-         <RedirectRoute path="/app/logout" component={Logout} />
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />
       </div>
    </Router>
@@ -59,18 +57,6 @@ function RedirectRoute({ component: Component, ...rest }) {
        }
      />
    );
-}
-
-//Redirected Sign-on users to dashboard routing
-function LogoutRoute({ component: Component, ...rest }) {
-  return (
-    <Route {...rest} render={props => Authentication.logout() ? (<Component {...props} />) 
-        : (
-          <Redirect to={{ pathname: "/app/logout", state: { from: props.location } }} />
-        )
-      }
-    />
-  );
 }
 
 //Render the Routes in the document root

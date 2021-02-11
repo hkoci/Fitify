@@ -5,14 +5,27 @@ import ListItemText from "@material-ui/core/ListItemText"
 import Divider from "@material-ui/core/Divider"
 import Button from "@material-ui/core/Button"
 
+//Dialog libraries
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
+//Login preloader libraries
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import UserRegistration from '../../../../services/register/userCreation';
 
 // Destructure props
 const Confirm = ({ handleNext, handleBack, createUser, values }) => {
 
-  //const { firstName, lastName, email, gender, date, marketingEmail, marketingDailyEmailProgress, marketingWeeklyEmailProgress, marketingRoadmap, marketingProgress, marketingAchievements } = values
+  //Login variables for UI
+  var loginPreloader =  false, loginFailed = false
 
-  const {         //User information
+  const {
+    //User information
     firstName,
     lastName,
     username,
@@ -58,13 +71,13 @@ const Confirm = ({ handleNext, handleBack, createUser, values }) => {
     }
   };
 
-  function loginSubmit() {
-    //Reset message visibility
-    //this.setState({ loginPreloader: true })
-    //this.setState({ loginSuccess: false })
-    //this.setState({ loginFailed: false })
+  function registerSubmit() {
+    //Start preloader animation
+    loginPreloader = true
+    loginFailed = false
     
     //Delay by 0.5 seconds to allow time for animations to work
+    setTimeout(function() {
       UserRegistration.createUser(
         //User information
         {firstName}.firstName,
@@ -96,16 +109,17 @@ const Confirm = ({ handleNext, handleBack, createUser, values }) => {
         {highContrast}.highContrast,
         {textSize}.textSize
       ).then(() => {
-          console.log("good")
-          //Change state to Login successful
-          //this.setState({ loginPreloader: false })
-          //this.setState({ loginSuccess: true })
+          //Stop animation
+          loginPreloader = false
+          //Redirect to dashboard
+          this.props.history.push('/app/dashboard')
       }).catch(() => {
-          console.log("bad")
-          //Change state to Login failed
-          //this.setState({ loginPreloader: false })
-          //this.setState({ loginFailed: true })
+          //Stop animation
+          loginPreloader = false
+          //Failed - show dialog
+          loginFailed = true
       })
+    }.bind(this), 500)
   }
 
   return (
@@ -183,10 +197,28 @@ const Confirm = ({ handleNext, handleBack, createUser, values }) => {
         <Button variant="contained" color="default" onClick={handleBack}>
           Back
         </Button>
-        <Button style={{ marginLeft: 10 }} variant="contained" color="secondary" onClick={loginSubmit}>
+        <Button style={{ marginLeft: 10 }} variant="contained" color="secondary" onClick={registerSubmit}>
           Confirm & Continue
         </Button>
       </div>
+
+      <Backdrop open={loginPreloader} >
+            <CircularProgress color="inherit" />
+          </Backdrop>
+          <Dialog open={loginFailed} onClose={() => loginFailed = false} aria-labelledby="incorrect-credentials" aria-describedby="login-failure">
+          <DialogTitle id="alert-dialog-title">{"Incorrect Credentials"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              You have entered a incorrect username and/or password combination. Please try again, if you do not have a Fitify account - sign up instead.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => loginFailed = false} color="primary" autoFocus>
+              Try again
+            </Button>
+          </DialogActions>
+        </Dialog>
+
     </Fragment>
   )
 }

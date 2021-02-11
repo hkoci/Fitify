@@ -32,7 +32,7 @@ const Marketing = ({ handleNext, handleBack, handleChange, values: { marketingEm
     <>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <FormGroup col>
+          <FormGroup col="true">
           <FormLabel component="legend" >You can select your email marketing 📧 preferences below:</FormLabel>
             <FormControlLabel
               control={<Checkbox checked={marketingEmail} onChange={handleCheckedChange} name="marketingEmail" />}
@@ -67,7 +67,7 @@ const Marketing = ({ handleNext, handleBack, handleChange, values: { marketingEm
           </FormGroup>
         </Grid>
                 
-        <Typography variant="h7" color="inherit" noWrap>
+        <Typography color="inherit" noWrap>
           We promise not to spam! 😀
         </Typography>
       </Grid>

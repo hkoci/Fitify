@@ -9,7 +9,6 @@ import MarketingStep from "./Step2-Marketing"
 import NotificationStep from "./Step3-Notifications"
 import AppearanceStep from "./Step4-Appearance"
 import Confirm from "./StepFinal-Information"
-import Success from "./Success"
 import formValidation from "./formValidation"
 
 // Step titles
@@ -39,8 +38,8 @@ const initialValues = {
   notificationProgress: false,
   notificationAchievements: false,
   //Appearance variables
-  primaryColour: "#001",
-  secondaryColour: "#000",
+  primaryColour: "#3f51b5",
+  secondaryColour: "#f50057",
   avatarColour: "",
   darkmode: false,
   highContrast: false,
@@ -163,29 +162,22 @@ const StepForm = () => {
 
   return (
     <>
-      {activeStep === labels.length ? (
-        // Last Component
-        <Success values={formValues} />
-      ) : (
-        <>
-          <Box style={{ margin: "30px 0 50px" }}>
-            <Typography variant="h4" align="center">
-              Fitify Registration
-            </Typography>
-            <Typography variant="subtitle2" align="center" style={{ margin: "10px 0" }}>
-              Get ready to control your health in minutes!
-            </Typography>
-          </Box>
-          <Stepper activeStep={activeStep} style={{ margin: "30px 0 15px" }} alternativeLabel>
-            {labels.map(label => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          {handleSteps(activeStep)}
-        </>
-      )}
+      <Box style={{ margin: "30px 0 50px" }}>
+        <Typography variant="h4" align="center">
+          Fitify Registration
+        </Typography>
+        <Typography variant="subtitle2" align="center" style={{ margin: "10px 0" }}>
+          Get ready to control your health in minutes!
+        </Typography>
+      </Box>
+      <Stepper activeStep={activeStep} style={{ margin: "30px 0 15px" }} alternativeLabel>
+        {labels.map(label => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      {handleSteps(activeStep)}
     </>
   )
 }

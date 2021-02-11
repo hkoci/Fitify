@@ -18,10 +18,11 @@ class userCreation {
         marketingWeeklyEmailProgress,
         marketingRoadmap,
         marketingProgress,
-        marketingAchievements){
+        marketingAchievements)
+    {
             //Create marketing record for this user
             //Use the marketing PostMapping to store this in the User Marketing table
-            return axios.post(`${SpringHostURL}/api/users/settings/marketing`,{
+            axios.post(`${SpringHostURL}/api/users/settings/marketing`,{
                 //Json Body content of marketing preferences
                 "marketingEmailPreference": marketingEmail,
                 "dailyEmailProgressPreference": marketingDailyEmailProgress,
@@ -36,7 +37,7 @@ class userCreation {
                     //"Access-Control-Allow-Origin": "*"
                 }
             }).then((response) => {
-                //return response.data
+                return response.data
             })
             .catch((error) => {
                 //The post method was not successful and some error has occured
@@ -47,7 +48,8 @@ class userCreation {
                 throw error
                 }
             )
-        }
+    }
+        
 
     //Method to create user notifications preferences
     //If successful - the record will be created and the record ID will be returned
@@ -57,10 +59,11 @@ class userCreation {
         notificationMonthly,
         notificationWeight,
         notificationProgress,
-        notificationAchievements){
+        notificationAchievements)
+    {
             //Create notification record for this user
             //Use the notification PostMapping to store this in the User Notification table
-            return axios.post(`${SpringHostURL}​/api​/users​/settings​/notification`,{
+            axios.post(`${SpringHostURL}/api/users/settings/notification`,{
                 //Json Body content of notification preferences
                 "dailyNotificationProgress": notificationDaily,
                 "weeklyNotificationProgress": notificationWeekly,
@@ -75,7 +78,7 @@ class userCreation {
                     //"Access-Control-Allow-Origin": "*"
                 }
             }).then((response) => {
-                //return response.data
+                return response.data
             })
             .catch((error) => {
                 //The post method was not successful and some error has occured
@@ -86,7 +89,7 @@ class userCreation {
                 throw error
                 }
             )
-        }
+    }
 
     //Method to create user appearance preferences
     //If successful - the record will be created and the record ID will be returned
@@ -96,10 +99,11 @@ class userCreation {
         avatarColour,
         darkmode,
         highContrast,
-        textSize){
+        textSize)
+    {
             //Create appearance record for this user
             //Use the appearance PostMapping to store this in the User Appearance table
-            return axios.post(`${SpringHostURL}/api/users/settings/appearance`,{
+            axios.post(`${SpringHostURL}/api/users/settings/appearance`,{
                 //Json Body content of appearance preferences
                 "primaryHexColour": primaryColour,
                 "secondaryHexColour": secondaryColour,
@@ -114,7 +118,7 @@ class userCreation {
                     //"Access-Control-Allow-Origin": "*"
                 }
             }).then((response) => {
-                //return response.data
+                return response.data
             })
             .catch((error) => {
                 //The post method was not successful and some error has occured
@@ -125,14 +129,15 @@ class userCreation {
                 throw error
                 }
             )
-        }
+    }
 
     //Method to create user friends
     //If successful - the record will be created and the record ID will be returned
-    createUserFriends(){
+    createUserFriends()
+    {
             //Create friends record for this user
             //Use the appearance PostMapping to store this in the User Friends table
-            return axios.post(`${SpringHostURL}/api/users/friend`,{
+            axios.post(`${SpringHostURL}/api/users/friend`,{
                 //Json Body content of user friends
                 //TODO: This has to later be changed to a set of integers!
                 "userFriendid": 0,
@@ -144,7 +149,7 @@ class userCreation {
                     //"Access-Control-Allow-Origin": "*"
                 }
             }).then((response) => {
-                //return response.data
+                return response.data
             })
             .catch((error) => {
                 //The post method was not successful and some error has occured
@@ -155,7 +160,7 @@ class userCreation {
                 throw error
                 }
             )
-        }
+    }
 
     //Method to create user friends
     //If successful - the record will be created and the record ID will be returned
@@ -184,7 +189,7 @@ class userCreation {
             }
         }
 
-        return axios.post(`${SpringHostURL}/api/users/healthplan`,{
+        axios.post(`${SpringHostURL}/api/users/healthplan`,{
             //Json Body content of user friends
             "fitPoints": 0,
             "age": age,
@@ -203,7 +208,7 @@ class userCreation {
                 //"Access-Control-Allow-Origin": "*"
             }
         }).then((response) => {
-            //return response.data
+            return response.data
         })
         .catch((error) => {
             //The post method was not successful and some error has occured
@@ -246,39 +251,24 @@ class userCreation {
         avatarColour,
         darkmode,
         highContrast,
-        textSize){
-
-            console.log(firstName)
-            console.log(lastName)
-            
+        textSize)
+    {           
             //The record ID's for the one-to-one mappings required for creating the user
             //We need the marketing, notification, appearance, friends, health plan created before creating the user
             var marketingID = 0, notificationID = 0, appearanceID = 0, friendsID = 0, healthID = 0;
 
+            console.log('Marketing config: ', marketingEmail, marketingDailyEmailProgress, marketingWeeklyEmailProgress, marketingRoadmap, marketingProgress, marketingAchievements)
+            console.log('Notification config: ', notificationDaily, notificationWeekly, notificationMonthly, notificationWeight, notificationProgress, notificationAchievements)
+            console.log('Appearance config: ', primaryColour, secondaryColour, avatarColour, darkmode, highContrast, textSize)
+
             //Create user marketing record and store the record ID in marketingID
-            marketingID = this.createUserMarketing(marketingEmail,
-                marketingDailyEmailProgress,
-                marketingWeeklyEmailProgress,
-                marketingRoadmap,
-                marketingProgress,
-                marketingAchievements);
+            marketingID = this.createUserMarketing(marketingEmail, marketingDailyEmailProgress, marketingWeeklyEmailProgress, marketingRoadmap, marketingProgress, marketingAchievements);
             
             //Create user notification record and store the record ID in notificationID
-            notificationID = this.createUserNotification(notificationDaily,
-                notificationWeekly,
-                notificationMonthly,
-                notificationWeight,
-                notificationProgress,
-                notificationAchievements)
+            notificationID = this.createUserNotification(notificationDaily, notificationWeekly, notificationMonthly, notificationWeight, notificationProgress, notificationAchievements);
             
             //Create user appearance record and store the record ID in appearanceID
-            appearanceID = this.createUserNotification(primaryColour,
-                secondaryColour,
-                avatarColour,
-                darkmode,
-                highContrast,
-                textSize)
-            /*DEBUG
+            appearanceID = this.createUserAppearance(primaryColour, secondaryColour, avatarColour, darkmode, highContrast, textSize);
 
             //Create user friends record and store the record ID in friendsID
             friendsID = this.createUserFriends()
@@ -297,7 +287,7 @@ class userCreation {
                 "emailAddress": email,
                 "dob": date,
                 "fitPoints": 0,
-                "avatarImage": "string",
+                "avatarImage": "",
                 "friend": friendsID,
                 "apperance": appearanceID,
                 "notification": notificationID,
@@ -330,10 +320,10 @@ class userCreation {
                 //To get error status, we can log it to the console using console.log(error.response.status)
                 //To get the error msg, we can log it to the console using console.log(error.response.data.error)
 
-                //throw error
-            //})
+                throw error
+            })
 
-        }
+    }
 
 }
 

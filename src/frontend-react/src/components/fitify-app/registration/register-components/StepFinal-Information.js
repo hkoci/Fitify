@@ -42,13 +42,6 @@ const Confirm = ({ handleNext, handleBack, createUser, values }) => {
     highContrast,
     textSize } = values
 
-  const handleSubmit = () => {
-    // Do whatever with the values
-    console.log(values)
-    // Show last compinent or success message
-    handleNext()
-  }
-
   const getDOB = (DOB) => {
     if(DOB === ""){
       return "None provided"
@@ -72,7 +65,6 @@ const Confirm = ({ handleNext, handleBack, createUser, values }) => {
     //this.setState({ loginFailed: false })
     
     //Delay by 0.5 seconds to allow time for animations to work
-    setTimeout(function() {
       UserRegistration.createUser(
         //User information
         {firstName}.firstName,
@@ -114,7 +106,6 @@ const Confirm = ({ handleNext, handleBack, createUser, values }) => {
           //this.setState({ loginPreloader: false })
           //this.setState({ loginFailed: true })
       })
-    }.bind(this), 500)
   }
 
   return (

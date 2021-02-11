@@ -16,10 +16,15 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+//Include React Router history (5.1+ required) - mitigation from nested components
+import { useHistory } from "react-router-dom";
+
 import UserRegistration from '../../../../services/register/userCreation';
 
 // Destructure props
 const Confirm = ({ handleNext, handleBack, createUser, values }) => {
+
+  let history = useHistory();
 
   //Login variables for UI
   var loginPreloader =  false, loginFailed = false
@@ -54,9 +59,10 @@ const Confirm = ({ handleNext, handleBack, createUser, values }) => {
     darkmode,
     highContrast,
     textSize } = values
+    
 
   const getDOB = (DOB) => {
-    if(DOB === ""){
+    if(DOB === "" || DOB === null){
       return "None provided"
     }else{
       return DOB.toLocaleDateString()
@@ -112,7 +118,7 @@ const Confirm = ({ handleNext, handleBack, createUser, values }) => {
           //Stop animation
           loginPreloader = false
           //Redirect to dashboard
-          this.props.history.push('/app/dashboard')
+          history.push('/app/dashboard')
       }).catch(() => {
           //Stop animation
           loginPreloader = false

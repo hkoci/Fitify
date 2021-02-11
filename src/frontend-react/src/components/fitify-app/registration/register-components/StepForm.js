@@ -8,7 +8,7 @@ import UserStep from "./Step1-UserInfo"
 import MarketingStep from "./Step2-Marketing"
 import NotificationStep from "./Step3-Notifications"
 import AppearanceStep from "./Step4-Appearance"
-import Confirm from "./StepFinal-Information"
+import ConfirmStep from "./StepFinal-Information"
 import formValidation from "./formValidation"
 
 // Step titles
@@ -154,7 +154,7 @@ const StepForm = () => {
          <AppearanceStep handleNext={handleNext} handleBack={handleBack} handleChange={handleChange} values={formValues} formErrors={formErrors} />
         )
       case 4:
-        return <Confirm handleNext={handleNext} handleBack={handleBack} values={formValues} />
+        return <ConfirmStep handleNext={handleNext} handleBack={handleBack} values={formValues} />
       default:
         break
     }

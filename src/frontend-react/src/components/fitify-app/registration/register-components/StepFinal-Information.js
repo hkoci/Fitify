@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react"
+import React, { Fragment } from "react"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
@@ -25,9 +25,6 @@ import UserRegistration from '../../../../services/register/userCreation';
 const Confirm = ({ handleChange, handleBack, createUser, values }) => {
 
   let history = useHistory();
-
-  //Login variables for UI
-  var loginPreloader =  false, loginFailed = false
 
   const {
     //User information
@@ -125,14 +122,14 @@ const Confirm = ({ handleChange, handleBack, createUser, values }) => {
           //Stop animation
           setVariable("signupPreloader",false)
           //Redirect to dashboard
-          //history.push('/app/dashboard')
+          history.push('/app/dashboard')
       }).catch(() => {
           //Stop animation
           setVariable("signupPreloader",false)
           //Failed - show dialog
           setVariable("signupFailed",true)
       })
-    }.bind(this), 500)
+    }.bind(), 500)
   }
 
   return (

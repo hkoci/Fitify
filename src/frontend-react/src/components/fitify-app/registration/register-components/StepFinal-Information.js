@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React, { Fragment, useState, useEffect } from "react"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
@@ -22,7 +22,7 @@ import { useHistory } from "react-router-dom";
 import UserRegistration from '../../../../services/register/userCreation';
 
 // Destructure props
-const Confirm = ({ handleNext, handleBack, createUser, values }) => {
+const Confirm = ({ handleChange, handleBack, createUser, values }) => {
 
   let history = useHistory();
 
@@ -58,7 +58,10 @@ const Confirm = ({ handleNext, handleBack, createUser, values }) => {
     avatarColour,
     darkmode,
     highContrast,
-    textSize } = values
+    textSize,
+    //Animation
+    signupPreloader,
+    signupFailed } = values
     
 
   const getDOB = (DOB) => {
@@ -77,10 +80,14 @@ const Confirm = ({ handleNext, handleBack, createUser, values }) => {
     }
   };
 
-  function registerSubmit() {
+  const setVariable = (name,value) => {
+    var StepFormVar = {"target": {"name": name, "value": value} }
+    handleChange(StepFormVar);
+  };
+
+  const registerSubmit = () => {
     //Start preloader animation
-    loginPreloader = true
-    loginFailed = false
+    setVariable("signupPreloader",true)
     
     //Delay by 0.5 seconds to allow time for animations to work
     setTimeout(function() {
@@ -116,20 +123,39 @@ const Confirm = ({ handleNext, handleBack, createUser, values }) => {
         {textSize}.textSize
       ).then(() => {
           //Stop animation
-          loginPreloader = false
+          setVariable("signupPreloader",false)
           //Redirect to dashboard
-          history.push('/app/dashboard')
+          //history.push('/app/dashboard')
       }).catch(() => {
           //Stop animation
-          loginPreloader = false
+          setVariable("signupPreloader",false)
           //Failed - show dialog
-          loginFailed = true
+          setVariable("signupFailed",true)
       })
     }.bind(this), 500)
   }
 
   return (
     <Fragment>
+
+      <Backdrop open={signupPreloader} >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
+      <Dialog open={signupFailed} onClose={() => setVariable("signupFailed",false)} aria-labelledby="incorrect-credentials" aria-describedby="signup-failure">
+        <DialogTitle id="alert-dialog-title">{"Invalid Details"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            There was a error signing up using your details
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setVariable("signupFailed",false)} color="primary" autoFocus>
+            Try again
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       <List disablePadding>
         <ListItem>
           <ListItemText primary="First Name" secondary={firstName} />
@@ -208,22 +234,7 @@ const Confirm = ({ handleNext, handleBack, createUser, values }) => {
         </Button>
       </div>
 
-      <Backdrop open={loginPreloader} >
-            <CircularProgress color="inherit" />
-          </Backdrop>
-          <Dialog open={loginFailed} onClose={() => loginFailed = false} aria-labelledby="incorrect-credentials" aria-describedby="login-failure">
-          <DialogTitle id="alert-dialog-title">{"Incorrect Credentials"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              You have entered a incorrect username and/or password combination. Please try again, if you do not have a Fitify account - sign up instead.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={() => loginFailed = false} color="primary" autoFocus>
-              Try again
-            </Button>
-          </DialogActions>
-        </Dialog>
+
 
     </Fragment>
   )

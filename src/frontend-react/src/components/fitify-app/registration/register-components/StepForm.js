@@ -44,6 +44,9 @@ const initialValues = {
   darkmode: false,
   highContrast: false,
   textSize: 0,
+  //Register animations
+  signupPreloader: false,
+  signupFailed: false
 }
 
 const fieldsValidation = {
@@ -94,7 +97,9 @@ const fieldsValidation = {
   avatarColour: {},
   darkmode: {},
   highContrast: {},
-  textSize: {}
+  textSize: {},
+  signupPreloader: {},
+  signupFailed: {}
 }
 
 
@@ -154,7 +159,7 @@ const StepForm = () => {
          <AppearanceStep handleNext={handleNext} handleBack={handleBack} handleChange={handleChange} values={formValues} formErrors={formErrors} />
         )
       case 4:
-        return <ConfirmStep handleNext={handleNext} handleBack={handleBack} values={formValues} />
+        return <ConfirmStep handleNext={handleNext} handleBack={handleBack} handleChange={handleChange} values={formValues} />
       default:
         break
     }

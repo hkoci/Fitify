@@ -90,7 +90,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
           password: '',
           loginPreloader: false,
           loginFailed: false,
-          loginSuccess: false
       }
 
       //Bind states to change methods
@@ -112,19 +111,20 @@ import CircularProgress from '@material-ui/core/CircularProgress';
     loginSubmit() {
       //Reset message visibility
       this.setState({ loginPreloader: true })
-      this.setState({ loginSuccess: false })
       this.setState({ loginFailed: false })
       
       //Delay by 0.5 seconds to allow time for animations to work
       setTimeout(function() {
         //Attempt JWT Token authentication
         Authentication.getBearerToken(this.state.username, this.state.password).then(() => {
-            //Change state to Login successful
+            //Stop Animation
             this.setState({ loginPreloader: false })
-            this.setState({ loginSuccess: true })
+            //Redirect to dashboard
+            this.props.history.push('/app/dashboard')
         }).catch(() => {
-            //Change state to Login failed
+            //Stop Animation
             this.setState({ loginPreloader: false })
+            //Set to failed state - (display dialog on trigger of state change)
             this.setState({ loginFailed: true })
         })
       }.bind(this), 500)
@@ -132,12 +132,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
     render(){
       const { classes } = this.props;
-
-      //Check if login was successful
-      if (this.state.loginSuccess) {
-        //Redirect to dashboard
-        this.props.history.push('/app/dashboard')
-      }
 
       return(
         <Grid container component="main" className={classes.root}>

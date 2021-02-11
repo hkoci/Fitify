@@ -4,18 +4,19 @@ import ReactDOM from 'react-dom';
 import { Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
 
 //Stylesheets
-import './index.css';
+import './components/main.css';
 
 //Home Components
-import Landing from './components/home/Landing';
-import About from './components/home/About';
-import Help from './components/home/Help';
-import ContactUs from './components/home/ContactUs';
+import Landing from './pages/Landing';
+import About from './pages/About';
+import Help from './pages/Help';
+import ContactUs from './pages/ContactUs';
 
 //Fitify Components
-import Login from './components/fitify-app/login/Login';
-import Register from './components/fitify-app/registration/Register';
-import Dashboard from './components/fitify-app/dashboard/Dashboard';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Logout from './pages/Logout';
+import Dashboard from './pages/Dashboard';
 
 //Import Authentication class to determine if user is authenticated
 import Authentication from './services/login/authentication';
@@ -30,6 +31,7 @@ const routs = (
          <Route path="/ContactUs" component={ContactUs} />
          <RedirectRoute path="/app/login" component={Login} />
          <RedirectRoute path="/app/register" component={Register} />
+         <RedirectRoute path="/app/logout" component={Logout} />
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />
       </div>
    </Router>
@@ -57,6 +59,18 @@ function RedirectRoute({ component: Component, ...rest }) {
        }
      />
    );
+}
+
+//Redirected Sign-on users to dashboard routing
+function LogoutRoute({ component: Component, ...rest }) {
+  return (
+    <Route {...rest} render={props => Authentication.logout() ? (<Component {...props} />) 
+        : (
+          <Redirect to={{ pathname: "/app/logout", state: { from: props.location } }} />
+        )
+      }
+    />
+  );
 }
 
 //Render the Routes in the document root

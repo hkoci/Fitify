@@ -82,6 +82,11 @@ class Authentication {
         )
     }
 
+    //Method for logging out & emptying sessionStorage
+    logout() {
+        sessionStorage.removeItem("CurrentUsername");
+    }
+
 }
 
 export default new Authentication()

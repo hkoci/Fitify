@@ -22,6 +22,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import ExitToApp from '@material-ui/icons/ExitToApp';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -119,6 +120,10 @@ export default function Dashboard() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const userLogout = () => {
+    sessionStorage.removeItem("CurrentUsername");
+  };
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -212,7 +217,6 @@ export default function Dashboard() {
               </Badge>
             </IconButton>
             <IconButton
-              edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
@@ -221,6 +225,18 @@ export default function Dashboard() {
             >
               <AccountCircle />
             </IconButton>
+
+            <IconButton
+              edge="end"
+              aria-label="Logout..."
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={userLogout}
+              color="inherit"
+            >
+              <ExitToApp />
+            </IconButton>
+
           </div>
           <div className={classes.sectionMobile}>
             <IconButton

@@ -5,7 +5,7 @@ import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
-import StepForm from "./register-components/StepForm"
+import StepForm from "../components/register/StepForm"
 import Link from "@material-ui/core/Link"
 
 function Copyright() {

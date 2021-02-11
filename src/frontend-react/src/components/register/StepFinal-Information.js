@@ -19,7 +19,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 //Include React Router history (5.1+ required) - mitigation from nested components
 import { useHistory } from "react-router-dom";
 
-import UserRegistration from '../../../../services/register/userCreation';
+import UserRegistration from '../../services/register/userCreation';
 
 // Destructure props
 const Confirm = ({ handleChange, handleBack, createUser, values }) => {

@@ -4,16 +4,16 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 
 //Create Landing class using Component instace
-class Dashboard extends React.Component {
+class Weight extends React.Component {
   render() {
     return (
     
     //TODO Logic for searchField prop in Navbar.jsx
-    <Navbar title='Dashboard' searchField='true' />
+    <Navbar title='Weight Tracking' searchField='true' />
 
     );
   }
 }
 
 //Export class
-export default Dashboard;
+export default Weight;

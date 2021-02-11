@@ -29,7 +29,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 
 //I,port
 
-import {  } from "@material-ui/core/styles";
+//import {  } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -95,7 +95,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard(props) {
+
+
+export default function Navbar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -197,6 +199,7 @@ export default function Dashboard(props) {
     </Menu>
   );
 
+
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -205,27 +208,28 @@ export default function Dashboard(props) {
             edge="start"
             className={classes.menuButton}
             color="inherit"
-            aria-label="open drawer"
-          >
+            aria-label="open drawer">
             <MenuIcon />
           </IconButton>
+          
           <Typography className={classes.title} variant="h6" noWrap>
             {props.title}
           </Typography>
+
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+          <div className={classes.searchIcon}>
+            <SearchIcon />
           </div>
-          <div className={classes.grow} />
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ 'aria-label': 'search' }}/>
+          </div>
+
+          <div className={classes.grow}/>
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 0 new notifications" color="inherit">
               <Badge badgeContent={0} color="secondary">
@@ -237,8 +241,7 @@ export default function Dashboard(props) {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
+              color="inherit">
               <AccountCircle />
             </IconButton>
 
@@ -249,8 +252,7 @@ export default function Dashboard(props) {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
+              color="inherit">
               <MoreIcon />
             </IconButton>
           </div>

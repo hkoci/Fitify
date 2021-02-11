@@ -6,13 +6,12 @@ import { Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
 //Stylesheets
 import './components/main.css';
 
-//Home Components
+//Page Components
 import Landing from './pages/Landing';
 import About from './pages/About';
 import Help from './pages/Help';
 import ContactUs from './pages/ContactUs';
-
-//Fitify Components
+import Weight from './pages/Weight';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
@@ -27,7 +26,8 @@ const routs = (
          <Route exact path="/" component={Landing} />
          <Route path="/about" component={About} />
          <Route path="/help" component={Help} />
-         <Route path="/ContactUs" component={ContactUs} />
+         <Route path="/contactus" component={ContactUs} />
+         <Route path="/app/weight" component={Weight} />
          <RedirectRoute path="/app/login" component={Login} />
          <RedirectRoute path="/app/register" component={Register} />
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />

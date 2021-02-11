@@ -122,6 +122,7 @@ export default function Dashboard() {
 
   const userLogout = () => {
     sessionStorage.removeItem("CurrentUsername");
+    window.location.reload();
   };
 
   const menuId = 'primary-search-account-menu';
@@ -137,6 +138,7 @@ export default function Dashboard() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={userLogout}>Log out</MenuItem>
     </Menu>
   );
 
@@ -159,6 +161,7 @@ export default function Dashboard() {
         </IconButton>
         <p>Messages</p>
       </MenuItem>
+
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={11} color="secondary">
@@ -167,6 +170,7 @@ export default function Dashboard() {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
+
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -177,6 +181,18 @@ export default function Dashboard() {
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
+      </MenuItem>
+
+      <MenuItem onClick={userLogout}>
+        <IconButton
+          aria-label="Logout..."
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <ExitToApp />
+        </IconButton>
+        <p>Log out</p>
       </MenuItem>
     </Menu>
   );
@@ -224,17 +240,6 @@ export default function Dashboard() {
               color="inherit"
             >
               <AccountCircle />
-            </IconButton>
-
-            <IconButton
-              edge="end"
-              aria-label="Logout..."
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={userLogout}
-              color="inherit"
-            >
-              <ExitToApp />
             </IconButton>
 
           </div>

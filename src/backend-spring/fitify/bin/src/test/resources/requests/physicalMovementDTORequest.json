@@ -1,0 +1,13 @@
+{
+  "activityID" : 28,
+  "movementLocationDetails" : "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+  "startLatitude" : 56,
+  "startLongitude" : 29,
+  "endLatitude" : 73,
+  "endLongitude" : 54,
+  "duration" : "16:30:00",
+  "distance" : 67.42,
+  "pace" : 81.42,
+  "startTime" : "16:30:00",
+  "endTime" : "16:30:00"
+}

@@ -33,7 +33,6 @@ public class UserDTO {
     @Size(max = 255)
     private String emailAddress;
 
-    @NotNull
     private LocalDate dob;
 
     private Integer fitPoints;

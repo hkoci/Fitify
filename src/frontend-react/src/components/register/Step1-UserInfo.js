@@ -28,7 +28,6 @@ const UserInfo = ({ handleNext, handleChange, values: { firstName, lastName, use
     !formErrors.username &&
     password.length > 0 &&
     !formErrors.password &&
-    //date.length > 0 &&
     email.length > 0 &&
     !formErrors.email &&
     gender.length > 0

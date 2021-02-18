@@ -34,7 +34,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String emailAddress;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate dob;
 
     @Column

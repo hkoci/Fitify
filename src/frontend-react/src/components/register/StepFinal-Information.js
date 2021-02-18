@@ -123,6 +123,7 @@ const Confirm = ({ handleChange, handleBack, createUser, values }) => {
           setVariable("signupPreloader",false)
           //Redirect to dashboard
           history.push('/app/dashboard')
+          window.location.reload();
       }).catch(() => {
           //Stop animation
           setVariable("signupPreloader",false)

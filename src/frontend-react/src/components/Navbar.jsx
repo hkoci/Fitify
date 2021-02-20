@@ -26,8 +26,11 @@ import ExitToApp from '@material-ui/icons/ExitToApp';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 //I,port
+import Avatar from '@material-ui/core/Avatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 //import {  } from "@material-ui/core/styles";
 
@@ -138,9 +141,24 @@ export default function Navbar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={userLogout}>Log out</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <ListItemIcon>
+          <Avatar className={classes.orange}>N</Avatar>
+        </ListItemIcon>
+        <Typography variant="inherit">FirstName LastName</Typography>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <Typography variant="inherit">Settings</Typography>
+      </MenuItem>
+      <MenuItem onClick={userLogout}>
+          <ListItemIcon>
+            <ExitToApp />
+          </ListItemIcon>
+          <Typography variant="inherit">Logout</Typography>
+      </MenuItem>
     </Menu>
   );
 

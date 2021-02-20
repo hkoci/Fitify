@@ -29,6 +29,12 @@ public class UserController {
     public UserDTO getUser(@PathVariable final Long id) {
         return userService.get(id);
     }
+    
+    //Username CRUD (GET)
+    @GetMapping("/username/{username}")
+    public UserDTO getUsername(@PathVariable final String username) {
+        return userService.getUsername(username);
+    }
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)

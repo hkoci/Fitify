@@ -62,6 +62,12 @@ public class UserService {
                 .map(user -> mapToDTO(user, new UserDTO()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
+    
+    public UserDTO getUsername(final String username) {
+        return userRepository.findByUsername(username)
+                .map(user -> mapToDTO(user, new UserDTO()))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
 
     public Long create(final UserDTO userDTO) {
         final User user = new User();

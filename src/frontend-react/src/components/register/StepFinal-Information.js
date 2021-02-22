@@ -144,7 +144,7 @@ const Confirm = ({ handleChange, handleBack, createUser, values }) => {
   return (
     <Fragment>
 
-      <Backdrop open={signupPreloader} >
+      <Backdrop open={signupPreloader} style={{ zIndex: '1' }}>
         <CircularProgress color="inherit" />
       </Backdrop>
 

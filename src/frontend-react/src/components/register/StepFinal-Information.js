@@ -19,7 +19,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 //Include React Router history (5.1+ required) - mitigation from nested components
 import { useHistory } from "react-router-dom";
 
+//Import services
 import UserRegistration from '../../services/register/userCreation';
+import Authentication from '../../services/login/authentication';
 
 // Destructure props
 const Confirm = ({ handleChange, handleBack, createUser, values }) => {
@@ -122,9 +124,14 @@ const Confirm = ({ handleChange, handleBack, createUser, values }) => {
       ).then(() => {
           //Stop animation
           setVariable("signupPreloader",false)
-          //Redirect to dashboard
-          history.push('/app/dashboard')
-          window.location.reload();
+
+          //Attempt to login with JWT Auth service
+          Authentication.getBearerToken({username}.username, {password}.password).then(() => {
+            //Redirect to logged in dashboard
+            history.push('/app/dashboard')
+            window.location.reload();
+          })
+          
       }).catch((error) => {
           //Stop animation
           setVariable("signupPreloader",false)

@@ -145,7 +145,7 @@ export default function Navbar(props) {
         <ListItemIcon>
           <Avatar className={classes.orange}>N</Avatar>
         </ListItemIcon>
-        <Typography variant="inherit">FirstName LastName</Typography>
+        <Typography variant="inherit">{sessionStorage.getItem("FirstName")} {sessionStorage.getItem("LastName")}</Typography>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
           <ListItemIcon>

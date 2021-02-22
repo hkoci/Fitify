@@ -43,7 +43,20 @@ class userCreation {
             //To get the error msg, we can log it to the console using console.log(error.response.data.error)
         .catch(error => console.error(error))
     }
-        
+
+    //Method to remove mapping for marketingID
+    removeUserMarketing(marketingID){
+        return axios.delete(`${SpringHostURL}/api/users/settings/marketing/${marketingID}`,{},{
+            headers: {
+                //Set the post content as application/json (Spring will only recognise json and not text)
+                'Content-Type': 'application/json;charset=UTF-8',
+            }
+        })
+        //Successful Request - return the response
+        .then(response => response.data)
+        .catch(error => console.error(error)
+        )
+    }
 
     //Method to create user notifications preferences
     //If successful - the record will be created and the record ID will be returned
@@ -82,6 +95,20 @@ class userCreation {
 
             console.error("[Error", error.response.data.error, "]", "creating notification:" + error.response.data.error)
             }
+        )
+    }
+
+    //Method to remove mapping for notificationID
+    removeUserNotification(notificationID){
+        return axios.delete(`${SpringHostURL}/api/users/settings/notification/${notificationID}`,{},{
+            headers: {
+                //Set the post content as application/json (Spring will only recognise json and not text)
+                'Content-Type': 'application/json;charset=UTF-8',
+            }
+        })
+        //Successful Request - return the response
+        .then(response => response.data)
+        .catch(error => console.error(error)
         )
     }
 
@@ -125,6 +152,20 @@ class userCreation {
             )
     }
 
+    //Method to remove mapping for appearanceID
+    removeUserAppearance(appearanceID){
+        return axios.delete(`${SpringHostURL}/api/users/settings/appearance/${appearanceID}`,{},{
+            headers: {
+                //Set the post content as application/json (Spring will only recognise json and not text)
+                'Content-Type': 'application/json;charset=UTF-8',
+            }
+        })
+        //Successful Request - return the response
+        .then(response => response.data)
+        .catch(error => console.error(error)
+        )
+    }
+
     //Method to create user friends
     //If successful - the record will be created and the record ID will be returned
     createUserFriends()
@@ -154,6 +195,20 @@ class userCreation {
                 console.error("[Error", error.response.data.error, "]", "creating friends:" + error.response.data.error)
                 }
             )
+    }
+
+    //Method to remove mapping for friendsID
+    removeUserFriends(friendsID){
+        return axios.delete(`${SpringHostURL}/api/users/friend/${friendsID}`,{},{
+            headers: {
+                //Set the post content as application/json (Spring will only recognise json and not text)
+                'Content-Type': 'application/json;charset=UTF-8',
+            }
+        })
+        //Successful Request - return the response
+        .then(response => response.data)
+        .catch(error => console.error(error)
+        )
     }
 
     //Method to create user friends
@@ -213,6 +268,37 @@ class userCreation {
             console.error("[Error", error.response.data.error, "]", "creating healthplan:" + error.response.data.error)
             }
         )
+    }
+
+    //Method to remove mapping for friendsID
+    removeUserHealthPlan(healthID){
+        return axios.delete(`${SpringHostURL}/api/users/healthplan/${healthID}`,{},{
+            headers: {
+                //Set the post content as application/json (Spring will only recognise json and not text)
+                'Content-Type': 'application/json;charset=UTF-8',
+            }
+        })
+        //Successful Request - return the response
+        .then(response => response.data)
+        .catch(error => console.error(error)
+        )
+    }
+
+    //Method to remove mappings
+    async cleanupMappings(marketingID, notificationID, appearanceID, friendsID, healthID){
+        //Create user marketing record and store the record ID in marketingID
+        await this.removeUserMarketing(marketingID).then(response => console.log("Removal of Marketing: ", response));
+        
+        //Create user notification record and store the record ID in notificationID
+        await this.removeUserNotification(notificationID).then(response => console.log("Removal of Notification: ", response));
+        
+        //Create user appearance record and store the record ID in appearanceID
+        await this.removeUserAppearance(appearanceID).then(response => console.log("Removal of Appearance: ", response));
+
+        //Create user friends record and store the record ID in friendsID
+        await this.removeUserFriends(friendsID).then(response => console.log("Removal of Friend: ", response));
+
+        await this.removeUserHealthPlan(healthID).then(response => console.log("Removal of Health: ", response));
     }
 
     //Registration endpoint
@@ -315,6 +401,9 @@ class userCreation {
 
                 //To get error status, we can log it to the console using console.log(error.response.status)
                 //To get the error msg, we can log it to the console using console.log(error.response.data.error)
+
+                //If the username is taken, remove the mapping entries made
+                this.cleanupMappings(marketingID, notificationID, appearanceID, friendsID, healthID);
 
                 throw error
            })

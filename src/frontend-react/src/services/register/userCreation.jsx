@@ -20,35 +20,28 @@ class userCreation {
         marketingProgress,
         marketingAchievements)
     {
-            //Create marketing record for this user
-            //Use the marketing PostMapping to store this in the User Marketing table
-            axios.post(`${SpringHostURL}/api/users/settings/marketing`,{
-                //Json Body content of marketing preferences
-                "marketingEmailPreference": marketingEmail,
-                "dailyEmailProgressPreference": marketingDailyEmailProgress,
-                "weeklyEmailProgressPreference": marketingWeeklyEmailProgress,
-                "marketingRoadmapPreference": marketingRoadmap,
-                "progressPreference": marketingProgress,
-                "achievementsPreference": marketingAchievements
-            },{
-                headers: {
-                    //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    //"Access-Control-Allow-Origin": "*"
-                }
-            }).then((response) => {
-                return response.data
-            })
-            .catch((error) => {
-                //The post method was not successful and some error has occured
+        //Create marketing record for this user
+        //Use the marketing PostMapping to store this in the User Marketing table
+        return axios.post(`${SpringHostURL}/api/users/settings/marketing`,{
+            //Json Body content of marketing preferences
+            "marketingEmailPreference": marketingEmail,
+            "dailyEmailProgressPreference": marketingDailyEmailProgress,
+            "weeklyEmailProgressPreference": marketingWeeklyEmailProgress,
+            "marketingRoadmapPreference": marketingRoadmap,
+            "progressPreference": marketingProgress,
+            "achievementsPreference": marketingAchievements
+        },{
+            headers: {
+                //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)
+                'Content-Type': 'application/json;charset=UTF-8',
+                //"Access-Control-Allow-Origin": "*"
+            }
+        }).then(response => response.data)
+            //The post method was not successful and some error has occured
 
-                //To get error status, we can log it to the console using console.log(error.response.status)
-                //To get the error msg, we can log it to the console using console.log(error.response.data.error)
-
-                console.error("[Error", error.response.data.error, "]", "creating marketing prefs:" + error.response.data.error)
-                return null;
-                }
-            )
+            //To get error status, we can log it to the console using console.log(error.response.status)
+            //To get the error msg, we can log it to the console using console.log(error.response.data.error)
+        .catch(error => console.error(error))
     }
         
 
@@ -62,35 +55,34 @@ class userCreation {
         notificationProgress,
         notificationAchievements)
     {
-            //Create notification record for this user
-            //Use the notification PostMapping to store this in the User Notification table
-            axios.post(`${SpringHostURL}/api/users/settings/notification`,{
-                //Json Body content of notification preferences
-                "dailyNotificationProgress": notificationDaily,
-                "weeklyNotificationProgress": notificationWeekly,
-                "monthlyNotificationProgress": notificationMonthly,
-                "weightNotification": notificationWeight,
-                "progressNotification": notificationProgress,
-                "achievementsNotification": notificationAchievements
-            },{
-                headers: {
-                    //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    //"Access-Control-Allow-Origin": "*"
-                }
-            }).then((response) => {
-                return response.data
-            })
-            .catch((error) => {
-                //The post method was not successful and some error has occured
+        //Create notification record for this user
+        //Use the notification PostMapping to store this in the User Notification table
+        return axios.post(`${SpringHostURL}/api/users/settings/notification`,{
+            //Json Body content of notification preferences
+            "dailyNotificationProgress": notificationDaily,
+            "weeklyNotificationProgress": notificationWeekly,
+            "monthlyNotificationProgress": notificationMonthly,
+            "weightNotification": notificationWeight,
+            "progressNotification": notificationProgress,
+            "achievementsNotification": notificationAchievements
+        },{
+            headers: {
+                //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)
+                'Content-Type': 'application/json;charset=UTF-8',
+                //"Access-Control-Allow-Origin": "*"
+            }
+        })
+        //Successful Request - return the response
+        .then(response => response.data)
+        .catch((error) => {
+            //The post method was not successful and some error has occured
 
-                //To get error status, we can log it to the console using console.log(error.response.status)
-                //To get the error msg, we can log it to the console using console.log(error.response.data.error)
+            //To get error status, we can log it to the console using console.log(error.response.status)
+            //To get the error msg, we can log it to the console using console.log(error.response.data.error)
 
-                console.error("[Error", error.response.data.error, "]", "creating notification:" + error.response.data.error)
-                return null;
-                }
-            )
+            console.error("[Error", error.response.data.error, "]", "creating notification:" + error.response.data.error)
+            }
+        )
     }
 
     //Method to create user appearance preferences
@@ -105,7 +97,7 @@ class userCreation {
     {
             //Create appearance record for this user
             //Use the appearance PostMapping to store this in the User Appearance table
-            axios.post(`${SpringHostURL}/api/users/settings/appearance`,{
+            return axios.post(`${SpringHostURL}/api/users/settings/appearance`,{
                 //Json Body content of appearance preferences
                 "primaryHexColour": primaryColour,
                 "secondaryHexColour": secondaryColour,
@@ -119,9 +111,9 @@ class userCreation {
                     'Content-Type': 'application/json;charset=UTF-8',
                     //"Access-Control-Allow-Origin": "*"
                 }
-            }).then((response) => {
-                return response.data
-            })
+            })        
+            //Successful Request - return the response
+            .then(response => response.data)
             .catch((error) => {
                 //The post method was not successful and some error has occured
 
@@ -129,7 +121,6 @@ class userCreation {
                 //To get the error msg, we can log it to the console using console.log(error.response.data.error)
 
                 console.error("[Error", error.response.data.error, "]", "creating user appearance:" + error.response.data.error)
-                return null;
                 }
             )
     }
@@ -140,7 +131,7 @@ class userCreation {
     {
             //Create friends record for this user
             //Use the appearance PostMapping to store this in the User Friends table
-            axios.post(`${SpringHostURL}/api/users/friend`,{
+            return axios.post(`${SpringHostURL}/api/users/friend`,{
                 //Json Body content of user friends
                 //TODO: This has to later be changed to a set of integers!
                 "userFriendid": 0,
@@ -151,9 +142,9 @@ class userCreation {
                     'Content-Type': 'application/json;charset=UTF-8',
                     //"Access-Control-Allow-Origin": "*"
                 }
-            }).then((response) => {
-                return response.data
             })
+            //Successful Request - return the response
+            .then(response => response.data)
             .catch((error) => {
                 //The post method was not successful and some error has occured
 
@@ -161,7 +152,6 @@ class userCreation {
                 //To get the error msg, we can log it to the console using console.log(error.response.data.error)
 
                 console.error("[Error", error.response.data.error, "]", "creating friends:" + error.response.data.error)
-                return null;
                 }
             )
     }
@@ -193,7 +183,7 @@ class userCreation {
             }
         }
 
-        axios.post(`${SpringHostURL}/api/users/healthplan`,{
+        return axios.post(`${SpringHostURL}/api/users/healthplan`,{
             //Json Body content of user friends
             "fitPoints": 0,
             "age": age,
@@ -211,9 +201,9 @@ class userCreation {
                 'Content-Type': 'application/json;charset=UTF-8',
                 //"Access-Control-Allow-Origin": "*"
             }
-        }).then((response) => {
-            return response.data
         })
+        //Successful Request - return the response
+        .then(response => response.data)
         .catch((error) => {
             //The post method was not successful and some error has occured
 
@@ -221,13 +211,12 @@ class userCreation {
             //To get the error msg, we can log it to the console using console.log(error.response.data.error)
 
             console.error("[Error", error.response.data.error, "]", "creating healthplan:" + error.response.data.error)
-            return null;
             }
         )
     }
 
     //Registration endpoint
-    createUser(
+    async createUser(
         //User information
         firstName,
         lastName,
@@ -260,29 +249,31 @@ class userCreation {
     {           
             //The record ID's for the one-to-one mappings required for creating the user
             //We need the marketing, notification, appearance, friends, health plan created before creating the user
-            var marketingID = 0, notificationID = 0, appearanceID = 0, friendsID = 0, healthID = 0;
+            var marketingID, notificationID, appearanceID, friendsID, healthID;
 
             console.log('Marketing config: ', marketingEmail, marketingDailyEmailProgress, marketingWeeklyEmailProgress, marketingRoadmap, marketingProgress, marketingAchievements)
             console.log('Notification config: ', notificationDaily, notificationWeekly, notificationMonthly, notificationWeight, notificationProgress, notificationAchievements)
             console.log('Appearance config: ', primaryColour, secondaryColour, avatarColour, darkmode, highContrast, textSize)
 
             //Create user marketing record and store the record ID in marketingID
-            marketingID = this.createUserMarketing(marketingEmail, marketingDailyEmailProgress, marketingWeeklyEmailProgress, marketingRoadmap, marketingProgress, marketingAchievements);
+            await this.createUserMarketing(marketingEmail, marketingDailyEmailProgress, marketingWeeklyEmailProgress, marketingRoadmap, marketingProgress, marketingAchievements).then(response => marketingID = response);
             
             //Create user notification record and store the record ID in notificationID
-            notificationID = this.createUserNotification(notificationDaily, notificationWeekly, notificationMonthly, notificationWeight, notificationProgress, notificationAchievements);
+            await this.createUserNotification(notificationDaily, notificationWeekly, notificationMonthly, notificationWeight, notificationProgress, notificationAchievements).then(response => notificationID = response);
             
             //Create user appearance record and store the record ID in appearanceID
-            appearanceID = this.createUserAppearance(primaryColour, secondaryColour, avatarColour, darkmode, highContrast, textSize);
+            await this.createUserAppearance(primaryColour, secondaryColour, avatarColour, darkmode, highContrast, textSize).then(response => appearanceID = response);
 
             //Create user friends record and store the record ID in friendsID
-            friendsID = this.createUserFriends()
+            await this.createUserFriends().then(response => friendsID = response);
 
             //Create user health plan record and store the record ID in healthID
-            healthID = this.createUserHealthPlan(date)
+            await this.createUserHealthPlan(date).then(response => healthID = response);
+
+            await console.log("marketingID",marketingID)
 
             //Finally, we can create the user record in the Users table using the relevant Spring postmapping
-            return axios.post(`${SpringHostURL}/api/users/create`,{
+            await axios.post(`${SpringHostURL}/api/users/create`,{
                 "username": username,
                 "passwordHash": password,
                 "role": "user",
@@ -311,7 +302,7 @@ class userCreation {
                 Authentication.getBearerToken(username, password)
 
                 //Return user record id
-                //return response.data
+                return response.data
             })
             .catch((error) => {
                 //The post method was not successful and some error has occured
@@ -326,7 +317,7 @@ class userCreation {
                 //To get the error msg, we can log it to the console using console.log(error.response.data.error)
 
                 throw error
-            })
+           })
 
     }
 

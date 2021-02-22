@@ -46,6 +46,7 @@ const initialValues = {
   textSize: 0,
   //Register animations
   signupPreloader: false,
+  signupFailedUsername: false,
   signupFailed: false
 }
 
@@ -99,6 +100,7 @@ const fieldsValidation = {
   highContrast: {},
   textSize: {},
   signupPreloader: {},
+  signupFailedUsername: {},
   signupFailed: {}
 }
 

@@ -58,6 +58,7 @@ const Confirm = ({ handleChange, handleBack, createUser, values }) => {
     textSize,
     //Animation
     signupPreloader,
+    signupFailedUsername,
     signupFailed } = values
     
 
@@ -124,11 +125,18 @@ const Confirm = ({ handleChange, handleBack, createUser, values }) => {
           //Redirect to dashboard
           history.push('/app/dashboard')
           window.location.reload();
-      }).catch(() => {
+      }).catch((error) => {
           //Stop animation
           setVariable("signupPreloader",false)
-          //Failed - show dialog
-          setVariable("signupFailed",true)
+
+          //Error 500 is a data integerity error (the username already exists in the db) 
+          if(error.response.status === 500){
+            setVariable("signupFailedUsername",true)
+          }
+          else{
+            //Failed for any other issue - show dialog
+            setVariable("signupFailed",true)
+          }
       })
     }.bind(), 500)
   }
@@ -139,6 +147,20 @@ const Confirm = ({ handleChange, handleBack, createUser, values }) => {
       <Backdrop open={signupPreloader} >
         <CircularProgress color="inherit" />
       </Backdrop>
+
+      <Dialog open={signupFailedUsername} onClose={() => setVariable("signupFailedUsername",false)} aria-labelledby="username-taken" aria-describedby="signup-failure">
+        <DialogTitle id="alert-dialog-title">{"Invalid Details"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            The username you have selected has already been taken by another user. Please try to use a different username.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setVariable("signupFailedUsername",false)} color="primary" autoFocus>
+            Try again
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       <Dialog open={signupFailed} onClose={() => setVariable("signupFailed",false)} aria-labelledby="incorrect-credentials" aria-describedby="signup-failure">
         <DialogTitle id="alert-dialog-title">{"Invalid Details"}</DialogTitle>

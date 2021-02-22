@@ -4,17 +4,17 @@ import ReactDOM from 'react-dom';
 import { Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
 
 //Stylesheets
-import './index.css';
+import './components/main.css';
 
-//Home Components
-import Landing from './components/home/Landing';
-import About from './components/home/About';
-import Help from './components/home/Help';
-
-//Fitify Components
-import Login from './components/fitify-app/login/Login';
-import Register from './components/fitify-app/registration/Register';
-import Dashboard from './components/fitify-app/dashboard/Dashboard';
+//Page Components
+import Landing from './pages/Landing';
+import About from './pages/About';
+import Help from './pages/Help';
+import ContactUs from './pages/ContactUs';
+import Weight from './pages/Weight';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 
 //Import Authentication class to determine if user is authenticated
 import Authentication from './services/login/authentication';
@@ -26,6 +26,8 @@ const routs = (
          <Route exact path="/" component={Landing} />
          <Route path="/about" component={About} />
          <Route path="/help" component={Help} />
+         <Route path="/contactus" component={ContactUs} />
+         <Route path="/app/weight" component={Weight} />
          <RedirectRoute path="/app/login" component={Login} />
          <RedirectRoute path="/app/register" component={Register} />
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />

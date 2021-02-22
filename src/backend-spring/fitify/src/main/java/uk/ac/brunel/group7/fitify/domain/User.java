@@ -31,10 +31,10 @@ public class User {
     @Column(nullable = false, columnDefinition = "longtext")
     private String gender;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String emailAddress;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate dob;
 
     @Column

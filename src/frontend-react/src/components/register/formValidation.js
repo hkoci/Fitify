@@ -1,6 +1,7 @@
 const isText = RegExp(/^[A-Z ]+$/i)
 const isEmail = RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i)
 const isNumber = RegExp(/^\d+$/)
+const isUser = RegExp(/^[a-zA-Z0-9]*$/)
 
 export default function formValidation(name, value, schema) {
   const { validate, minLength, maxLength } = schema[name]
@@ -14,6 +15,10 @@ export default function formValidation(name, value, schema) {
     case "text":
       if (!isText.test(value)) error = "This field accepts text only."
       break
+    
+    case "username":
+      if (!isUser.test(value)) error = "This field accepts text and numbers only."
+    break
 
     case "number":
       if (!isNumber.test(value)) error = "This field accepts numbers only."

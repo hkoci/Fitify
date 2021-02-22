@@ -65,7 +65,7 @@ const fieldsValidation = {
   },
   username: {
     error: "",
-    validate: "text",
+    validate: "username",
     minLength: 2,
     maxLength: 20
   },

@@ -126,7 +126,7 @@ export default function Navbar(props) {
   };
 
   const userLogout = () => {
-    sessionStorage.removeItem("CurrentUsername");
+    sessionStorage.clear();
     window.location.reload();
   };
 

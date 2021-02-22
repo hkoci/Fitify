@@ -127,6 +127,8 @@ const Confirm = ({ handleChange, handleBack, createUser, values }) => {
 
           //Attempt to login with JWT Auth service
           Authentication.getBearerToken({username}.username, {password}.password).then(() => {
+            //Set first time setup to true
+            sessionStorage.setItem("FirstTimeSetup", true)
             //Redirect to logged in dashboard
             history.push('/app/dashboard')
             window.location.reload();

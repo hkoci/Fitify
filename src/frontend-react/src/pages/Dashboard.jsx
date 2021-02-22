@@ -3,14 +3,18 @@ import React from 'react';
 
 import Navbar from '../components/Navbar';
 
+import FirstTimeSetup from '../components/FirstTimeSetup';
+
+import Container from '@material-ui/core/Container';
+
 //Create Landing class using Component instace
 class Dashboard extends React.Component {
   render() {
     return (
-    
-    //TODO Logic for searchField prop in Navbar.jsx
-    <Navbar title='Dashboard' searchField='true' />
-
+      <React.Fragment>
+        <Navbar title='Dashboard' searchField='true' />
+        <FirstTimeSetup/>    
+      </React.Fragment>    
     );
   }
 }

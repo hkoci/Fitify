@@ -33,7 +33,7 @@ export default function FirstTimeSetup(props) {
       >
         <Slide
           media={
-            <img src="https://raw.githubusercontent.com/BrunelCS/cs2001-2020_21-group7/main/docs/frontend-spring/prototyping-interfaces/logos/Version%205.png?token=AR2BK7NPVWQEI3UZOB6FN6LAHVGYA" />
+            <img src="https://raw.githubusercontent.com/BrunelCS/cs2001-2020_21-group7/main/docs/frontend-spring/prototyping-interfaces/logos/Version%205.png?token=AR2BK7NPVWQEI3UZOB6FN6LAHVGYA" alt="Welcome to Fitify"/>
           }
           mediaBackgroundStyle={{ backgroundColor: green[400] }}
           style={{ backgroundColor: green[600] }}
@@ -42,7 +42,7 @@ export default function FirstTimeSetup(props) {
         />
         <Slide
           media={
-            <img src="https://cdn.iconscout.com/icon/free/png-512/workout-40-1100757.png" />
+            <img src="https://cdn.iconscout.com/icon/free/png-512/workout-40-1100757.png" alt="Physical Activity"/>
           }
           mediaBackgroundStyle={{ backgroundColor: blue[400] }}
           style={{ backgroundColor: blue[600] }}
@@ -51,7 +51,7 @@ export default function FirstTimeSetup(props) {
         />
         <Slide
           media={
-            <img src="https://cdn.iconscout.com/icon/free/png-256/chat-2639493-2187526.png" />
+            <img src="https://cdn.iconscout.com/icon/free/png-256/chat-2639493-2187526.png" alt="Social Features"/>
           }
           mediaBackgroundStyle={{ backgroundColor: red[400] }}
           style={{ backgroundColor: red[600] }}

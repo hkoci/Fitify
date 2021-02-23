@@ -27,12 +27,13 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsIcon from '@material-ui/icons/Settings';
-
-//I,port
 import Avatar from '@material-ui/core/Avatar';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 //import {  } from "@material-ui/core/styles";
+
+//Include React Router history (5.1+ required) - mitigation from nested components
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -102,6 +103,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar(props) {
   const classes = useStyles();
+  let history = useHistory();
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -119,6 +122,12 @@ export default function Navbar(props) {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
+  };
+
+  const handleMenuSettings = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+    history.push('/app/settings');
   };
 
   const handleMobileMenuOpen = (event) => {
@@ -147,7 +156,7 @@ export default function Navbar(props) {
         </ListItemIcon>
         <Typography variant="inherit">{sessionStorage.getItem("FirstName")} {sessionStorage.getItem("LastName")}</Typography>
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
+      <MenuItem onClick={handleMenuSettings}>
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>

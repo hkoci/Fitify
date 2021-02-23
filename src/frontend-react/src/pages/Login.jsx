@@ -119,8 +119,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
         Authentication.getBearerToken(this.state.username, this.state.password).then(() => {
             //Stop Animation
             this.setState({ loginPreloader: false })
-            //Redirect to dashboard
-            this.props.history.push('/app/dashboard')
+            //Redirect to dashboard after 0.3 seconds (to allow time for browser to populate sessionStorage)
+            setTimeout(function() {
+              this.props.history.push('/app/dashboard')
+            }.bind(this), 300)
         }).catch(() => {
             //Stop Animation
             this.setState({ loginPreloader: false })

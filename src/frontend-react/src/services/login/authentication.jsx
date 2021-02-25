@@ -29,12 +29,14 @@ class Authentication {
 
             //Store username in localStorage
             sessionStorage.setItem("CurrentUsername", username)
+            
 
             //Store User Details in session
-            this.getUserDetails()
+            this.getUserDetails(username)
 
             //Change Axios configuration to use accesstoken as Authorisation Bearer
             this.axiosRequestTokenHeader("Bearer " + response.data.accessToken)
+            sessionStorage.setItem("token", response.data.accessToken)
         })
         .catch((error) => {
             //The post method was not successful and some error has occured
@@ -92,10 +94,10 @@ class Authentication {
 
     //Method to get Authorisation Bearer token from JWT
     //Request it using username and password parameters
-    getUserDetails(){
+    async getUserDetails(username){
         //console.log('URL' +  `${SpringHostURL}/api/users/username/` + sessionStorage.getItem("CurrentUsername"))
         //Post the username and password as json to the auth endpoint
-        return axios.get(`${SpringHostURL}/api/users/username/` + sessionStorage.getItem("CurrentUsername"),{
+        return axios.get(`${SpringHostURL}/api/users/username/` + username,{
         },{
             headers: {
                 //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)

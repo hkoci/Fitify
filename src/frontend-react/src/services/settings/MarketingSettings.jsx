@@ -6,14 +6,24 @@ const SpringHostURL = 'http://localhost:8080'
 
 class MarketingSettings {
 
-    //Method to get user setting mappings
+    //Method to get all marketing settings
     async getMarketingSettings(){
-        var user, marketingID;
+        var marketingID;
 
         await this.initialiseSettingMappings(sessionStorage.getItem('CurrentUsername')).then(response => marketingID = response.marketing);
 
         return this.getMarketingData(marketingID)
+    }
 
+    //Method to get marketingEmailPreference
+    async getMarketingEmailPreference(){
+        var marketingEmailPreference, marketingID;
+
+        await this.initialiseSettingMappings(sessionStorage.getItem('CurrentUsername')).then(response => marketingID = response.marketing);
+
+        await this.getMarketingData(marketingID).then(response => marketingEmailPreference = response.marketingEmailPreference);
+
+        return marketingEmailPreference
     }
     
     //Method to get user setting mappings

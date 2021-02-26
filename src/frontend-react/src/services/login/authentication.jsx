@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 //Setup constant for Spring Host - this will be changed in production *Include port but no endpoints!*
-const SpringHostURL = 'http://localhost:8080'
+import { SpringHostURL } from '../../constants/constant'
 
 //Authentication service class
 //Rebased off (TODO: Ref in report) https://github.com/in28minutes/spring-boot-react-fullstack-examples/blob/master/spring-boot-react-basic-auth-login-logout/frontend-spring-boot-react-basic-auth-login-logout/src/service/AuthenticationService.js

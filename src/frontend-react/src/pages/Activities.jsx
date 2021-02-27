@@ -3,7 +3,7 @@ import React from 'react';
 
 import Navbar from '../components/Navbar';
 
-import FirstTimeSetup from '../components/FirstTimeSetup';
+import ActivitiesView from '../components/activities/ActivitiesView'
 
 //Create Activities class using Component instace
 class Activities extends React.Component {
@@ -12,7 +12,7 @@ class Activities extends React.Component {
     return (
       <React.Fragment>
         <Navbar title='Activities' searchField='true' />
-        <FirstTimeSetup/>
+        <ActivitiesView />
       </React.Fragment>
     );
   }

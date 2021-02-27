@@ -122,6 +122,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
             //Redirect to dashboard after 0.3 seconds (to allow time for browser to populate sessionStorage)
             setTimeout(function() {
               this.props.history.push('/app/dashboard')
+              //Refresh page to ensure elements load
+              window.location.reload();
             }.bind(this), 300)
         }).catch(() => {
             //Stop Animation

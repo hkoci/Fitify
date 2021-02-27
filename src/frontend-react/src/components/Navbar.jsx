@@ -38,6 +38,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 
+//Drawer List Icons Import
+import ListItemText from '@material-ui/core/ListItemText';
+import { DirectionsRun, FitnessCenter, Group, Home, ListOutlined, NightsStay, Settings } from '@material-ui/icons';
+
 //import {  } from "@material-ui/core/styles";
 
 //Include React Router history (5.1+ required) - mitigation from nested components
@@ -328,7 +332,70 @@ export default function Navbar(props) {
           onKeyDown={setDrawerHidden}
         >
           <List className={classes.list}>
+            <ListItemLink href="./dashboard">
 
+              <ListItemIcon>  
+                <Home />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+
+            </ListItemLink>
+
+            <ListItemLink href="./activities">
+              
+              <ListItemIcon>  
+                <ListOutlined />
+              </ListItemIcon>
+              <ListItemText primary="Activities" />
+
+            </ListItemLink>
+
+            <ListItemLink href="#">
+              
+              <ListItemIcon>  
+                <Group />
+              </ListItemIcon>
+              <ListItemText primary="Social" />
+
+            </ListItemLink>
+
+            <ListItemLink href="./settings">
+              
+              <ListItemIcon>  
+                <Settings />
+              </ListItemIcon>
+              <ListItemText primary="Settings" />
+
+            </ListItemLink>
+
+            <Divider />
+
+            <ListItemLink href="#">
+              
+              <ListItemIcon>  
+                <FitnessCenter />
+              </ListItemIcon>
+              <ListItemText primary="Weight" />
+
+            </ListItemLink>
+
+            <ListItemLink href="#">
+              
+              <ListItemIcon>  
+                <DirectionsRun />
+              </ListItemIcon>
+              <ListItemText primary="Physical Movement" />
+
+            </ListItemLink>
+
+            <ListItemLink href="#">
+              
+              <ListItemIcon>  
+                <NightsStay />
+              </ListItemIcon>
+              <ListItemText primary="Sleep" />
+
+            </ListItemLink>
           </List>
         </div>
       </Drawer>

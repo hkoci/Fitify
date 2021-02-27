@@ -165,10 +165,6 @@ export default function Navbar(props) {
     setDrawer({drawerVisible: false});
   };
 
-  function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
-  }
-
   const userLogout = () => {
     sessionStorage.clear();
     window.location.reload();
@@ -332,70 +328,70 @@ export default function Navbar(props) {
           onKeyDown={setDrawerHidden}
         >
           <List className={classes.list}>
-            <ListItemLink href="./dashboard">
+            <ListItem button onClick={() => history.push('/app/dashboard')}>
 
               <ListItemIcon>  
                 <Home />
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
 
-            </ListItemLink>
+            </ListItem>
 
-            <ListItemLink href="./activities">
+            <ListItem href="#" onClick={() => history.push('/app/activities')}>
               
               <ListItemIcon>  
                 <ListOutlined />
               </ListItemIcon>
               <ListItemText primary="Activities" />
 
-            </ListItemLink>
+            </ListItem>
 
-            <ListItemLink href="#">
+            <ListItem button>
               
               <ListItemIcon>  
                 <Group />
               </ListItemIcon>
               <ListItemText primary="Social" />
 
-            </ListItemLink>
+            </ListItem>
 
-            <ListItemLink href="./settings">
+            <ListItem button onClick={() => history.push('/app/settings')}>
               
               <ListItemIcon>  
                 <Settings />
               </ListItemIcon>
               <ListItemText primary="Settings" />
 
-            </ListItemLink>
+            </ListItem>
 
             <Divider />
 
-            <ListItemLink href="#">
+            <ListItem button>
               
               <ListItemIcon>  
                 <FitnessCenter />
               </ListItemIcon>
               <ListItemText primary="Weight" />
 
-            </ListItemLink>
+            </ListItem>
 
-            <ListItemLink href="#">
+            <ListItem button>
               
               <ListItemIcon>  
                 <DirectionsRun />
               </ListItemIcon>
               <ListItemText primary="Physical Movement" />
 
-            </ListItemLink>
+            </ListItem>
 
-            <ListItemLink href="#">
+            <ListItem button>
               
               <ListItemIcon>  
                 <NightsStay />
               </ListItemIcon>
               <ListItemText primary="Sleep" />
 
-            </ListItemLink>
+            </ListItem>
           </List>
         </div>
       </Drawer>

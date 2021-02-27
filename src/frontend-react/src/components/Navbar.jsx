@@ -47,6 +47,9 @@ import { DirectionsRun, FitnessCenter, Group, Home, ListOutlined, NightsStay, Se
 //Include React Router history (5.1+ required) - mitigation from nested components
 import { useHistory } from "react-router-dom";
 
+//Avatar Colour constant
+import { avatarColour } from '../constants/constant'
+
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -170,6 +173,18 @@ export default function Navbar(props) {
     window.location.reload();
   };
 
+  //Avatar Colour styling
+  //Import color-hash
+  var ColorHash = require('color-hash');
+  //Instantiate color-hash object
+  var colorHashObj = new ColorHash();
+
+  //Set the styling of the avatarColour constant
+  const avatarColour = {
+    //Set background colour to the hashed (Hash algorithm: String -> Hex) colour value of username
+    backgroundColor: colorHashObj.hex(sessionStorage.getItem("username"))
+  };
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -183,9 +198,12 @@ export default function Navbar(props) {
     >
       <MenuItem onClick={handleMenuClose}>
         <ListItemIcon>
-          <Avatar className={classes.orange}>{sessionStorage.getItem("FirstName").charAt(0)}</Avatar>
+          <Avatar style={avatarColour}>{sessionStorage.getItem("FirstName").charAt(0)}</Avatar>
         </ListItemIcon>
-        <Typography variant="inherit">{sessionStorage.getItem("FirstName")} {sessionStorage.getItem("LastName")}</Typography>
+        <Typography variant="inherit" display="inline">{sessionStorage.getItem("FirstName")} {sessionStorage.getItem("LastName")}</Typography>
+      </MenuItem>
+      <MenuItem>
+        <Typography variant="inherit">{sessionStorage.getItem("FitPoints")} FitPoints</Typography>
       </MenuItem>
       <MenuItem onClick={handleMenuSettings}>
           <ListItemIcon>
@@ -337,7 +355,7 @@ export default function Navbar(props) {
 
             </ListItem>
 
-            <ListItem href="#" onClick={() => history.push('/app/activities')}>
+            <ListItem button onClick={() => history.push('/app/activities')}>
               
               <ListItemIcon>  
                 <ListOutlined />

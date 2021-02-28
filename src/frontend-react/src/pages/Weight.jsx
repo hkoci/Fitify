@@ -46,7 +46,7 @@ class Weight extends React.Component {
           }
         }
       })}>
-      <Navbar title='Activities' searchField='true' />
+      <Navbar title='Weight' searchField='true' />
       </MuiThemeProvider>
     </React.Fragment>
 

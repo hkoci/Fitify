@@ -115,7 +115,7 @@ class Authentication {
             sessionStorage.setItem("DOB", response.data.dob)
             sessionStorage.setItem("FitPoints", response.data.fitPoints)
             sessionStorage.setItem("friend", response.data.friend)
-            sessionStorage.setItem("apperance", response.data.apperance)
+            sessionStorage.setItem("appearance", response.data.apperance)
             sessionStorage.setItem("notification", response.data.notification)
             sessionStorage.setItem("health", response.data.health)
         })

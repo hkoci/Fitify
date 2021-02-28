@@ -19,6 +19,12 @@ import Grid from '@material-ui/core/Grid';
 //Import Material-ui Switches
 import Switch from '@material-ui/core/Switch';
 
+//Import Material-ui forms
+import FormGroup from '@material-ui/core/FormGroup';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+
 //Import Settings
 import MarketingSettings from '../services/settings/MarketingSettings'
 
@@ -44,7 +50,9 @@ const useStyles = makeStyles((theme) => ({
     },
 
     switch: {
-      marginBottom: theme.spacing(2.5),
+      marginTop: theme.spacing(-6),
+      marginRight: theme.spacing(3),
+      float: 'right'
     }
   }));
 
@@ -132,21 +140,7 @@ export default function Navbar(props) {
           </Typography>
           <Paper>
             <Grid container spacing={3}>
-              <Grid item xs={10} xl={11}>
-                <Typography className={classes.settingLabel}>
-                  Some very long setting text goes here. Test a couple of words in a setence - thanks for using Fitify :)
-                </Typography>
-              </Grid>
-              <Grid item xs={2} xl={1}>
-                <Switch
-                  checked={state.checkedA}
-                  onChange={handleChange}
-                  name="checkedA"
-                  inputProps={{ 'aria-label': 'secondary checkbox' }}
-                  textalignContent='right'
-                  alignItems='right'
-                />
-              </Grid>
+
             </Grid>
           </Paper>
 
@@ -156,34 +150,20 @@ export default function Navbar(props) {
           <Paper>
 
             <Grid container spacing={3}>
-              <Grid item xs={10} xl={11}>
+              <Grid item xs={12} xl={12}>
                 <Typography className={classes.settingLabel}>
                   📩 Marketing communications
                 </Typography>
-                <Typography className={classes.settingLabel}>
-                  📆 Daily health progress
-                </Typography>
-                <Typography className={classes.settingLabel}>
-                  📅 Weekly health progress
-                </Typography>
-                <Typography className={classes.settingLabel}>
-                  🏆 Achievements gained
-                </Typography>
-                <Typography className={classes.settingLabel}>
-                  🚗 Roadmap development plans
-                </Typography>
-                <Typography className={classes.settingLabel}>
-                  🔧 Current development progress
-                </Typography>
-              </Grid>
-              <Grid item xs={2} xl={1}>
                 <Switch
-                  checked={MarketingSettings.getMarketingState('dailyEmailProgressPreference')}
+                  checked={state.marketingEmailPreference}
                   onChange={handleCheckedChange}
                   name="marketingEmailPreference"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
                 />
+                <Typography className={classes.settingLabel}>
+                    📆 Daily health progress
+                </Typography>
                 <Switch
                   checked={state.dailyEmailProgressPreference}
                   onChange={handleCheckedChange}
@@ -191,6 +171,9 @@ export default function Navbar(props) {
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
                 />
+                <Typography className={classes.settingLabel}>
+                  📅 Weekly health progress
+                </Typography>
                 <Switch
                   checked={state.weeklyEmailProgressPreference}
                   onChange={handleCheckedChange}
@@ -198,6 +181,9 @@ export default function Navbar(props) {
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
                 />
+                <Typography className={classes.settingLabel}>
+                  🏆 Achievements gained
+                </Typography>
                 <Switch
                   checked={state.achievementsPreference}
                   onChange={handleCheckedChange}
@@ -205,6 +191,9 @@ export default function Navbar(props) {
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
                 />
+                <Typography className={classes.settingLabel}>
+                  🚗 Roadmap development plans
+                </Typography>
                 <Switch
                   checked={state.marketingRoadmapPreference}
                   onChange={handleCheckedChange}
@@ -212,6 +201,9 @@ export default function Navbar(props) {
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
                 />
+                <Typography className={classes.settingLabel}>
+                  🔧 Current development progress
+                </Typography>
                 <Switch
                   checked={state.weeklyEmailProgressPreference}
                   onChange={handleCheckedChange}
@@ -219,9 +211,7 @@ export default function Navbar(props) {
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
                 />
-              </Grid>
-
-              
+              </Grid>              
             </Grid>
           </Paper>
 

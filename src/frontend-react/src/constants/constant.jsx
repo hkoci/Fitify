@@ -9,4 +9,7 @@ When testing on other machines on your network - replace localhost with your int
 You will need to either allow your IP address in the Spring Security CORS config (JWTSecurityConfig.java) or use a browser extension to ignore CORS (unsafe!).
 */
 
-export const SpringHostURL = 'http://localhost:8080'
+export const SpringHostURL = 'http://192.168.1.101:8080'
+
+export const defaultPrimary = '#3f51b5'
+export const defaultSecondary = '#f50057'

@@ -21,6 +21,9 @@ class ThemeSettings {
     async getAppearanceState(state){
         var appearanceID, value;
 
+        //Get Marketing mapping id
+        await this.initialiseSettingMappings(sessionStorage.getItem('CurrentUsername')).then(response => appearanceID = response.apperance);
+
         //Store the response from the marketing data of this user temporarily
         const appearanceResponse = await this.getAppearanceData(appearanceID)
 

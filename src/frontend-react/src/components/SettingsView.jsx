@@ -19,14 +19,21 @@ import Grid from '@material-ui/core/Grid';
 //Import Material-ui Switches
 import Switch from '@material-ui/core/Switch';
 
+//Import Material-ui colour picker
+import ColorPicker from 'material-ui-color-picker'
+
 //Import Material-ui forms
 import FormGroup from '@material-ui/core/FormGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Slider from '@material-ui/core/Slider';
+import TextFormatIcon from '@material-ui/icons/TextFormat';
+import FormatSizeIcon from '@material-ui/icons/FormatSize';
 
 //Import Settings
 import MarketingSettings from '../services/settings/MarketingSettings'
+import ThemeSettings from '../services/settings/ThemeSettings'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,7 +71,7 @@ export default function Navbar(props) {
 
   //const [state, setState] = React.useState(MarketingSettings.getMarketingSettings());
 
-  // Marketing States and handlers
+  // ------------------------- Marketing States and handlers ------------------------- //
 
   const [marketing, setMarket] = React.useState({
     achievementsPreference: MarketingSettings.getMarketingState('achievementsPreference'),
@@ -87,7 +94,7 @@ export default function Navbar(props) {
     setMarket({ ...marketing, [event.target.name]: event.target.checked });
   };
 
-  // Notification States and handlers
+  // ------------------------- Notification States and handlers ------------------------- //
   const [notification, setNotification] = React.useState({
     blankTOBEDONE: MarketingSettings.getMarketingState('achievementsPreference'),
   });
@@ -102,6 +109,39 @@ export default function Navbar(props) {
 
   const handleNotificationChange = (event) => {
     setNotification({ ...notification, [event.target.name]: event.target.checked });
+  };
+
+  // ------------------------- Appearance States and handlers ------------------------- //
+  const [appearance, setAppearance] = React.useState({
+    primaryHexColour: ThemeSettings.getAppearanceState('primaryHexColour'),
+    secondaryHexColour: ThemeSettings.getAppearanceState('secondaryHexColour'),
+    darkMode: ThemeSettings.getAppearanceState('darkMode'),
+    highContrast: ThemeSettings.getAppearanceState('highContrast'),
+    textSize: ThemeSettings.getAppearanceState('textSize'),
+  });
+
+  // Convert 'checked' to 'value' before performing handleChange
+  const handleCheckedAppearanceChange = (event) => {
+    //Perform changes to the Spring Backend (through Axios Put modifier)
+    MarketingSettings.setMarketingState(event.target.name,event.target.checked);
+    //Change internal React state
+    handleAppearanceChange(event);
+  };
+
+  const handleAppearanceChange = (event) => {
+    setAppearance({ ...appearance, [event.target.name]: event.target.checked });
+  };
+
+  // Convert 'checked' to 'value' before performing handleChange
+  const handleCheckedAppearanceColourChange = (event) => {
+    //Perform changes to the Spring Backend (through Axios Put modifier)
+    MarketingSettings.setMarketingState(event.target.name,event.target.value);
+    //Change internal React state
+    handleAppearanceColourChange(event);
+  };
+
+  const handleAppearanceColourChange = (event) => {
+    setAppearance({ ...appearance, [event.target.name]: event.target.value });
   };
 
   return (
@@ -125,13 +165,72 @@ export default function Navbar(props) {
             Appearance
           </Typography>
           <Paper>
-            <Grid container spacing={3}>
-              <Grid item xs={10} xl={11}>
-                <Typography className={classes.settingLabel}>
-                  Appearance settings go here
-                </Typography>
+          <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <ColorPicker
+              fullWidth
+              name='primaryHexColour'
+              label='primaryHexColour'
+              defaultValue={'◼ Primary Colour'}
+              value={appearance.primaryHexColour}
+              onChange={colourVal => handleCheckedAppearanceColourChange({"target": {"name": "primaryHexColour", "value": colourVal} })}
+            
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <ColorPicker
+              fullWidth
+              name='secondaryHexColour'
+              label='secondaryHexColour'
+              defaultValue={'◼ Secondary Colour'}
+              value={appearance.secondaryHexColour}
+              onChange={colourVal => handleCheckedAppearanceColourChange({"target": {"name": "secondaryHexColour", "value": colourVal} })}
+            
+            />
+          </Grid>
+
+          <Grid item xs={12}> 
+            <Typography id="discrete-slider" gutterBottom>
+              Font Size
+            </Typography>
+
+            <Grid container spacing={2}>
+              <Grid item>
+              <TextFormatIcon />
+              </Grid>
+              <Grid item xs>
+                <Slider
+                  defaultValue={12}
+                  aria-labelledby="discrete-slider"
+                  valueLabelDisplay="auto"
+                  step={2}
+                  marks
+                  min={10}
+                  max={30}
+                />
+              </Grid>
+              <Grid item>
+              <FormatSizeIcon />
               </Grid>
             </Grid>
+          </Grid>
+
+          <Grid item xs={12}>
+          <FormControlLabel
+                control={<Checkbox checked={appearance.darkMode} onChange={handleCheckedAppearanceChange} name="darkMode" />}
+                label="Dark Mode"
+              />
+          </Grid>
+
+          <Grid item xs={12}>
+          <FormControlLabel
+                control={<Checkbox checked={appearance.highContrast} onChange={handleCheckedAppearanceChange} name="highContrast" />}
+                label="High Contrast"
+              />
+          </Grid>
+          
+          </Grid>
           </Paper>
 
           <Typography variant="h5" component="h5" className={classes.headingsTextAlt}>

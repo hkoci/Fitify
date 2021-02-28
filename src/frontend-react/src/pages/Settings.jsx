@@ -10,6 +10,8 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import { defaultPrimary, defaultSecondary} from '../constants/constant'
 
+import ThemeSettings from '../services/settings/ThemeSettings'
+
 //Create Landing class using Component instace
 class Settings extends React.Component {
 
@@ -30,6 +32,9 @@ class Settings extends React.Component {
   }
   
   render() {
+
+    ThemeSettings.storeAppearance()
+
     return (
       <React.Fragment>
         <MuiThemeProvider theme={createMuiTheme({

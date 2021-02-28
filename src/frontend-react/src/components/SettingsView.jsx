@@ -63,27 +63,46 @@ export default function Navbar(props) {
   const classes = useStyles();
 
   //const [state, setState] = React.useState(MarketingSettings.getMarketingSettings());
- 
-  const [state, setState] = React.useState({
+
+  // Marketing States and handlers
+
+  const [marketing, setMarket] = React.useState({
     achievementsPreference: MarketingSettings.getMarketingState('achievementsPreference'),
     dailyEmailProgressPreference: MarketingSettings.getMarketingState('dailyEmailProgressPreference'),
     marketingEmailPreference: MarketingSettings.getMarketingState('marketingEmailPreference'),
     marketingRoadmapPreference: MarketingSettings.getMarketingState('marketingRoadmapPreference'),
     progressPreference: MarketingSettings.getMarketingState('progressPreference'),
     weeklyEmailProgressPreference: MarketingSettings.getMarketingState('weeklyEmailProgressPreference'),
-  }); 
+  });
 
   // Convert 'checked' to 'value' before performing handleChange
-  const handleCheckedChange = (event) => {
+  const handleCheckedMarketingChange = (event) => {
     //Perform changes to the Spring Backend (through Axios Put modifier)
     MarketingSettings.setMarketingState(event.target.name,event.target.checked);
     //Change internal React state
-    handleChange(event);
+    handleMarketChange(event);
   };
 
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  }; 
+  const handleMarketChange = (event) => {
+    setMarket({ ...marketing, [event.target.name]: event.target.checked });
+  };
+
+  // Notification States and handlers
+  const [notification, setNotification] = React.useState({
+    blankTOBEDONE: MarketingSettings.getMarketingState('achievementsPreference'),
+  });
+
+  // Convert 'checked' to 'value' before performing handleChange
+  const handleCheckedNotificationChange = (event) => {
+    //Perform changes to the Spring Backend (through Axios Put modifier)
+    MarketingSettings.setMarketingState(event.target.name,event.target.checked);
+    //Change internal React state
+    handleNotificationChange(event);
+  };
+
+  const handleNotificationChange = (event) => {
+    setNotification({ ...notification, [event.target.name]: event.target.checked });
+  };
 
   return (
     <div className={classes.root}>
@@ -96,18 +115,8 @@ export default function Navbar(props) {
             <Grid container spacing={3}>
               <Grid item xs={10} xl={11}>
                 <Typography className={classes.settingLabel}>
-                  Some very long setting text goes here. Test a couple of words in a setence - thanks for using Fitify :)
+                  Personal settings go here
                 </Typography>
-              </Grid>
-              <Grid item xs={2} xl={1}>
-                <Switch
-                  checked={state.marketingEmailPreference}
-                  onChange={handleCheckedChange}
-                  name="marketingEmailPreference"
-                  inputProps={{ 'aria-label': 'secondary checkbox' }}
-                  textalignContent='right'
-                  alignItems='right'
-                />
               </Grid>
             </Grid>
           </Paper>
@@ -119,18 +128,8 @@ export default function Navbar(props) {
             <Grid container spacing={3}>
               <Grid item xs={10} xl={11}>
                 <Typography className={classes.settingLabel}>
-                  Some very long setting text goes here. Test a couple of words in a setence - thanks for using Fitify :)
+                  Appearance settings go here
                 </Typography>
-              </Grid>
-              <Grid item xs={2} xl={1}>
-                <Switch
-                  checked={state.checkedA}
-                  onChange={handleChange}
-                  name="checkedA"
-                  inputProps={{ 'aria-label': 'secondary checkbox' }}
-                  textalignContent='right'
-                  alignItems='right'
-                />
               </Grid>
             </Grid>
           </Paper>
@@ -145,8 +144,8 @@ export default function Navbar(props) {
                   📆 Daily activity
                 </Typography>
                 <Switch
-                  checked={true}
-                  onChange={handleCheckedChange}
+                  checked={notification.blankTOBEDONE}
+                  onChange={handleCheckedNotificationChange}
                   name="notificationDaily"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
@@ -155,8 +154,8 @@ export default function Navbar(props) {
                   📅 Weekly activity
                 </Typography>
                 <Switch
-                  checked={true}
-                  onChange={handleCheckedChange}
+                  checked={notification.blankTOBEDONE}
+                  onChange={handleCheckedNotificationChange}
                   name="notificationWeekly"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
@@ -165,8 +164,8 @@ export default function Navbar(props) {
                   ⌛ Monthly activity
                 </Typography>
                 <Switch
-                  checked={true}
-                  onChange={handleCheckedChange}
+                  checked={notification.blankTOBEDONE}
+                  onChange={handleCheckedNotificationChange}
                   name="notificationMonthly"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
@@ -175,8 +174,8 @@ export default function Navbar(props) {
                   🤸🏻 Missed weight recordings
                 </Typography>
                 <Switch
-                  checked={true}
-                  onChange={handleCheckedChange}
+                  checked={notification.blankTOBEDONE}
+                  onChange={handleCheckedNotificationChange}
                   name="notificationWeight"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
@@ -185,8 +184,8 @@ export default function Navbar(props) {
                   🤸🏻‍♂️ Fitness progress
                 </Typography>
                 <Switch
-                  checked={true}
-                  onChange={handleCheckedChange}
+                  checked={notification.blankTOBEDONE}
+                  onChange={handleCheckedNotificationChange}
                   name="notificationProgress"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
@@ -195,8 +194,8 @@ export default function Navbar(props) {
                   🏆 Achievements
                 </Typography>
                 <Switch
-                  checked={true}
-                  onChange={handleCheckedChange}
+                  checked={notification.blankTOBEDONE}
+                  onChange={handleCheckedNotificationChange}
                   name="notificationAchievements"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
@@ -216,8 +215,8 @@ export default function Navbar(props) {
                   📩 Marketing communications
                 </Typography>
                 <Switch
-                  checked={state.marketingEmailPreference}
-                  onChange={handleCheckedChange}
+                  checked={marketing.marketingEmailPreference}
+                  onChange={handleCheckedMarketingChange}
                   name="marketingEmailPreference"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
@@ -226,8 +225,8 @@ export default function Navbar(props) {
                     📆 Daily health progress
                 </Typography>
                 <Switch
-                  checked={state.dailyEmailProgressPreference}
-                  onChange={handleCheckedChange}
+                  checked={marketing.dailyEmailProgressPreference}
+                  onChange={handleCheckedMarketingChange}
                   name="dailyEmailProgressPreference"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
@@ -236,8 +235,8 @@ export default function Navbar(props) {
                   📅 Weekly health progress
                 </Typography>
                 <Switch
-                  checked={state.weeklyEmailProgressPreference}
-                  onChange={handleCheckedChange}
+                  checked={marketing.weeklyEmailProgressPreference}
+                  onChange={handleCheckedMarketingChange}
                   name="weeklyEmailProgressPreference"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
@@ -246,8 +245,8 @@ export default function Navbar(props) {
                   🏆 Achievements gained
                 </Typography>
                 <Switch
-                  checked={state.achievementsPreference}
-                  onChange={handleCheckedChange}
+                  checked={marketing.achievementsPreference}
+                  onChange={handleCheckedMarketingChange}
                   name="achievementsPreference"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
@@ -256,8 +255,8 @@ export default function Navbar(props) {
                   🚗 Roadmap development plans
                 </Typography>
                 <Switch
-                  checked={state.marketingRoadmapPreference}
-                  onChange={handleCheckedChange}
+                  checked={marketing.marketingRoadmapPreference}
+                  onChange={handleCheckedMarketingChange}
                   name="marketingRoadmapPreference"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}
@@ -266,8 +265,8 @@ export default function Navbar(props) {
                   🔧 Current development progress
                 </Typography>
                 <Switch
-                  checked={state.weeklyEmailProgressPreference}
-                  onChange={handleCheckedChange}
+                  checked={marketing.weeklyEmailProgressPreference}
+                  onChange={handleCheckedMarketingChange}
                   name="weeklyEmailProgressPreference"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   className={classes.switch}

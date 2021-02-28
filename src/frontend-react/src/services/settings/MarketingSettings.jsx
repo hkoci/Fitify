@@ -19,7 +19,7 @@ class MarketingSettings {
         return marketingResponse
     }
 
-    //Method to get marketingEmailPreference
+    //Method to get state from marketing
     async getMarketingState(state){
         var marketingID, value;
 
@@ -46,7 +46,7 @@ class MarketingSettings {
             //do not display any values - state is incorrect
         }
 
-        console.log(state,value)
+        //console.log(state,value)
 
         //Return the value of this state
         return value;

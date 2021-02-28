@@ -4,15 +4,18 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 
 import FirstTimeSetup from '../components/FirstTimeSetup';
+import DashboardView from '../components/dashboard/DashboardView';
 
 //Create Landing class using Component instace
 class Dashboard extends React.Component {
 
   render() {
     return (
+      
       <React.Fragment>
-        <Navbar title='Dashboard' searchField='true' />
-        <FirstTimeSetup/>
+          <Navbar title='Dashboard' searchField='true' />
+          <FirstTimeSetup/>
+          <DashboardView/>
       </React.Fragment>
     );
   }

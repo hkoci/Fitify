@@ -5,7 +5,7 @@ spring:
   # Was unable to use absolute file path, so hosted externally on https://henrikoci.co.uk/certs/keystore.jks for now.
   datasource:
     url: >
-      jdbc:mysql://ddns.henrikoci.co.uk:8888/fitify-rebase?
+      jdbc:mysql://ddns.henrikoci.co.uk:8888/fitify?
       useSSL=true&
       requireSSL=true&
       clientCertificateKeyStoreUrl=https://henrikoci.co.uk/certs/keystore.jks&

@@ -21,13 +21,6 @@ class ThemeSettings {
     async getAppearanceState(state){
         var appearanceID, value;
 
-        //Get the marketingID record number from the current user, use the default theme from 'test' user for non-logged in users
-        if(sessionStorage.getItem('CurrentUsername') === null || sessionStorage.getItem('CurrentUsername') === undefined){
-            await this.initialiseSettingMappings('test').then(response => appearanceID = response.apperance);
-        }else{
-            await this.initialiseSettingMappings(sessionStorage.getItem('CurrentUsername')).then(response => appearanceID = response.apperance);
-        }
-
         //Store the response from the marketing data of this user temporarily
         const appearanceResponse = await this.getAppearanceData(appearanceID)
 

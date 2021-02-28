@@ -384,7 +384,7 @@ export default function Navbar(props) {
 
             <Divider />
 
-            <ListItem button>
+            <ListItem button onClick={() => history.push('/app/weight')}>
               
               <ListItemIcon>  
                 <FitnessCenter />

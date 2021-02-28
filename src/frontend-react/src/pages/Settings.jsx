@@ -6,8 +6,10 @@ import SettingsView from '../components/SettingsView';
 
 import Box from '@material-ui/core/Box';
 
+//Theme provider
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+//Theming defaults and Session setters
 import { defaultPrimary, defaultSecondary} from '../constants/constant'
 
 import ThemeSettings from '../services/settings/ThemeSettings'

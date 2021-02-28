@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 //Setup constant for Spring Host - this will be changed in production *Include port but no endpoints!*
-import { SpringHostURL } from '../../constants/constant'
+import { SpringHostURL, defaultPrimary, defaultSecondary } from '../../constants/constant'
 
 class ThemeSettings {
 
@@ -174,15 +174,41 @@ class ThemeSettings {
         await this.initialiseSettingMappings(sessionStorage.getItem('CurrentUsername')).then(response => appearanceID = response.apperance);
 
         const appearanceResponse = await this.getAppearanceData(appearanceID)
+
+        //Check if user did not enter a value for this attribute
+        if(appearanceResponse.primaryHexColour == null){
+            sessionStorage.setItem("primaryHexColour", defaultPrimary)
+        }else{
+            sessionStorage.setItem("primaryHexColour", appearanceResponse.primaryHexColour)
+        }
+
+        //Check if user did not enter a value for this attribute
+        if(appearanceResponse.secondaryHexColour == null){
+            sessionStorage.setItem("secondaryHexColour", defaultSecondary)
+        }else{
+            sessionStorage.setItem("secondaryHexColour", appearanceResponse.secondaryHexColour)
+        }
       
-        console.log(appearanceID)
-        console.log(appearanceResponse)
-      
-        sessionStorage.setItem("primaryHexColour", appearanceResponse.primaryHexColour)
-        sessionStorage.setItem("secondaryHexColour", appearanceResponse.secondaryHexColour)
-        sessionStorage.setItem("darkMode", appearanceResponse.darkMode)
-        sessionStorage.setItem("highContrast", appearanceResponse.highContrast)
-        sessionStorage.setItem("textSize", appearanceResponse.textSize)
+        //Check if user did not enter a value for this attribute
+        if(appearanceResponse.darkMode == null){
+            sessionStorage.setItem("darkMode", false)
+        }else{
+            sessionStorage.setItem("darkMode", appearanceResponse.darkMode)
+        }
+
+        //Check if user did not enter a value for this attribute
+        if(appearanceResponse.highContrast == null){
+            sessionStorage.setItem("highContrast", false)
+        }else{
+            sessionStorage.setItem("highContrast", appearanceResponse.highContrast)
+        }
+
+        //Check if user did not enter a value for this attribute
+        if(appearanceResponse.textSize == null){
+            sessionStorage.setItem("textSize", '12')
+        }else{
+            sessionStorage.setItem("textSize", appearanceResponse.textSize)
+        }
       }
 }
 

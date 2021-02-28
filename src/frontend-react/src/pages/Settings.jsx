@@ -8,27 +8,40 @@ import Box from '@material-ui/core/Box';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-//Testing Theme code (TODO)
-const primaryColour = sessionStorage.getItem("PrimaryColour");
-const secondaryColour = sessionStorage.getItem("SecondaryColour");
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#E33E7F'
-    },
-    secondary: {
-      main: '#E33E7F'
-    }
-  }
-});
+import { defaultPrimary, defaultSecondary} from '../constants/constant'
 
 //Create Landing class using Component instace
 class Settings extends React.Component {
+
+  getPrimaryColour = () => {
+    if(sessionStorage.getItem("primaryHexColour") === null || sessionStorage.getItem("primaryHexColour") === undefined ){
+      return defaultPrimary;
+    }else{
+      return sessionStorage.getItem("primaryHexColour");
+    }
+  }
+
+  getSecondaryColour = () => {
+    if(sessionStorage.getItem("secondaryHexColour") === null || sessionStorage.getItem("secondaryHexColour") === undefined ){
+      return defaultSecondary;
+    }else{
+      return sessionStorage.getItem("secondaryHexColour");
+    }
+  }
+  
   render() {
     return (
       <React.Fragment>
-        <MuiThemeProvider theme={theme}>
+        <MuiThemeProvider theme={createMuiTheme({
+          palette: {
+            primary: {
+              main: this.getPrimaryColour()
+            },
+            secondary: {
+              main: this.getSecondaryColour()
+            }
+          }
+        })}>
           <Navbar title='Settings' searchField='true' />
           <Box m={2} />
           <SettingsView />

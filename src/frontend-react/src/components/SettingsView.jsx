@@ -140,7 +140,68 @@ export default function Navbar(props) {
           </Typography>
           <Paper>
             <Grid container spacing={3}>
-
+            <Grid item xs={12} xl={12}>
+                <Typography className={classes.settingLabel}>
+                  📆 Daily activity
+                </Typography>
+                <Switch
+                  checked={true}
+                  onChange={handleCheckedChange}
+                  name="notificationDaily"
+                  inputProps={{ 'aria-label': 'secondary checkbox' }}
+                  className={classes.switch}
+                />
+                <Typography className={classes.settingLabel}>
+                  📅 Weekly activity
+                </Typography>
+                <Switch
+                  checked={true}
+                  onChange={handleCheckedChange}
+                  name="notificationWeekly"
+                  inputProps={{ 'aria-label': 'secondary checkbox' }}
+                  className={classes.switch}
+                />
+                <Typography className={classes.settingLabel}>
+                  ⌛ Monthly activity
+                </Typography>
+                <Switch
+                  checked={true}
+                  onChange={handleCheckedChange}
+                  name="notificationMonthly"
+                  inputProps={{ 'aria-label': 'secondary checkbox' }}
+                  className={classes.switch}
+                />
+                <Typography className={classes.settingLabel}>
+                  🤸🏻 Missed weight recordings
+                </Typography>
+                <Switch
+                  checked={true}
+                  onChange={handleCheckedChange}
+                  name="notificationWeight"
+                  inputProps={{ 'aria-label': 'secondary checkbox' }}
+                  className={classes.switch}
+                />
+                <Typography className={classes.settingLabel}>
+                  🤸🏻‍♂️ Fitness progress
+                </Typography>
+                <Switch
+                  checked={true}
+                  onChange={handleCheckedChange}
+                  name="notificationProgress"
+                  inputProps={{ 'aria-label': 'secondary checkbox' }}
+                  className={classes.switch}
+                />
+                <Typography className={classes.settingLabel}>
+                  🏆 Achievements
+                </Typography>
+                <Switch
+                  checked={true}
+                  onChange={handleCheckedChange}
+                  name="notificationAchievements"
+                  inputProps={{ 'aria-label': 'secondary checkbox' }}
+                  className={classes.switch}
+                />
+              </Grid>
             </Grid>
           </Paper>
 

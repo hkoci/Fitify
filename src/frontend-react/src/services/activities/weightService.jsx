@@ -25,7 +25,17 @@ class weightService {
         weight,
         description
     ){
-    
+        //Create the activity record
+        const activityResponse = await this.createActivity(startDateTime, endDateTime, activityType, moodRating, caloriesBurnt, sessionStorage.getItem('UserID'))
+
+        await console.log(activityResponse)
+
+        //Create the parent weight activity record
+        const weightResponse = await this.createWeight(activityResponse, weight, description)
+
+        await console.log(weightResponse)
+
+        return weightResponse
     }
     
 

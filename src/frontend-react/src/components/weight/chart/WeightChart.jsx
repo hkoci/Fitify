@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 //Import Recharts for line graph rendering
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
 
 //Example data
 const data = [
@@ -30,20 +30,20 @@ const data = [
 export default class WeightChart extends PureComponent {
 	render() {
 		return (
-			<div>
+			<ResponsiveContainer width="99%" height={400}>
                 <LineChart
                 width={500}
                 height={400}
                 data={data}
                 margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
                 >
-                <XAxis dataKey="name" />
-                <Tooltip />
-                <CartesianGrid stroke="#f5f5f5" />
-                <Line type="monotone" dataKey="weight" stroke="#ff7300" yAxisId={0} />
-                <Line type="monotone" dataKey="targetWeight" stroke="#387908" yAxisId={1} />
+                    <XAxis dataKey="name" />
+                    <Tooltip />
+                    <CartesianGrid stroke="#f5f5f5" />
+                    <Line type="monotone" dataKey="weight" stroke="#ff7300" yAxisId={0} />
+                    <Line type="monotone" dataKey="targetWeight" stroke="#387908" yAxisId={1} />
                 </LineChart>
-			</div>
+			</ResponsiveContainer>
 		);
 	}
 }

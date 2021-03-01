@@ -47,9 +47,6 @@ import { DirectionsRun, FitnessCenter, Group, Home, ListOutlined, NightsStay, Se
 //Include React Router history (5.1+ required) - mitigation from nested components
 import { useHistory } from "react-router-dom";
 
-//Avatar Colour constant
-import { avatarColour } from '../constants/constant'
-
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -120,7 +117,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function Navbar(props) {
   const classes = useStyles();
   let history = useHistory();
@@ -173,6 +169,12 @@ export default function Navbar(props) {
     window.location.reload();
   };
 
+  const getUsername = () => {
+      setTimeout(function() {
+          return sessionStorage.getItem("CurrentUsername");
+      }, 50);
+  }
+
   //Avatar Colour styling
   //Import color-hash
   var ColorHash = require('color-hash');
@@ -182,7 +184,7 @@ export default function Navbar(props) {
   //Set the styling of the avatarColour constant
   const avatarColour = {
     //Set background colour to the hashed (Hash algorithm: String -> Hex) colour value of username
-    backgroundColor: colorHashObj.hex(sessionStorage.getItem("username"))
+    backgroundColor: colorHashObj.hex(getUsername())
   };
 
   const menuId = 'primary-search-account-menu';

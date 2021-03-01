@@ -10,6 +10,9 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { defaultPrimary, defaultSecondary} from '../constants/constant'
 import ThemeSettings from '../services/settings/ThemeSettings'
 
+//Import Weight view
+import WeightView from '../components/weight/WeightView'
+
 //Create Landing class using Component instace
 class Weight extends React.Component {
   
@@ -47,6 +50,7 @@ class Weight extends React.Component {
         }
       })}>
       <Navbar title='Weight' searchField='true' />
+      <WeightView />
       </MuiThemeProvider>
     </React.Fragment>
 

@@ -27,12 +27,25 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsIcon from '@material-ui/icons/Settings';
-
-//I,port
 import Avatar from '@material-ui/core/Avatar';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 
+//Drawer Import
+import Drawer from "@material-ui/core/Drawer";
+
+//Drawer List Import
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+
+//Drawer List Icons Import
+import ListItemText from '@material-ui/core/ListItemText';
+import { DirectionsRun, FitnessCenter, Group, Home, ListOutlined, NightsStay, Settings } from '@material-ui/icons';
+
 //import {  } from "@material-ui/core/styles";
+
+//Include React Router history (5.1+ required) - mitigation from nested components
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -96,12 +109,18 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
 }));
-
-
 
 export default function Navbar(props) {
   const classes = useStyles();
+  let history = useHistory();
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -121,13 +140,51 @@ export default function Navbar(props) {
     handleMobileMenuClose();
   };
 
+  const handleMenuSettings = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+    history.push('/app/settings');
+  };
+
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  //Drawer Props
+  const [drawer, setDrawer] = React.useState({
+    drawerVisible: false
+  });
+
+  //Drawer Visibility methods
+  const setDrawerVisible = () => {
+    setDrawer({drawerVisible: true});
+  };
+
+  const setDrawerHidden = () => {
+    setDrawer({drawerVisible: false});
   };
 
   const userLogout = () => {
     sessionStorage.clear();
     window.location.reload();
+  };
+
+  const getUsername = () => {
+      setTimeout(function() {
+          return sessionStorage.getItem("CurrentUsername");
+      }, 50);
+  }
+
+  //Avatar Colour styling
+  //Import color-hash
+  var ColorHash = require('color-hash');
+  //Instantiate color-hash object
+  var colorHashObj = new ColorHash();
+
+  //Set the styling of the avatarColour constant
+  const avatarColour = {
+    //Set background colour to the hashed (Hash algorithm: String -> Hex) colour value of username
+    backgroundColor: colorHashObj.hex(getUsername())
   };
 
   const menuId = 'primary-search-account-menu';
@@ -143,11 +200,14 @@ export default function Navbar(props) {
     >
       <MenuItem onClick={handleMenuClose}>
         <ListItemIcon>
-          <Avatar className={classes.orange}>N</Avatar>
+          <Avatar style={avatarColour}>{sessionStorage.getItem("FirstName").charAt(0)}</Avatar>
         </ListItemIcon>
-        <Typography variant="inherit">FirstName LastName</Typography>
+        <Typography variant="inherit" display="inline">{sessionStorage.getItem("FirstName")} {sessionStorage.getItem("LastName")}</Typography>
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
+      <MenuItem>
+        <Typography variant="inherit">{sessionStorage.getItem("FitPoints")} FitPoints</Typography>
+      </MenuItem>
+      <MenuItem onClick={handleMenuSettings}>
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
@@ -217,7 +277,6 @@ export default function Navbar(props) {
     </Menu>
   );
 
-
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -226,7 +285,9 @@ export default function Navbar(props) {
             edge="start"
             className={classes.menuButton}
             color="inherit"
-            aria-label="open drawer">
+            aria-label="open drawer"
+            onClick={setDrawerVisible}
+            >
             <MenuIcon />
           </IconButton>
           
@@ -276,6 +337,85 @@ export default function Navbar(props) {
           </div>
         </Toolbar>
       </AppBar>
+
+      <Drawer
+        anchor="left"
+        open={drawer.drawerVisible}
+        onClose={setDrawerHidden}
+      >
+        <div
+          onClick={setDrawerHidden}
+          onKeyDown={setDrawerHidden}
+        >
+          <List className={classes.list}>
+            <ListItem button onClick={() => history.push('/app/dashboard')}>
+
+              <ListItemIcon>  
+                <Home />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+
+            </ListItem>
+
+            <ListItem button onClick={() => history.push('/app/activities')}>
+              
+              <ListItemIcon>  
+                <ListOutlined />
+              </ListItemIcon>
+              <ListItemText primary="Activities" />
+
+            </ListItem>
+
+            <ListItem button>
+              
+              <ListItemIcon>  
+                <Group />
+              </ListItemIcon>
+              <ListItemText primary="Social" />
+
+            </ListItem>
+
+            <ListItem button onClick={() => history.push('/app/settings')}>
+              
+              <ListItemIcon>  
+                <Settings />
+              </ListItemIcon>
+              <ListItemText primary="Settings" />
+
+            </ListItem>
+
+            <Divider />
+
+            <ListItem button onClick={() => history.push('/app/weight')}>
+              
+              <ListItemIcon>  
+                <FitnessCenter />
+              </ListItemIcon>
+              <ListItemText primary="Weight" />
+
+            </ListItem>
+
+            <ListItem button>
+              
+              <ListItemIcon>  
+                <DirectionsRun />
+              </ListItemIcon>
+              <ListItemText primary="Physical Movement" />
+
+            </ListItem>
+
+            <ListItem button>
+              
+              <ListItemIcon>  
+                <NightsStay />
+              </ListItemIcon>
+              <ListItemText primary="Sleep" />
+
+            </ListItem>
+          </List>
+        </div>
+      </Drawer>
+
       {renderMobileMenu}
       {renderMenu}
     </div>

@@ -11,6 +11,7 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
+    "color-hash": "^1.0.3",
     "date-fns": "^2.17.0",
     "material-auto-rotating-carousel": "^3.0.2",
     "material-ui-color-picker": "^3.5.1",
@@ -20,6 +21,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-swipeable-views": "^0.13.9",
+    "recharts": "^2.0.8",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

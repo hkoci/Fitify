@@ -15,6 +15,8 @@ import Weight from './pages/Weight';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Activities from './pages/Activities';
+import Settings from './pages/Settings';
 
 //Import Authentication class to determine if user is authenticated
 import Authentication from './services/login/authentication';
@@ -27,10 +29,12 @@ const routs = (
          <Route path="/about" component={About} />
          <Route path="/help" component={Help} />
          <Route path="/contactus" component={ContactUs} />
-         <Route path="/app/weight" component={Weight} />
          <RedirectRoute path="/app/login" component={Login} />
          <RedirectRoute path="/app/register" component={Register} />
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />
+         <AuthenticatedRoute path="/app/activities" component={Activities} />
+         <AuthenticatedRoute path="/app/weight" component={Weight} />
+         <AuthenticatedRoute path="/app/settings" component={Settings} />
       </div>
    </Router>
 );

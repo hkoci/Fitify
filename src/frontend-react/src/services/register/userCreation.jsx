@@ -5,7 +5,7 @@ import axios from 'axios'
 import Authentication from '../login/authentication'
 
 //Setup constant for Spring Host - this will be changed in production *Include port but no endpoints!*
-const SpringHostURL = 'http://localhost:8080'
+import { SpringHostURL } from '../../constants/constant'
 
 //User Creation service class
 class userCreation {

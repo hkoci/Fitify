@@ -3,8 +3,7 @@ import React from 'react';
 
 import Navbar from '../components/Navbar';
 
-import FirstTimeSetup from '../components/FirstTimeSetup';
-import DashboardView from '../components/dashboard/DashboardView';
+import ActivitiesView from '../components/activities/ActivitiesView'
 
 //Theme provider
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -13,8 +12,8 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { defaultPrimary, defaultSecondary} from '../constants/constant'
 import ThemeSettings from '../services/settings/ThemeSettings'
 
-//Create Landing class using Component instace
-class Dashboard extends React.Component {
+//Create Activities class using Component instace
+class Activities extends React.Component {
 
   getPrimaryColour = () => {
     if(sessionStorage.getItem("primaryHexColour") === null || sessionStorage.getItem("primaryHexColour") === undefined ){
@@ -37,26 +36,24 @@ class Dashboard extends React.Component {
     ThemeSettings.storeAppearance()
 
     return (
-      
       <React.Fragment>
-          <MuiThemeProvider theme={createMuiTheme({
-            palette: {
-              primary: {
-                main: this.getPrimaryColour()
-              },
-              secondary: {
-                main: this.getSecondaryColour()
-              }
+        <MuiThemeProvider theme={createMuiTheme({
+          palette: {
+            primary: {
+              main: this.getPrimaryColour()
+            },
+            secondary: {
+              main: this.getSecondaryColour()
             }
-          })}>
-          <Navbar title='Dashboard' searchField='true' />
-          <FirstTimeSetup/>
-          <DashboardView/>
-          </MuiThemeProvider>
+          }
+        })}>
+        <Navbar title='Activities' searchField='true' />
+        <ActivitiesView />
+        </MuiThemeProvider>
       </React.Fragment>
     );
   }
 }
 
 //Export class
-export default Dashboard;
+export default Activities;

@@ -166,11 +166,16 @@ export default function Navbar(props) {
           </Typography>
           <Paper>
           <Grid container spacing={2}>
+          <Grid item xs={10} xl={11}>
+                <Typography className={classes.settingLabel}>
+                  Appearance settings take effect on a page reload
+                </Typography>
+              </Grid>
           <Grid item xs={12}>
             <ColorPicker
               fullWidth
               name='primaryHexColour'
-              label='primaryHexColour'
+              label='Primary Theme Colour'
               defaultValue={'◼ Primary Colour'}
               value={appearance.primaryHexColour}
               onChange={colourVal => handleCheckedAppearanceColourChange({"target": {"name": "primaryHexColour", "value": colourVal} })}
@@ -182,7 +187,7 @@ export default function Navbar(props) {
             <ColorPicker
               fullWidth
               name='secondaryHexColour'
-              label='secondaryHexColour'
+              label='Secondary Theme Colour'
               defaultValue={'◼ Secondary Colour'}
               value={appearance.secondaryHexColour}
               onChange={colourVal => handleCheckedAppearanceColourChange({"target": {"name": "secondaryHexColour", "value": colourVal} })}

@@ -234,3 +234,12 @@ export default function Album() {
             ))}
           </Grid>
         </Container>
+        <footer className={classes.footer}>
+        <Typography variant="h6" align="center" gutterBottom>
+          Fitify
+        </Typography>
+      </footer>
+      {/* End footer */}
+    </React.Fragment>
+  );
+}

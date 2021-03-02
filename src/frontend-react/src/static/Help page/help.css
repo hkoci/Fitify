@@ -220,7 +220,7 @@
       width: 581.00px;
     height: 190.00px;
     left: 643.00px;
-    top: 233.00px;
+    top: 389.00px;
 
 }
 
@@ -260,7 +260,7 @@
       width: 600.00px;
     height: 90.00px;
     left: 633.00px;
-    top: 135.00px;
+    top: 291.00px;
 
 }
 
@@ -299,7 +299,7 @@
       width: 581.00px;
     height: 104.00px;
     left: 644.00px;
-    top: 564.00px;
+    top: 720.00px;
 
 }
 
@@ -339,7 +339,7 @@
       width: 364.00px;
     height: 90.00px;
     left: 752.00px;
-    top: 466.00px;
+    top: 622.00px;
 
 }
 
@@ -463,7 +463,7 @@
 
 }
 
-.help .helpac02049e {
+.help .help9ace59d5 {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -530,6 +530,54 @@
     height: 4.00px;
     left: 482.50px;
     top: 51.50px;
+
+}
+
+.help .tech {
+    position: absolute;
+      box-sizing: border-box;
+      -ms-transform: rotate(0.00deg);
+    -webkit-transform: rotate(0.00deg);
+    transform: rotate(0.00deg);
+    -ms-transform-origin: center;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+      background-image: url("assets/tech.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+      opacity: 1;
+      cursor: default;
+      margin-top: 0.00px;
+      margin-right: 0.00px;
+      margin-bottom: 0.00px;
+      margin-left: 0.00px;
+      padding-top: 0.00px;
+      padding-right: 0.00px;
+      padding-bottom: 0.00px;
+      padding-left: 0.00px;
+      background-color: rgba(255, 255, 255, 0);
+      border-bottom-color: rgba(255, 255, 255, 1);
+      border-bottom-style: solid;
+      border-bottom-width: 10.00px;
+      border-left-color: rgba(255, 255, 255, 1);
+      border-left-style: solid;
+      border-left-width: 10.00px;
+      border-right-color: rgba(255, 255, 255, 1);
+      border-right-style: solid;
+      border-right-width: 10.00px;
+      border-top-color: rgba(255, 255, 255, 1);
+      border-top-style: solid;
+      border-top-width: 10.00px;
+      border-top-left-radius: 60.00px;
+      border-top-right-radius: 60.00px;
+      border-bottom-left-radius: 60.00px;
+      border-bottom-right-radius: 60.00px;
+      box-shadow: none;
+      width: 1096.58px;
+    height: 730.17px;
+    left: -548.29px;
+    top: 290.83px;
 
 }
 

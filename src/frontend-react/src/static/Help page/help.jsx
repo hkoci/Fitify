@@ -26,8 +26,9 @@ class Help extends React.Component {
         <div data-layer="98c9080d-e135-4e12-9b26-11a91d1510b7" className="home">Home</div>
         <div data-layer="2b19e254-98fc-410d-9c0e-faabd82be01a" className="signIn">Sign in</div>
         <div data-layer="4583eae8-9d18-41bb-b9e7-2cd3b0084f69" className="review">Review</div>
-        <div data-layer="12790a36-338a-456f-85bb-c927ed8255c7" className="helpac02049e">Help</div>
+        <div data-layer="12790a36-338a-456f-85bb-c927ed8255c7" className="help9ace59d5">Help</div>
         <svg data-layer="b64251b2-c507-4e46-8d4c-d8316d25d824" preserveAspectRatio="none" viewBox="-2 -2 66 4" className="line1"><path d="M 0 0 L 62 0"  /></svg>
+        <div data-layer="8e3f2aae-d406-44b5-ac03-69eae6d27445" className="tech"></div>
 </div>
 
     );

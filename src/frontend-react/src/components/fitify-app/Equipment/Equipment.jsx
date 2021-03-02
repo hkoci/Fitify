@@ -119,3 +119,41 @@ export default function Album() {
             ))}
           </Grid>
         </Container>
+
+        <Container className={classes.cardGrid} maxWidth="md">
+          <Grid container spacing={4}>
+            {cards.map((card) => (
+              <Grid item key={card} xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image="https://images-na.ssl-images-amazon.com/images/I/61Pgch35RWL._AC_UY500_.jpg"
+                    title="Trainers"
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Nike Zoom Pegasus Turbo 2
+                    </Typography>
+                    <Typography>
+                      The Nike Zoom Pegasus Turbo 2 are an industry leader,
+                      providing amazing comfort and support technology to give
+                      the best running experience
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.location.href =
+                          "https://www.amazon.com/dp/B085R9Y1XQ/ref=twister_B07X6VSDT2?th=1";
+                      }}
+                    >
+                      LINK
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>

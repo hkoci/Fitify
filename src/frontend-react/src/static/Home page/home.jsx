@@ -1,6 +1,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+import "../Hyperlinks.css";
 
 import "./home.css";
 
@@ -25,12 +26,12 @@ class About extends React.Component {
         <div data-layer="be6d139f-c1d0-4817-9516-890bb57590d6" className="whatIsFitify">What is Fitify?</div>
         <div data-layer="22170fe6-97f9-4bb7-bffe-1f58f794bc33" className="fitifyFeatures">Fitify features</div>
         <div data-layer="d4a54f64-b36c-4924-86bb-35b307f9e00b" className="rectangle3"></div>
-        <div data-layer="3076fe46-55db-4966-a672-7586fb3e2a83" className="home">Home</div>
-        <div data-layer="d8cc1c99-ab6c-4170-84be-b3b7fff63103" className="signIn">Sign in</div>
-        <div data-layer="7414b399-2602-41da-ae09-7fed3c4dac36" className="review">Review</div>
-        <div data-layer="d8549f2e-1f16-427e-9d68-d308cf847a3d" className="help">Help</div>
+        <div data-layer="3076fe46-55db-4966-a672-7586fb3e2a83" className="home"><a id="orangelink" href="./home">Home</a></div>
+        <div data-layer="d8cc1c99-ab6c-4170-84be-b3b7fff63103" className="signIn"><a id="orangelink" href="./app/login">Sign in</a></div>
+        <div data-layer="7414b399-2602-41da-ae09-7fed3c4dac36" className="review"><a id="orangelink" href="./review">Review</a></div>
+        <div data-layer="d8549f2e-1f16-427e-9d68-d308cf847a3d" className="help"><a id="orangelink" href="./help">Help</a></div>
         <svg data-layer="029d0d9f-7e37-488b-b955-28dc0cc8d36f" preserveAspectRatio="none" viewBox="-2 -2 83 4" className="line1"><path d="M 0 0 L 79 0"  /></svg>
-        <div data-layer="32ef4f59-e13d-4613-a6b6-74c72ca48abd" className="getFit">Get Fit</div>
+        <div data-layer="32ef4f59-e13d-4613-a6b6-74c72ca48abd" className="getFit"><a href="./app/login">Get Fit</a></div>
 </div>
 
     );

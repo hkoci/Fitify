@@ -40,3 +40,45 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6)
   }
 }));
+
+const cards = [1];
+
+export default function Album() {
+  const classes = useStyles();
+
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <AppBar position="relative">
+        <Toolbar>
+          <Typography variant="h6" color="inherit" noWrap>
+            Gear and Equipment
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <main>
+        {/* Hero unit */}
+        <div className={classes.heroContent}>
+          <Container maxWidth="sm">
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="textPrimary"
+              gutterBottom
+            >
+              Gear and Equipment
+            </Typography>
+            <Typography
+              variant="h5"
+              align="center"
+              color="textSecondary"
+              paragraph
+            >
+              This is the gear our team use daily and recommend to you.
+            </Typography>
+            <div className={classes.heroButtons}>
+              <Grid container spacing={2} justify="center"></Grid>
+            </div>
+          </Container>
+        </div>

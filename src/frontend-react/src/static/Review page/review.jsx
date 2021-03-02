@@ -23,7 +23,7 @@ class Review extends React.Component {
         <div data-layer="423bbcd8-2480-4bc7-a8cb-608fd89d4fba" className="weValueYourFeedback">We value your feedback</div>
         <div data-layer="2ea0c00b-7554-4b46-acf7-eddbd917ca1f" className="home">Home</div>
         <div data-layer="85c6a18e-e1d2-4032-9d77-498d44050bb5" className="signIn">Sign in</div>
-        <div data-layer="23716882-1ce6-421a-8809-93580baa5855" className="review2a7287ad">Review</div>
+        <div data-layer="23716882-1ce6-421a-8809-93580baa5855" className="review8bc95b58">Review</div>
         <div data-layer="cc4530bb-f8fa-44d7-92f9-0fe47cd40a0f" className="help">Help</div>
         <svg data-layer="d68b603a-3faa-4bbc-9c80-daa1e321d4bc" preserveAspectRatio="none" viewBox="-2 -2 100 4" className="line1"><path d="M 0 0 L 96 0"  /></svg>
 </div>

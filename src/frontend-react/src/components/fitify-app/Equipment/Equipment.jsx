@@ -205,7 +205,7 @@ export default function Album() {
                     className={classes.cardMedia}
                     image="https://s3.images-iherb.com/opn/opn02299/l/3.jpg"
                     title="Protein"
-                    
+
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">

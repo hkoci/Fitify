@@ -104,7 +104,14 @@ export default function Album() {
                   </CardContent>
                   <CardActions>
                     <Button
-                    
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.location.href =
+                          "https://www.amazon.com/Fitbit-Advanced-Smartwatch-Management-Temperature/dp/B08DFCWVZ4?ref_=ast_sto_dp";
+                      }}
+                    >
+                      LINK
                     </Button>
                   </CardActions>
                 </Card>

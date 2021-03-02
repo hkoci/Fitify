@@ -195,3 +195,42 @@ export default function Album() {
             ))}
           </Grid>
         </Container>
+
+        <Container className={classes.cardGrid} maxWidth="md">
+          <Grid container spacing={4}>
+            {cards.map((card) => (
+              <Grid item key={card} xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image="https://s3.images-iherb.com/opn/opn02299/l/3.jpg"
+                    title="Protein"
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Optimum Nutrition Serious Mass Protein Powder
+                    </Typography>
+                    <Typography>
+                      Optimum Nutrition Serious Mass Protein Powder is the best
+                      protein for gaining mass and is recommended by all the
+                      Fitify team, to be used in a shaker cup after every
+                      workout.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.location.href =
+                          "https://www.amazon.com/OPTIMUM-NUTRITION-Serious-Protein-Chocolate/dp/B0015R36SK/ref=sr_1_12?crid=25PPZS83LQTW6&dchild=1&keywords=protein+powder&qid=1614706350&sprefix=prote%2Caps%2C261&sr=8-12";
+                      }}
+                    >
+                      LINK
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>

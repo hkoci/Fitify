@@ -11,6 +11,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -51,6 +52,7 @@ export default function Equiment() {
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
+          <FitnessCenterIcon className={classes.icon} />
           <Typography variant="h6" color="inherit" noWrap>
             Gear and Equipment
           </Typography>

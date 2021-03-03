@@ -142,7 +142,7 @@ export default function Equiment() {
                 </Grid>
                 <Grid item>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     color="primary"
                     onClick={(e) => {
                       e.preventDefault();
@@ -157,7 +157,7 @@ export default function Equiment() {
                 </Grid>
                 <Grid item>
                   <Button
-                    variant="contained"
+                    variant="outlined"
                     color="primary"
                     onClick={(e) => {
                       e.preventDefault();
@@ -197,7 +197,7 @@ export default function Equiment() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://www.fitbit.com/global/content/dam/fitbit/global/pdp/devices/sense/hero-static/carbon/sense-HeroStatic-carbon-side.png"
+                    image="https://www.fitbit.com/global/content/dam/fitbit/global/pdp/devices/sense/images/desktop/video.jpg"
                     title="Smart Watch"
                   />
                   <CardContent className={classes.cardContent}>
@@ -239,7 +239,7 @@ export default function Equiment() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://images-na.ssl-images-amazon.com/images/I/61Pgch35RWL._AC_UY500_.jpg"
+                    image="https://sneakernews.com/wp-content/uploads/2019/07/nike-zoom-pegasus-turbo-2-racer-blue-at2863-400-6.jpg"
                     title="Trainers"
                   />
                   <CardContent className={classes.cardContent}>
@@ -280,7 +280,7 @@ export default function Equiment() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://images-na.ssl-images-amazon.com/images/I/71r1%2BrGRoVL._AC_SX425_.jpg"
+                    image="https://images-na.ssl-images-amazon.com/images/I/816lKIQ3C8L._AC_SL1500_.jpg"
                     title="Weights"
                   />
                   <CardContent className={classes.cardContent}>
@@ -325,7 +325,7 @@ export default function Equiment() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://s3.images-iherb.com/opn/opn02299/l/3.jpg"
+                    image="https://images-na.ssl-images-amazon.com/images/I/91qr9dEuNaL._AC_SL1500_.jpg"
                     title="Protein"
                   />
                   <CardContent className={classes.cardContent}>
@@ -364,7 +364,7 @@ export default function Equiment() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://m.media-amazon.com/images/I/61Uf6UIXo2L._AC_SS450_.jpg"
+                    image="https://eumedia.aosomcdn.com/gb/catalog/product/a/9/a96e11279e3914b0be093160292888d8.jpg"
                     title="Tower"
                   />
                   <CardContent className={classes.cardContent}>
@@ -405,7 +405,7 @@ export default function Equiment() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://images-na.ssl-images-amazon.com/images/I/610AHT1HYGL._AC_SL1200_.jpg"
+                    image="https://i.pinimg.com/originals/76/21/f7/7621f730e4c79c85b8993ceac60fd319.jpg"
                     title="Mat"
                   />
                   <CardContent className={classes.cardContent}>

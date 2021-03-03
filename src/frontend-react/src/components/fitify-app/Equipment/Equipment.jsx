@@ -235,6 +235,43 @@ export default function Album() {
             ))}
           </Grid>
         </Container>
+
+        <Container className={classes.cardGrid} maxWidth="md">
+          <Grid container spacing={4}>
+            {cards.map((card) => (
+              <Grid item key={card} xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image="https://m.media-amazon.com/images/I/61Uf6UIXo2L._AC_SS450_.jpg"
+                    title="Tower"
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                    Health Gear Training Power Tower
+                    </Typography>
+                    <Typography>
+                      This home workout tower is used by all of our fitify team. This piece lets you get a in full workout from home .Pull-up, chin up, dip, vertical knee raise, push-up, rear dip, sit-up, decline bench press, flat bench press, incline bench press, decline dumbbell fly's, flat dumbbell fly's, incline dumbbell fly's.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.location.href =
+                          "https://www.amazon.com/Health-Gear-CFT2-0-Functional-Adjustable/dp/B076QCK269/ref=sr_1_21?dchild=1&keywords=fitness&qid=1614795131&sr=8-21";
+                      }}
+                    >
+                      BUY NOW
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+        
       </main>
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>

@@ -111,7 +111,7 @@ export default function Album() {
                           "https://www.amazon.com/Fitbit-Advanced-Smartwatch-Management-Temperature/dp/B08DFCWVZ4?ref_=ast_sto_dp";
                       }}
                     >
-                      LINK
+                      BUY NOW
                     </Button>
                   </CardActions>
                 </Card>
@@ -149,7 +149,7 @@ export default function Album() {
                           "https://www.amazon.com/dp/B085R9Y1XQ/ref=twister_B07X6VSDT2?th=1";
                       }}
                     >
-                      LINK
+                      BUY NOW
                     </Button>
                   </CardActions>
                 </Card>
@@ -187,7 +187,7 @@ export default function Album() {
                           "https://www.amazon.com/LEADNOVO-Dumbbell-Adjustable-Dumbbells-Connecting/dp/B08CX9Z6QK/ref=sr_1_7?dchild=1&keywords=home+weights&qid=1614706059&sr=8-7";
                       }}
                     >
-                      LINK
+                      BUY NOW
                     </Button>
                   </CardActions>
                 </Card>
@@ -205,7 +205,6 @@ export default function Album() {
                     className={classes.cardMedia}
                     image="https://s3.images-iherb.com/opn/opn02299/l/3.jpg"
                     title="Protein"
-
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -227,7 +226,7 @@ export default function Album() {
                           "https://www.amazon.com/OPTIMUM-NUTRITION-Serious-Protein-Chocolate/dp/B0015R36SK/ref=sr_1_12?crid=25PPZS83LQTW6&dchild=1&keywords=protein+powder&qid=1614706350&sprefix=prote%2Caps%2C261&sr=8-12";
                       }}
                     >
-                      LINK
+                      BUY NOW
                     </Button>
                   </CardActions>
                 </Card>
@@ -271,7 +270,6 @@ export default function Album() {
             ))}
           </Grid>
         </Container>
-        
       </main>
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>

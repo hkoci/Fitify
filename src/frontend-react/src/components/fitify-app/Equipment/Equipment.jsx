@@ -83,8 +83,40 @@ export default function Equiment() {
               purchase any item by selecting the "BUY NOW" button on the desired
               product.
             </Typography>
+
             <div className={classes.heroButtons}>
-              <Grid container spacing={2} justify="center"></Grid>
+              <Grid container spacing={2} justify="center">
+                <Grid item>
+                  <Button variant="contained" color="primary">
+                    FitBit Sense
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="outlined" color="primary">
+                    Nike Zoom
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="contained" color="primary">
+                    LEADNOVO Dumbbells
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="outlined" color="primary">
+                    Protein Powder
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="contained" color="primary">
+                    raining Tower
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="outlined" color="primary">
+                    Hugger Mugger Mat
+                  </Button>
+                </Grid>
+              </Grid>
             </div>
           </Container>
         </div>

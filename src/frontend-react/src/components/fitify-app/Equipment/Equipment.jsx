@@ -106,7 +106,11 @@ export default function Equiment() {
                     <Typography>
                       We use the FitBit Sense to record our heart rate, steps
                       and breathing, as well as using it to aid in workouts and
-                      calorie control.
+                      calorie control. Fitbit Sense is the advanced health
+                      smartwatch that helps you tune in to your body with tools
+                      for stress management, heart health, SpO2, skin
+                      temperature & more. Available in 'Graphite' and 'Lunar
+                      White'
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -144,7 +148,10 @@ export default function Equiment() {
                     <Typography>
                       The Nike Zoom Pegasus Turbo 2 are an industry leader,
                       providing amazing comfort and support technology to give
-                      the best running experience
+                      the best running experience. The Nike Zoom Pegasus Turbo 2
+                      is updated with a feather-light upper, while innovative
+                      foam brings revolutionary responsiveness to your
+                      long-distance training. Available in a variet of colours.
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -182,7 +189,14 @@ export default function Equiment() {
                     <Typography>
                       The LEADNOVO Adjustable Weight Dumbbells are the perfect
                       choice for home workouts, they incorporate an adjustable
-                      weigth design so that you only need one set.
+                      weigth design so that you only need one set. Adjustable
+                      weight for diverse muscle training. Foam covered
+                      connecting rod to reduce neck's compression and relieve
+                      fatigue. Non-slip design with rubber-coated handle for
+                      firm grip. Quick conversion between dumbbell and barbell,
+                      with the connecting rod. Easy to disassemble and assemble.
+                      Octagon shaped dumbbell plate to prevent scrolling and for
+                      easy storage, with no damage to the floor.
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -304,7 +318,7 @@ export default function Equiment() {
                       for our Para Rubber Yoga Mats. These sturdy mats are
                       equally sticky on both sides for extra stability. Like a
                       50,000-mile tire, you'll enjoy your rubber mat for years
-                      to come.
+                      to come. Available in a variety of colours.
                     </Typography>
                   </CardContent>
                   <CardActions>

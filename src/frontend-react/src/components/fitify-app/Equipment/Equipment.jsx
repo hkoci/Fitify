@@ -270,6 +270,42 @@ export default function Album() {
             ))}
           </Grid>
         </Container>
+
+        <Container className={classes.cardGrid} maxWidth="md">
+          <Grid container spacing={4}>
+            {cards.map((card) => (
+              <Grid item key={card} xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image="https://images-na.ssl-images-amazon.com/images/I/610AHT1HYGL._AC_SL1200_.jpg"
+                    title="Mat"
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                    Hugger Mugger para Rubber Mat
+                    </Typography>
+                    <Typography>
+                    The Hugger Mugger mat is best mat for home workouts and recommended by all of the Fitify team. The rubber plantations of Malaysia and Indonesia provide the material for our Para Rubber Yoga Mats. These sturdy mats are equally sticky on both sides for extra stability. Like a 50,000-mile tire, you'll enjoy your rubber mat for years to come. 
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.location.href =
+                          "https://www.amazon.com/Hugger-Mugger-para-Rubber-River/dp/B00D64OGMA/ref=sr_1_2?dchild=1&keywords=yoga+mat&qid=1614799585&sr=8-2";
+                      }}
+                    >
+                      BUY NOW
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
       </main>
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>

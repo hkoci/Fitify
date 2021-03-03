@@ -102,6 +102,18 @@ export default function WeightInput() {
 
   const handleClose = () => {
     setOpen(false);
+    //Reset all states to default
+    setActivity({
+      startDateTime: '',
+      endDateTime: '',
+      activityType: 'weight',
+      moodRating: 0,
+      caloriesBurnt: 0,
+      weight: '',
+      description: '',
+      invalidDate: false,
+      invalidWeight: false}
+    );
   };
 
   // ------------------------- Activity States and handlers ------------------------- //
@@ -113,7 +125,9 @@ export default function WeightInput() {
       moodRating: 0,
       caloriesBurnt: 0,
       weight: '',
-      description: ''
+      description: '',
+      invalidDate: false,
+      invalidWeight: false,
   });
 
   /*
@@ -138,23 +152,42 @@ export default function WeightInput() {
 
   //Method to create Activity and Weight using the WeightService
   const submitInput = () => {
+
+    //Debug display values requested
     console.log('Activity States:', activity)
-    //Create records in Activity and Weight
-    WeightService.createRecord(activity.startDateTime,
-      activity.endDateTime,
-      activity.activityType,
-      activity.moodRating,
-      activity.caloriesBurnt,
-      activity.weight,
-      activity.description
-    ).then(() => {
-      //Successful Creation
-      handleClose()
-    }).catch((error) => {
-      //Error
 
-    })
-
+    //Validation - (BASE CASE): Check if the weight and date is present
+    if((activity.weight === null || activity.weight === '') || (activity.startDateTime === null || activity.startDateTime === '')){
+      //If the weight has not been input
+      if(activity.weight === null || activity.weight === ''){
+        //Create Event Target with the invalidDate state
+        var eventObj = {"target": {"name": "invalidWeight", "value": true} }
+        //Set state to the event object created
+        handleFormChange(eventObj);
+      }
+      //If the date has not been input, Display Date Error
+      if(activity.startDateTime === null || activity.startDateTime === ''){
+        //Create Event Target with the invalidDate state
+        var eventObj = {"target": {"name": "invalidDate", "value": true} }
+        //Set state to the event object created
+        handleFormChange(eventObj);
+      }
+    }else{
+      //Create records in Activity and Weight
+      WeightService.createRecord(activity.startDateTime,
+        activity.endDateTime,
+        activity.activityType,
+        activity.moodRating,
+        activity.caloriesBurnt,
+        activity.weight,
+        activity.description
+      ).then(() => {
+        //Successful Creation
+        handleClose()
+      }).catch((error) => {
+        //TODO: Error handling dialog,message,etc.
+      })
+    }
   }
 
   return (
@@ -194,6 +227,8 @@ export default function WeightInput() {
                 KeyboardButtonProps={{
                     'aria-label': 'change date',
                 }}
+                error={activity.invalidDate}
+                helperText={activity.invalidDate && "Date or Date and Time is required"}
                 />
             </MuiPickersUtilsProvider>
           </ListItem>
@@ -207,6 +242,8 @@ export default function WeightInput() {
                 endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
               }}
               onChange={handleFormChange}
+              error={activity.invalidWeight}
+              helperText={activity.invalidWeight && "Weight is required"}
               fullWidth
             />
           </ListItem>

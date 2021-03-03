@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 //Setup constant for Spring Host - this will be changed in production *Include port but no endpoints!*
-const SpringHostURL = 'http://localhost:8080'
+import { SpringHostURL } from '../../constants/constant'
 
 //Authentication service class
 //Rebased off (TODO: Ref in report) https://github.com/in28minutes/spring-boot-react-fullstack-examples/blob/master/spring-boot-react-basic-auth-login-logout/frontend-spring-boot-react-basic-auth-login-logout/src/service/AuthenticationService.js
@@ -29,12 +29,14 @@ class Authentication {
 
             //Store username in localStorage
             sessionStorage.setItem("CurrentUsername", username)
+            
 
             //Store User Details in session
-            this.getUserDetails()
+            this.getUserDetails(username)
 
             //Change Axios configuration to use accesstoken as Authorisation Bearer
             this.axiosRequestTokenHeader("Bearer " + response.data.accessToken)
+            sessionStorage.setItem("token", response.data.accessToken)
         })
         .catch((error) => {
             //The post method was not successful and some error has occured
@@ -92,10 +94,10 @@ class Authentication {
 
     //Method to get Authorisation Bearer token from JWT
     //Request it using username and password parameters
-    getUserDetails(){
+    async getUserDetails(username){
         //console.log('URL' +  `${SpringHostURL}/api/users/username/` + sessionStorage.getItem("CurrentUsername"))
         //Post the username and password as json to the auth endpoint
-        return axios.get(`${SpringHostURL}/api/users/username/` + sessionStorage.getItem("CurrentUsername"),{
+        return axios.get(`${SpringHostURL}/api/users/username/` + username,{
         },{
             headers: {
                 //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)
@@ -113,7 +115,7 @@ class Authentication {
             sessionStorage.setItem("DOB", response.data.dob)
             sessionStorage.setItem("FitPoints", response.data.fitPoints)
             sessionStorage.setItem("friend", response.data.friend)
-            sessionStorage.setItem("apperance", response.data.apperance)
+            sessionStorage.setItem("appearance", response.data.apperance)
             sessionStorage.setItem("notification", response.data.notification)
             sessionStorage.setItem("health", response.data.health)
         })

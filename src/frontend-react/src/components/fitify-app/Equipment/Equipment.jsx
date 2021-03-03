@@ -96,32 +96,92 @@ export default function Equiment() {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.scrollTo({
+                        top: 750,
+                        behavior: "smooth"
+                      });
+                    }}
+                  >
                     FitBit Sense
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="outlined" color="primary">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.scrollTo({
+                        top: 1600,
+                        behavior: "smooth"
+                      });
+                    }}
+                  >
                     Nike Zoom
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="contained" color="primary">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.scrollTo({
+                        top: 2480,
+                        behavior: "smooth"
+                      });
+                    }}
+                  >
                     LEADNOVO Dumbbells
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="outlined" color="primary">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.scrollTo({
+                        top: 3300,
+                        behavior: "smooth"
+                      });
+                    }}
+                  >
                     Protein Powder
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="contained" color="primary">
-                    raining Tower
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.scrollTo({
+                        top: 4150,
+                        behavior: "smooth"
+                      });
+                    }}
+                  >
+                    Training Tower
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="outlined" color="primary">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.scrollTo({
+                        top: 5000,
+                        behavior: "smooth"
+                      });
+                    }}
+                  >
                     Hugger Mugger Mat
                   </Button>
                 </Grid>

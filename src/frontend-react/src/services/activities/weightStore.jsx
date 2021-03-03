@@ -4,16 +4,7 @@ import axios from 'axios'
 //Setup constant for Spring Host - this will be changed in production *Include port but no endpoints!*
 import { SpringHostURL } from '../../constants/constant'
 
-class weightService {
-
-    //Method to get all activities by the current user
-    async getActivity(){
-        const userActivitiesResponse = await this.getMarketingData(sessionStorage.getItem('UserID'))
-
-        await console.log(userActivitiesResponse)
-
-        return userActivitiesResponse
-    }
+class WeightStore {
 
     //Method to initialise creating a record
     async createRecord(
@@ -99,4 +90,4 @@ class weightService {
 
 }
 
-export default new weightService()
+export default new WeightStore()

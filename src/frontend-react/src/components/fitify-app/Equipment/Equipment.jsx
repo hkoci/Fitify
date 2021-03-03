@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 const cards = [1];
 
-export default function Album() {
+export default function Equiment() {
   const classes = useStyles();
 
   return (
@@ -75,13 +75,19 @@ export default function Album() {
               color="textSecondary"
               paragraph
             >
-              This is the gear our team use daily and recommend to you.
+              This is the gear our team use daily and recommend to you. Here you
+              will find a list of equipment that has been tried and tested by
+              the Fitify team and many other enthusiasts. You can find a link to
+              purchase any item by selecting the "BUY NOW" button on the desired
+              product.
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center"></Grid>
             </div>
           </Container>
         </div>
+
+        <div>hello</div>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
             {cards.map((card) => (
@@ -247,10 +253,15 @@ export default function Album() {
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                    Health Gear Training Power Tower
+                      Health Gear Training Power Tower
                     </Typography>
                     <Typography>
-                      This home workout tower is used by all of our fitify team. This piece lets you get a in full workout from home .Pull-up, chin up, dip, vertical knee raise, push-up, rear dip, sit-up, decline bench press, flat bench press, incline bench press, decline dumbbell fly's, flat dumbbell fly's, incline dumbbell fly's.
+                      This home workout tower is used by all of our fitify team.
+                      This piece lets you get a in full workout from home
+                      .Pull-up, chin up, dip, vertical knee raise, push-up, rear
+                      dip, sit-up, decline bench press, flat bench press,
+                      incline bench press, decline dumbbell fly's, flat dumbbell
+                      fly's, incline dumbbell fly's.
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -283,10 +294,16 @@ export default function Album() {
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                    Hugger Mugger para Rubber Mat
+                      Hugger Mugger para Rubber Mat
                     </Typography>
                     <Typography>
-                    The Hugger Mugger mat is best mat for home workouts and recommended by all of the Fitify team. The rubber plantations of Malaysia and Indonesia provide the material for our Para Rubber Yoga Mats. These sturdy mats are equally sticky on both sides for extra stability. Like a 50,000-mile tire, you'll enjoy your rubber mat for years to come. 
+                      The Hugger Mugger mat is best mat for home workouts and
+                      recommended by all of the Fitify team. The rubber
+                      plantations of Malaysia and Indonesia provide the material
+                      for our Para Rubber Yoga Mats. These sturdy mats are
+                      equally sticky on both sides for extra stability. Like a
+                      50,000-mile tire, you'll enjoy your rubber mat for years
+                      to come.
                     </Typography>
                   </CardContent>
                   <CardActions>

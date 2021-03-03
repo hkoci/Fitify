@@ -87,7 +87,6 @@ export default function Equiment() {
           </Container>
         </div>
 
-        <div>hello</div>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
             {cards.map((card) => (

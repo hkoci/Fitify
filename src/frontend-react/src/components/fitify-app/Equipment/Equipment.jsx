@@ -84,6 +84,15 @@ export default function Equiment() {
               product.
             </Typography>
 
+            <Typography
+              variant="h4"
+              align="center"
+              color="textSecondary"
+              paragraph
+            >
+              Jump to item:
+            </Typography>
+
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>

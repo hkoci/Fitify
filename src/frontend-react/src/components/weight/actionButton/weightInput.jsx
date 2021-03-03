@@ -41,6 +41,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 
+//WeightService CRUD
+import WeightService from '../../../services/activities/weightService'
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -133,6 +136,27 @@ export default function WeightInput() {
     handleFormChange(dateEventObj);
   };
 
+  //Method to create Activity and Weight using the WeightService
+  const submitInput = () => {
+    console.log('Activity States:', activity)
+    //Create records in Activity and Weight
+    WeightService.createRecord(activity.startDateTime,
+      activity.endDateTime,
+      activity.activityType,
+      activity.moodRating,
+      activity.caloriesBurnt,
+      activity.weight,
+      activity.description
+    ).then(() => {
+      //Successful Creation
+      handleClose()
+    }).catch((error) => {
+      //Error
+
+    })
+
+  }
+
   return (
     <div>
       <Fab color="primary" aria-label="add" className={classes.extendedIcon} onClick={handleClickOpen}>
@@ -147,7 +171,7 @@ export default function WeightInput() {
             <Typography variant="h6" className={classes.title}>
               Weight Input
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
+            <Button autoFocus color="inherit" onClick={submitInput}>
               Add Weight
             </Button>
           </Toolbar>

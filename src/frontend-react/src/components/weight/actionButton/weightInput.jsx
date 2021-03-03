@@ -42,7 +42,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 
 //WeightService CRUD
-import WeightService from '../../../services/activities/weightService'
+import WeightStoreService from '../../../services/activities/weightStore'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -174,7 +174,7 @@ export default function WeightInput() {
       }
     }else{
       //Create records in Activity and Weight
-      WeightService.createRecord(activity.startDateTime,
+      WeightStoreService.createRecord(activity.startDateTime,
         activity.endDateTime,
         activity.activityType,
         activity.moodRating,

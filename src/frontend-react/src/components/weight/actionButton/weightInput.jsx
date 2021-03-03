@@ -101,7 +101,7 @@ export default function WeightInput() {
     setOpen(false);
   };
 
-  // ------------------------- Marketing States and handlers ------------------------- //
+  // ------------------------- Activity States and handlers ------------------------- //
 
   const [activity, setActivity] = React.useState({
       startDateTime: '',
@@ -109,20 +109,28 @@ export default function WeightInput() {
       activityType: 'weight',
       moodRating: 0,
       caloriesBurnt: 0,
-      weight: 0,
+      weight: '',
       description: ''
   });
 
+  /*
   // Convert 'checked' to 'value' before performing handleChange
   const handleFormChecked = (event) => {
     //Perform changes to the Spring Backend (through Axios Put modifier)
     //MarketingSettings.setMarketingState(event.target.name,event.target.checked);
     //Change internal React state
     handleFormChange(event);
-  };
+  };*/
 
   const handleFormChange = (event) => {
-    setActivity({ ...activity, [event.target.name]: event.target.checked });
+    setActivity({ ...activity, [event.target.name]: event.target.value });
+  };
+
+  //Custom method to handle Date object to be seen as a React SyntheticEvent by using the target object layout
+  const handleDateChange = (dateArg) => {
+    var dateEventObj = {"target": {"name": "startDateTime", "value": dateArg} }
+    console.log(dateArg)
+    handleFormChange(dateEventObj);
   };
 
   return (
@@ -153,11 +161,11 @@ export default function WeightInput() {
                     shrink: true
                 }}
                 margin="normal"
-                id="date"
+                id="startDateTime"
                 label="Date/Time of Weight Measurement"
                 format="dd/MM/yyyy"
                 value={activity.startDateTime || null}
-                onChange={handleClose}
+                onChange={handleDateChange}
                 //required
                 KeyboardButtonProps={{
                     'aria-label': 'change date',
@@ -170,10 +178,11 @@ export default function WeightInput() {
               label="Weight"
               id="weight"
               type="number"
-              value={activity.weight || ''}
+              value={activity.weight || null}
               InputProps={{
                 endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
               }}
+              onChange={handleFormChange}
               fullWidth
             />
           </ListItem>
@@ -183,18 +192,20 @@ export default function WeightInput() {
               label="Description (Optional)"
               id="description"
               value={activity.description || null}
+              onChange={handleFormChange}
               fullWidth
             />
           </ListItem>
           <ListItem>
             <Typography component="legend">How did you feel about this measurement?</Typography>
             <Rating
-            name="mood-likert"
+            name="moodRating"
             size="large"
-            value={activity.moodRating || 2}
+            value={activity.moodRating || null}
             defaultValue={2}
             getLabelText={(value) => likertIcons[value].label}
             IconContainerComponent={IconContainer}
+            onChange={handleFormChange}
             />
           </ListItem>
         </List>

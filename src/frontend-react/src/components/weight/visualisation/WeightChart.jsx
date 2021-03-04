@@ -1,4 +1,4 @@
-import React, { useState, useEffect, PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 
 //Import Recharts for line graph rendering
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';

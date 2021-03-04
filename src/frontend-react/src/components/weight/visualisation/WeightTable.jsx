@@ -40,6 +40,8 @@ export default function RowsGrid() {
             components={{
                 Toolbar: GridToolbar,
               }}
+            pageSize={7}
+            rowsPerPageOptions={[7, 14, 30, 365]}
         />
         </div>
     );

@@ -12,14 +12,10 @@ class WeightGet {
         const activityDataRes = await this.getActivityData()
 
         //Filter just results by this user
-        const userActivityRes = await activityDataRes.filter(function(item){
+        const userActivityRes = activityDataRes.filter(function(item){
             return item.userID == sessionStorage.getItem('UserID');         
         });
-
-        //Debug info
-        await console.log(activityDataRes)
-        await console.log(userActivityRes)
-
+        
         return userActivityRes
     }
 
@@ -30,13 +26,15 @@ class WeightGet {
 
     //TODO: Method to merge filtered data and return this
     async getUserData(){
+        //Get Activity User Response
+        const activityDataRes = await this.getUserActivity()
 
+        console.log(activityDataRes)
     }
 
     //Method to get activity data
     async getActivityData(){
         return axios.get(`${SpringHostURL}/api/activities`,{
-        },{
             headers: {
                 //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)
                 'Content-Type': 'application/json;charset=UTF-8',

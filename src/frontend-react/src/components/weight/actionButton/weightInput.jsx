@@ -43,6 +43,7 @@ import TextField from '@material-ui/core/TextField';
 
 //WeightService CRUD
 import WeightStoreService from '../../../services/activities/weightStore'
+import { SignalCellularNullSharp } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -124,7 +125,7 @@ export default function WeightInput() {
       activityType: 'weight',
       moodRating: 0,
       caloriesBurnt: 0,
-      weight: '',
+      weight: null,
       description: '',
       invalidDate: false,
       invalidWeight: false,
@@ -159,7 +160,7 @@ export default function WeightInput() {
     //Validation - (BASE CASE): Check if the weight and date is present
     if((activity.weight === null || activity.weight === '') || (activity.startDateTime === null || activity.startDateTime === '')){
       //If the weight has not been input
-      if(activity.weight === null || activity.weight === ''){
+      if(activity.weight === null){
         //Create Event Target with the invalidDate state
         var eventObj = {"target": {"name": "invalidWeight", "value": true} }
         //Set state to the event object created
@@ -237,6 +238,7 @@ export default function WeightInput() {
               label="Weight"
               id="weight"
               type="number"
+              name="weight"
               value={activity.weight || null}
               InputProps={{
                 endAdornment: <InputAdornment position="end">Kg</InputAdornment>,

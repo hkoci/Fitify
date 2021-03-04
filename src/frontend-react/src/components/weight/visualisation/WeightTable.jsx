@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
-import { DataGrid } from '@material-ui/data-grid';
+
+//Import DataGrid (table) and Grid toolbar (export features)
+import { DataGrid, GridToolbar } from '@material-ui/data-grid';
 
 //Import WeightGet service
 import WeightGet from '../../../services/activities/weightGet'
@@ -35,6 +37,9 @@ export default function RowsGrid() {
         <DataGrid
             columns={tableColumns}
             rows={tableRows}
+            components={{
+                Toolbar: GridToolbar,
+              }}
         />
         </div>
     );

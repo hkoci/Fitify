@@ -35,7 +35,10 @@ class WeightGet {
         //Filter just results from the filtered UserID and WeightMeasurement from previous filter
         const filteredWeights = weightDataRes.filter(item => userActivities.includes(item.activityID));
 
-        return filteredWeights
+        //Merge the userActivity object with the userWeight object using the arrays.map function
+        const mergedResponses = userActivityWeight.map(activityMapping => ({...activityMapping, ...filteredWeights.find(weightMapping => weightMapping.activityID === activityMapping.activityID)}))
+
+        return mergedResponses
     }
 
     //Main Method to get User Data, merge filtered data and return this weight data only by the user and only activities that are weights
@@ -43,8 +46,14 @@ class WeightGet {
         //Get Activity User Response
         const activityDataFilter = await this.getUserActivity()
 
+        console.log('UserARR', activityDataFilter)
+
         //Get those activity Weight data now
         const weightDataFilter = await this.getUserWeight(activityDataFilter)
+
+        console.log('WeightARR', weightDataFilter)
+
+        //TODO: Merge two arrays together
 
         return weightDataFilter
     }

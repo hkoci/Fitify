@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -11,7 +10,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
 
 //Import Material-ui Floating Button
 import Fab from '@material-ui/core/Fab';
@@ -36,14 +34,14 @@ import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAltO
 import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
 
 //Material-Ui TextField
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 
 //WeightService CRUD
 import WeightStoreService from '../../../services/activities/weightStore'
-import { SignalCellularNullSharp } from '@material-ui/icons';
+
+//Include React Router history (5.1+ required) - mitigation from nested components
+import { useHistory } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -95,6 +93,8 @@ IconContainer.propTypes = {
 
 export default function WeightInput() {
   const classes = useStyles();
+  let history = useHistory();
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -161,7 +161,7 @@ export default function WeightInput() {
     if((activity.weight === null || activity.weight === '') || (activity.startDateTime === null || activity.startDateTime === '')){
       //If the weight has not been input
       if(activity.weight === null){
-        //Create Event Target with the invalidDate state
+        //Create Event Target with the invalidWeight state
         var eventObj = {"target": {"name": "invalidWeight", "value": true} }
         //Set state to the event object created
         handleFormChange(eventObj);
@@ -169,9 +169,9 @@ export default function WeightInput() {
       //If the date has not been input, Display Date Error
       if(activity.startDateTime === null || activity.startDateTime === ''){
         //Create Event Target with the invalidDate state
-        var eventObj = {"target": {"name": "invalidDate", "value": true} }
+        var eventDateObj = {"target": {"name": "invalidDate", "value": true} }
         //Set state to the event object created
-        handleFormChange(eventObj);
+        handleFormChange(eventDateObj);
       }
     }else{
       //Create records in Activity and Weight
@@ -185,6 +185,9 @@ export default function WeightInput() {
       ).then(() => {
         //Successful Creation
         handleClose()
+        //Reload component by routing to a different component and back again
+        history.push('/app/dashboard');
+        history.push('/app/weight');
       }).catch((error) => {
         //TODO: Error handling dialog,message,etc.
       })

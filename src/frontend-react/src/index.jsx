@@ -32,8 +32,6 @@ const routs = (
          <Route path="/help" component={HelpPage} />
          <Route path="/review" component={ReviewPage} />
          <Route path="/app/weight" component={Weight} />
-         <Route path="/about" component={About} />
-         <Route path="/contactus" component={ContactUs} />
          <RedirectRoute path="/app/login" component={Login} />
          <RedirectRoute path="/app/register" component={Register} />
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />

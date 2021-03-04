@@ -18,6 +18,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-link-state": "^0.1.2",
+    "react-player": "^2.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-swipeable-views": "^0.13.9",

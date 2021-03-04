@@ -6,7 +6,7 @@ import { SpringHostURL } from '../../constants/constant'
 
 class WeightGet {
 
-    //Method to get all activities by the current user
+    //Method to get all weight activities by the current user
     async getUserActivity(){
         //Get Activity Data
         const activityDataRes = await this.getActivityData()
@@ -15,21 +15,38 @@ class WeightGet {
         const userActivityRes = activityDataRes.filter(function(item){
             return item.userID == sessionStorage.getItem('UserID');         
         });
-        
-        return userActivityRes
+
+        //Finally, filter results by weight measurements
+        const userActivityWeight = userActivityRes.filter(function(item){
+            return item.activityType == 'weight'        
+        });
+
+        return userActivityWeight
     }
 
     //Method to get all weight measurements by the current user
-    async getUserWeight(){
+    async getUserWeight(userActivityWeight){
+        //Get filtered data from the user that only contains weight measurements
+        const weightDataRes = await this.getWeightData()
 
+        //Filter out just the activityID's from WeightData
+        var userActivities = userActivityWeight.map(a => a.activityID);
+
+        //Filter just results from the filtered UserID and WeightMeasurement from previous filter
+        const filteredWeights = weightDataRes.filter(item => userActivities.includes(item.activityID));
+
+        return filteredWeights
     }
 
-    //TODO: Method to merge filtered data and return this
+    //Main Method to get User Data, merge filtered data and return this weight data only by the user and only activities that are weights
     async getUserData(){
         //Get Activity User Response
-        const activityDataRes = await this.getUserActivity()
+        const activityDataFilter = await this.getUserActivity()
 
-        console.log(activityDataRes)
+        //Get those activity Weight data now
+        const weightDataFilter = await this.getUserWeight(activityDataFilter)
+
+        return weightDataFilter
     }
 
     //Method to get activity data
@@ -52,7 +69,6 @@ class WeightGet {
     //Method to get activity weight data
     async getWeightData(){
         return axios.get(`${SpringHostURL}/api/activities/weight`,{
-        },{
             headers: {
                 //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)
                 'Content-Type': 'application/json;charset=UTF-8',

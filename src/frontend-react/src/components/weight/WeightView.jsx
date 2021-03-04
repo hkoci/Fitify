@@ -4,19 +4,6 @@ import React from 'react';
 //Import Material-ui theming 
 import { makeStyles } from '@material-ui/core/styles';
 
-//Import Material-ui preloader
-import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
-//Import material-ui typography
-import Typography from '@material-ui/core/Typography';
-
-//Import Material-ui layout
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-
 //Import Chart
 import WeightChart from './visualisation/WeightChart';
 

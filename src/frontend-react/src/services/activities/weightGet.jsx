@@ -46,16 +46,10 @@ class WeightGet {
         //Get Activity User Response
         const activityDataFilter = await this.getUserActivity()
 
-        console.log('UserARR', activityDataFilter)
-
         //Get those activity Weight data now
-        const weightDataFilter = await this.getUserWeight(activityDataFilter)
+        const weightDataFilterMerge = await this.getUserWeight(activityDataFilter)
 
-        console.log('WeightARR', weightDataFilter)
-
-        //TODO: Merge two arrays together
-
-        return weightDataFilter
+        return weightDataFilterMerge
     }
 
     //Method to get activity data

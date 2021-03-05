@@ -125,7 +125,7 @@ export default function WeightInput() {
       activityType: 'weight',
       moodRating: 0,
       caloriesBurnt: 0,
-      weight: '',
+      weight: null,
       description: null,
       invalidDate: false,
       invalidWeight: false,
@@ -158,20 +158,29 @@ export default function WeightInput() {
     console.log('Activity States:', activity)
 
     //Validation - (BASE CASE): Check if the weight and date is present
-    if((activity.weight === null || activity.weight === '') || (activity.startDateTime === null || activity.startDateTime === '')){
+    if((activity.weight === null || activity.weight === '' || parseInt(activity.weight) <= 0) || (activity.startDateTime === null || activity.startDateTime === '')){
       //If the weight has not been input
-      if(activity.weight === null){
+      if(activity.weight === null || activity.weight === '' || parseInt(activity.weight) <= 0){
         //Create Event Target with the invalidWeight state
         var eventObj = {"target": {"name": "invalidWeight", "value": true} }
         //Set state to the event object created
         handleFormChange(eventObj);
+      }else{
+        var eventValidObj = {"target": {"name": "invalidWeight", "value": false} }
+        //Set state to the event object created
+        handleFormChange(eventValidObj);
       }
+
       //If the date has not been input, Display Date Error
       if(activity.startDateTime === null || activity.startDateTime === ''){
         //Create Event Target with the invalidDate state
         var eventDateObj = {"target": {"name": "invalidDate", "value": true} }
         //Set state to the event object created
         handleFormChange(eventDateObj);
+      }else{
+        var eventDateValidObj = {"target": {"name": "invalidDate", "value": false} }
+        //Set state to the event object created
+        handleFormChange(eventDateValidObj);
       }
     }else{
 
@@ -257,7 +266,7 @@ export default function WeightInput() {
           <ListItem>
           <TextField
               label="Description (Optional)"
-
+              name="description"
               id="description"
               value={activity.description || null}
               onChange={handleFormChange}

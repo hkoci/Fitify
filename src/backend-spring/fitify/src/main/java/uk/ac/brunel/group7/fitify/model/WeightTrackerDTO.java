@@ -13,7 +13,6 @@ public class WeightTrackerDTO {
     @NotNull
     private Double weight;
 
-    @NotNull
     private String description;
 
     public Long getActivityWeightID() {

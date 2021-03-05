@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
   extendedIcon: {
     position: "fixed",
-    bottom: theme.spacing(2),
+    bottom: theme.spacing(10),
     right: theme.spacing(2),
   },
 }));
@@ -125,7 +125,7 @@ export default function WeightInput() {
       activityType: 'weight',
       moodRating: 0,
       caloriesBurnt: 0,
-      weight: null,
+      weight: '',
       description: null,
       invalidDate: false,
       invalidWeight: false,
@@ -174,6 +174,7 @@ export default function WeightInput() {
         handleFormChange(eventDateObj);
       }
     }else{
+
       //Create records in Activity and Weight
       WeightStoreService.createRecord(activity.startDateTime,
         activity.endDateTime,

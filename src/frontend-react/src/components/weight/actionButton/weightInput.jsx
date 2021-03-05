@@ -148,7 +148,6 @@ export default function WeightInput() {
   //Custom method to handle Date object to be seen as a React SyntheticEvent by using the target object layout
   const handleDateChange = (dateArg) => {
     var dateEventObj = {"target": {"name": "startDateTime", "value": dateArg} }
-    console.log(dateArg)
     handleFormChange(dateEventObj);
   };
 

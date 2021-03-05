@@ -18,7 +18,7 @@ public class WeightTracker {
     @Column(nullable = false)
     private Double weight;
 
-    @Column(nullable = false, name = "\"description\"", columnDefinition = "longtext")
+    @Column(name = "\"description\"", columnDefinition = "longtext")
     private String description;
 
     @Column(nullable = false, updatable = false)

@@ -33,6 +33,12 @@ public class ActivityService {
                 .map(activity -> mapToDTO(activity, new ActivityDTO()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
+    
+    public ActivityDTO getUserID(final Long userID) {
+        return activityRepository.findByUserID(userID)
+            .map(activity -> mapToDTO(activity, new ActivityDTO()))
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
 
     public Long create(final ActivityDTO activityDTO) {
         final Activity activity = new Activity();

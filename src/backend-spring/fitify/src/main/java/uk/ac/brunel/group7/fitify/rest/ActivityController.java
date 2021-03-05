@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import uk.ac.brunel.group7.fitify.model.ActivityDTO;
+import uk.ac.brunel.group7.fitify.model.UserDTO;
 import uk.ac.brunel.group7.fitify.service.ActivityService;
 
 
@@ -28,6 +29,12 @@ public class ActivityController {
     @GetMapping("/{activityID}")
     public ActivityDTO getActivity(@PathVariable final Long activityID) {
         return activityService.get(activityID);
+    }
+    
+    //UserID CRUD (GET)
+    @GetMapping("/user/{userID}")
+    public ActivityDTO getUsername(@PathVariable final Long userID) {
+        return activityService.getUserID(userID);
     }
 
     @PostMapping

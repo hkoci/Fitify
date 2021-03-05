@@ -126,7 +126,7 @@ export default function WeightInput() {
       moodRating: 0,
       caloriesBurnt: 0,
       weight: null,
-      description: '',
+      description: null,
       invalidDate: false,
       invalidWeight: false,
   });
@@ -141,6 +141,7 @@ export default function WeightInput() {
   };*/
 
   const handleFormChange = (event) => {
+    console.log('event',event)
     setActivity({ ...activity, [event.target.name]: event.target.value });
   };
 
@@ -256,6 +257,7 @@ export default function WeightInput() {
           <ListItem>
           <TextField
               label="Description (Optional)"
+
               id="description"
               value={activity.description || null}
               onChange={handleFormChange}

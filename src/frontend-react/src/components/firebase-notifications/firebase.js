@@ -30,4 +30,19 @@ export const getToken = (setTokenFound) => {
       console.log('An error occurred while retrieving token. ', err);
       // catch error while creating client token
     });
+
   }
+
+  export const onMessageListener = () =>
+  new Promise((resolve) => {
+    messaging.onMessage((payload) => {
+      resolve(payload);
+    });
+});
+
+export const onMessageListener = () =>
+  new Promise((resolve) => {
+    messaging.onMessage((payload) => {
+      resolve(payload);
+    });
+});

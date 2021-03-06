@@ -10,7 +10,7 @@ import Box from '@material-ui/core/Box';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 //Theming defaults and Session setters
-import { defaultPrimary, defaultSecondary} from '../constants/constant'
+import { defaultPrimary, defaultSecondary, defaultDarkMode} from '../constants/constant'
 
 import ThemeSettings from '../services/settings/ThemeSettings'
 
@@ -32,15 +32,29 @@ class Settings extends React.Component {
       return sessionStorage.getItem("secondaryHexColour");
     }
   }
+
+  getDarkMode = () => {
+    if(sessionStorage.getItem("darkMode") === null || sessionStorage.getItem("darkMode") === undefined ){
+      return defaultDarkMode;
+    }else{
+      if(sessionStorage.getItem("darkMode") === 'true'){
+        return 'dark'
+      }else{
+        return 'light'
+      }
+    }
+  }
   
   render() {
 
     ThemeSettings.storeAppearance()
-
     return (
-      <React.Fragment>
-        <MuiThemeProvider theme={createMuiTheme({
-          palette: {
+    
+    //TODO Logic for searchField prop in Navbar.jsx
+    <React.Fragment>
+      <MuiThemeProvider theme={createMuiTheme({
+        palette: {
+          type: this.getDarkMode(),
             primary: {
               main: this.getPrimaryColour()
             },

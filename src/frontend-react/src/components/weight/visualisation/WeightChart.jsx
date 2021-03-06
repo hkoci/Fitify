@@ -6,6 +6,9 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 //Import WeightGet service
 import WeightGet from '../../../services/activities/weightGet'
 
+//Grey Tooltip text (fixes white Theme css)
+import './tooltip.css'
+
 export default function RowsGrid() {
 
 		//State for chart data to be appended on

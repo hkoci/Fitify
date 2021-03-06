@@ -16,6 +16,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Activities from './pages/Activities';
+import Sleep from './pages/Sleep';
 import Settings from './pages/Settings';
 
 //Import Authentication class to determine if user is authenticated
@@ -34,6 +35,7 @@ const routs = (
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />
          <AuthenticatedRoute path="/app/activities" component={Activities} />
          <AuthenticatedRoute path="/app/weight" component={Weight} />
+         <AuthenticatedRoute path="/app/sleep" component={Sleep} />
          <AuthenticatedRoute path="/app/settings" component={Settings} />
       </div>
    </Router>

@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 //Theming defaults and Session setters
-import { defaultPrimary, defaultSecondary} from '../constants/constant'
+import { defaultPrimary, defaultSecondary, defaultDarkMode} from '../constants/constant'
 import ThemeSettings from '../services/settings/ThemeSettings'
 
 //Import Weight view
@@ -31,6 +31,18 @@ class Weight extends React.Component {
       return sessionStorage.getItem("secondaryHexColour");
     }
   }
+
+  getDarkMode = () => {
+    if(sessionStorage.getItem("darkMode") === null || sessionStorage.getItem("darkMode") === undefined ){
+      return defaultDarkMode;
+    }else{
+      if(sessionStorage.getItem("darkMode") === 'true'){
+        return 'dark'
+      }else{
+        return 'light'
+      }
+    }
+  }
   
   render() {
 
@@ -41,6 +53,7 @@ class Weight extends React.Component {
     <React.Fragment>
       <MuiThemeProvider theme={createMuiTheme({
         palette: {
+          type: this.getDarkMode(),
           primary: {
             main: this.getPrimaryColour()
           },

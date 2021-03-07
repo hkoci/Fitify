@@ -37,7 +37,7 @@ export default function RowsGrid() {
                     <CartesianGrid strokeDasharray="7 7" />
                     <Tooltip />
                     <Legend />
-                    <Area type="monotone" dataKey="weight" stroke="#8884d8" fillOpacity={1} fill="url(#weight)" unit=" kg"/>
+                    <Area type="monotone" dataKey="weight" name="Weight (in kg)" stroke="#8884d8" fillOpacity={1} fill="url(#weight)" unit=" kg"/>
                 </AreaChart>
 			</ResponsiveContainer>
 		);

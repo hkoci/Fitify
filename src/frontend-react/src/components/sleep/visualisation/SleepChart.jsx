@@ -32,12 +32,12 @@ export default function SleepChart() {
                             <stop offset="95%" stopColor="#ffa500" stopOpacity={0} />
                         </linearGradient>
                     </defs>
-                    <XAxis dataKey="sleepDate"/>
+                    <XAxis dataKey="sleepDate" name="# Apples"/>
                     <YAxis />
                     <CartesianGrid strokeDasharray="7 7" />
                     <Tooltip />
                     <Legend />
-                    <Area type="monotone" dataKey="sleepingHrs" stroke="#ffa500" fillOpacity={1} fill="url(#sleepingHrs)" unit=" Hours"/>
+                    <Area type="monotone" dataKey="sleepingHrs" name="Sleeping Hours" stroke="#ffa500" fillOpacity={1} fill="url(#sleepingHrs)" unit=" Hours"/>
                 </AreaChart>
 			</ResponsiveContainer>
 		);

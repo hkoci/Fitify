@@ -404,7 +404,7 @@ export default function Navbar(props) {
 
             </ListItem>
 
-            <ListItem button>
+            <ListItem button onClick={() => history.push('/app/sleep')}>
               
               <ListItemIcon>  
                 <NightsStay />

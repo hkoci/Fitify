@@ -7,7 +7,7 @@ import { DataGrid, GridToolbar } from '@material-ui/data-grid';
 import Box from '@material-ui/core/Box';
 
 //Import WeightGet service
-import WeightGet from '../../../services/activities/weightGet'
+import ActivitiesGet from '../../../services/activities/activitiesGet'
 
 export default function RowsGrid() {
 
@@ -17,14 +17,13 @@ export default function RowsGrid() {
     //Define table columns for DataGrid
     const tableColumns = [
         { field: "activityStart", headerName: "Date/Time", description: 'The date/time of the weight measurement.', type: 'dateTime', flex: 0.9},
+        { field: "activityType", headerName: "Measurement", description: 'The activity type entered into Fitify.', flex: 0.5},
         { field: "moodRating", headerName: "Mood Rating", description: 'Mood rating is out of 5, with 5 being the most motivated.', type: 'number', flex: 0.5},
-        { field: "weight", headerName: "Weight (kg)", description: 'Weight is measured in kilograms.', type: 'number', flex: 0.5},
-        { field: "description", headerName: "Description", description: 'Optional description entered by the user.', sortable: false, flex: 1},
         ];
 
     //Load table data before render
     useEffect(() => {
-        WeightGet.getUserData().then(dataResponse => {
+        ActivitiesGet.getUserData().then(dataResponse => {
             //Change ActivityID to id (required ID field for DataGrid)
             var DataGridID = dataResponse.map(item => { return { ...item, id: item.activityID }; });
 
@@ -36,15 +35,15 @@ export default function RowsGrid() {
         }, []);
 
     return (
-        <div style={{ height: '50vh', width: '98%' }}>
+        <div style={{ height: '90vh', width: '98%' }}>
         <DataGrid
             columns={tableColumns}
             rows={tableRows}
             components={{
                 Toolbar: GridToolbar,
               }}
-            pageSize={7}
-            rowsPerPageOptions={[7, 14, 30, 365]}
+            pageSize={14}
+            rowsPerPageOptions={[14, 30, 100, 365]}
         />
         </div>
     );

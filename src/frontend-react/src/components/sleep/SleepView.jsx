@@ -4,8 +4,14 @@ import React from 'react';
 //Import Material-ui theming 
 import { makeStyles } from '@material-ui/core/styles';
 
-//Import Activities Table
-import ActivitiesTable from './visualisation/ActivitiesTable';
+//Import Chart
+import WeightChart from './visualisation/SleepChart';
+
+//Import Table
+import WeightTable from './visualisation/SleepTable';
+
+//Import Weight Input Button
+import WeightInput from './actionButton/SleepInput'
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -22,14 +28,16 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function ActivitiesView(props) {
+export default function SleepView(props) {
 
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <ActivitiesTable />
+      <WeightChart />
+      <WeightTable />
+      <WeightInput />
     </div>
   );
 }

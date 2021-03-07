@@ -7,10 +7,13 @@ import { Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
 import './components/main.css';
 
 //App Componenets
-import Weight from './pages/Weight';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Activities from './pages/Activities';
+import Weight from './pages/Weight';
+import Sleep from './pages/Sleep';
+import Settings from './pages/Settings';
 
 // Static Components
 import LandingPage from './static/Landing page/landingPage'
@@ -29,10 +32,13 @@ const routs = (
          <Route path="/home" component={HomePage} />
          <Route path="/help" component={HelpPage} />
          <Route path="/review" component={ReviewPage} />
-         <Route path="/app/weight" component={Weight} />
          <RedirectRoute path="/app/login" component={Login} />
          <RedirectRoute path="/app/register" component={Register} />
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />
+         <AuthenticatedRoute path="/app/activities" component={Activities} />
+         <AuthenticatedRoute path="/app/weight" component={Weight} />
+         <AuthenticatedRoute path="/app/sleep" component={Sleep} />
+         <AuthenticatedRoute path="/app/settings" component={Settings} />
       </div>
    </Router>
 );

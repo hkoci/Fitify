@@ -21,7 +21,7 @@ public class SleepTrackerDTO {
     @Schema(type = "string", example = "14:30:00")
     private LocalTime awakeTime;
 
-    private Integer sleepingHrs;
+    private Double sleepingHrs;
 
     public Long getActivitySleepID() {
         return activitySleepID;
@@ -63,11 +63,11 @@ public class SleepTrackerDTO {
         this.awakeTime = awakeTime;
     }
 
-    public Integer getSleepingHrs() {
+    public Double getSleepingHrs() {
         return sleepingHrs;
     }
 
-    public void setSleepingHrs(final Integer sleepingHrs) {
+    public void setSleepingHrs(final Double sleepingHrs) {
         this.sleepingHrs = sleepingHrs;
     }
 

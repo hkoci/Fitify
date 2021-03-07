@@ -3,9 +3,6 @@ import React from 'react';
 
 import Navbar from '../components/Navbar';
 
-import FirstTimeSetup from '../components/FirstTimeSetup';
-import DashboardView from '../components/dashboard/DashboardView';
-
 //Theme provider
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -13,9 +10,13 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { defaultPrimary, defaultSecondary, defaultDarkMode} from '../constants/constant'
 import ThemeSettings from '../services/settings/ThemeSettings'
 
-//Create Landing class using Component instace
-class Dashboard extends React.Component {
+//Import Weight view
+import SleepView from '../components/sleep/SleepView'
 
+//Create Landing class using Component instace
+class Sleep extends React.Component {
+  
+  //Appearance settings
   getPrimaryColour = () => {
     if(sessionStorage.getItem("primaryHexColour") === null || sessionStorage.getItem("primaryHexColour") === undefined ){
       return defaultPrimary;
@@ -54,22 +55,22 @@ class Dashboard extends React.Component {
       <MuiThemeProvider theme={createMuiTheme({
         palette: {
           type: this.getDarkMode(),
-              primary: {
-                main: this.getPrimaryColour()
-              },
-              secondary: {
-                main: this.getSecondaryColour()
-              }
-            }
-          })}>
-          <Navbar title='Dashboard' searchField='true' />
-          <FirstTimeSetup/>
-          <DashboardView/>
-          </MuiThemeProvider>
-      </React.Fragment>
+          primary: {
+            main: this.getPrimaryColour()
+          },
+          secondary: {
+            main: this.getSecondaryColour()
+          }
+        }
+      })}>
+      <Navbar title='Sleep' searchField='true' />
+      <SleepView />
+      </MuiThemeProvider>
+    </React.Fragment>
+
     );
   }
 }
 
 //Export class
-export default Dashboard;
+export default Sleep;

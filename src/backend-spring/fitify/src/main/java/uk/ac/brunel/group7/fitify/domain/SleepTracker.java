@@ -27,7 +27,7 @@ public class SleepTracker {
     private LocalTime awakeTime;
 
     @Column
-    private Integer sleepingHrs;
+    private Double sleepingHrs;
 
     @Column(nullable = false, updatable = false)
     protected OffsetDateTime dateCreated;
@@ -86,11 +86,11 @@ public class SleepTracker {
         this.awakeTime = awakeTime;
     }
 
-    public Integer getSleepingHrs() {
+    public Double getSleepingHrs() {
         return sleepingHrs;
     }
 
-    public void setSleepingHrs(final Integer sleepingHrs) {
+    public void setSleepingHrs(final Double sleepingHrs) {
         this.sleepingHrs = sleepingHrs;
     }
 

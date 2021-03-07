@@ -3,28 +3,26 @@ import React, {useState, useEffect} from "react";
 //Import DataGrid (table) and Grid toolbar (export features)
 import { DataGrid, GridToolbar } from '@material-ui/data-grid';
 
-//Import Box for spacing
-import Box from '@material-ui/core/Box';
+//Import SleepGet service
+import SleepGet from '../../../services/activities/sleepGet'
 
-//Import WeightGet service
-import WeightGet from '../../../services/activities/weightGet'
-
-export default function RowsGrid() {
+export default function SleepTable() {
 
     //State for table rows to be appended on
     const [tableRows,setTableRow] = useState([]);
   
     //Define table columns for DataGrid
     const tableColumns = [
-        { field: "activityStart", headerName: "Date/Time", description: 'The date/time of the weight measurement.', type: 'dateTime', flex: 0.9},
+        { field: "sleepDate", headerName: "Sleep Date", description: 'The date of the sleep measurement.', type: 'date', flex: 0.9},
+        { field: "sleepTime", headerName: "Sleep Time", description: 'The time of going to sleep', flex: 0.9},
+        { field: "awakeTime", headerName: "Awake Time", description: 'The time of being awake',  flex: 0.9},
+        { field: "sleepingHrs", headerName: "Sleeping Hours", description: 'Hours spent sleeping (2dp)', type: 'time', flex: 0.9},
         { field: "moodRating", headerName: "Mood Rating", description: 'Mood rating is out of 5, with 5 being the most motivated.', type: 'number', flex: 0.5},
-        { field: "weight", headerName: "Weight (kg)", description: 'Weight is measured in kilograms.', type: 'number', flex: 0.5},
-        { field: "description", headerName: "Description", description: 'Optional description entered by the user.', sortable: false, flex: 1},
         ];
 
     //Load table data before render
     useEffect(() => {
-        WeightGet.getUserData().then(dataResponse => {
+        SleepGet.getUserData().then(dataResponse => {
             //Change ActivityID to id (required ID field for DataGrid)
             var DataGridID = dataResponse.map(item => { return { ...item, id: item.activityID }; });
 

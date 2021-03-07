@@ -11,5 +11,7 @@ You will need to either allow your IP address in the Spring Security CORS config
 
 export const SpringHostURL = 'http://localhost:8080'
 
+//Theme Constants
 export const defaultPrimary = '#3f51b5'
 export const defaultSecondary = '#f50057'
+export const defaultDarkMode = 'light'

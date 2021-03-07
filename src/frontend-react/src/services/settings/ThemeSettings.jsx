@@ -115,16 +115,22 @@ class ThemeSettings {
         //Check which state to change
         if(state === 'primaryHexColour'){
             appearanceResponse.primaryHexColour = value;
+            sessionStorage.setItem(state,value)
         }else if(state === 'secondaryHexColour'){
             appearanceResponse.secondaryHexColour = value;
+            sessionStorage.setItem(state,value)
         }else if(state === 'darkMode'){
             appearanceResponse.darkMode = value;
+            sessionStorage.setItem(state,value)
         }else if(state === 'highContrast'){
             appearanceResponse.highContrast = value;
+            sessionStorage.setItem(state,value)
         }else if(state === 'textSize'){
             appearanceResponse.textSize = value;
+            sessionStorage.setItem(state,value)
         }else if(state === 'avatarDefaultColour'){
             appearanceResponse.avatarDefaultColour = value;
+            sessionStorage.setItem(state,value)
         }else{
             //do not change any values - state is incorrect
         }

@@ -131,15 +131,6 @@ export default function WeightInput() {
       invalidWeight: false,
   });
 
-  /*
-  // Convert 'checked' to 'value' before performing handleChange
-  const handleFormChecked = (event) => {
-    //Perform changes to the Spring Backend (through Axios Put modifier)
-    //MarketingSettings.setMarketingState(event.target.name,event.target.checked);
-    //Change internal React state
-    handleFormChange(event);
-  };*/
-
   const handleFormChange = (event) => {
     console.log('event',event)
     setActivity({ ...activity, [event.target.name]: event.target.value });
@@ -154,34 +145,32 @@ export default function WeightInput() {
   //Method to create Activity and Weight using the WeightService
   const submitInput = () => {
 
-    //Debug display values requested
-    console.log('Activity States:', activity)
-
     //Validation - (BASE CASE): Check if the weight and date is present
     if((activity.weight === null || activity.weight === '' || parseInt(activity.weight) <= 0) || (activity.startDateTime === null || activity.startDateTime === '')){
+
+      var invalidWeight = false
+      var invalidDate = false
+
       //If the weight has not been input
       if(activity.weight === null || activity.weight === '' || parseInt(activity.weight) <= 0){
-        //Create Event Target with the invalidWeight state
-        var eventObj = {"target": {"name": "invalidWeight", "value": true} }
-        //Set state to the event object created
-        handleFormChange(eventObj);
+        invalidWeight = true
       }else{
-        var eventValidObj = {"target": {"name": "invalidWeight", "value": false} }
-        //Set state to the event object created
-        handleFormChange(eventValidObj);
+        invalidWeight = false
       }
 
       //If the date has not been input, Display Date Error
       if(activity.startDateTime === null || activity.startDateTime === ''){
-        //Create Event Target with the invalidDate state
-        var eventDateObj = {"target": {"name": "invalidDate", "value": true} }
-        //Set state to the event object created
-        handleFormChange(eventDateObj);
+        invalidDate = true
       }else{
-        var eventDateValidObj = {"target": {"name": "invalidDate", "value": false} }
-        //Set state to the event object created
-        handleFormChange(eventDateValidObj);
+        invalidDate = false
       }
+
+      //Set React States
+      setActivity({ ...activity,
+        invalidWeight: invalidWeight,
+        invalidDate: invalidDate
+       });
+
     }else{
 
       //Create records in Activity and Weight

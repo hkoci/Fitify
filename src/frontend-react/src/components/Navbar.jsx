@@ -25,10 +25,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import LocalDrinkIcon from '@material-ui/icons/LocalDrink';
 
 //Drawer Import
 import Drawer from "@material-ui/core/Drawer";
@@ -98,16 +98,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
+    display: 'flex'
   },
   list: {
     width: 250,
@@ -115,6 +106,17 @@ const useStyles = makeStyles((theme) => ({
   fullList: {
     width: 'auto',
   },
+  topDivider: {
+    opacity: '0.35',
+    marginBottom: '-18px',
+  },
+  bottomDivider: {
+    opacity: '0.35',
+  },
+  fitPointsCentered: {
+    margin: '0 47px -20px 47px',
+    textAlign: 'right',
+  }
 }));
 
 export default function Navbar(props) {
@@ -122,32 +124,20 @@ export default function Navbar(props) {
   let history = useHistory();
   
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
   const handleMenuClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
   };
 
   const handleMenuSettings = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
     history.push('/app/settings');
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
   };
 
   //Drawer Props
@@ -186,6 +176,11 @@ export default function Navbar(props) {
     //Set background colour to the hashed (Hash algorithm: String -> Hex) colour value of username
     backgroundColor: colorHashObj.hex(getUsername())
   };
+  
+  //Set background color to transparent on the passed element
+  function disableHoverAnimation(e) {
+    e.target.style.background = 'transparent';
+  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -206,8 +201,16 @@ export default function Navbar(props) {
         <Typography variant="inherit" display="inline">{sessionStorage.getItem("FirstName")} {sessionStorage.getItem("LastName")}</Typography>
       </MenuItem>
 
-      <MenuItem>
-        <Typography variant="inherit">{sessionStorage.getItem("FitPoints")} FitPoints</Typography>
+      <MenuItem className={classes.topDivider} onMouseOver={disableHoverAnimation}>
+      ───────────────
+      </MenuItem>
+
+      <MenuItem className={classes.fitPointsCentered}>
+        <Typography align='center' justify='center' variant="inherit">{sessionStorage.getItem("FitPoints")} FitPoints</Typography>
+      </MenuItem>
+      
+      <MenuItem className={classes.bottomDivider} onMouseOver={disableHoverAnimation}>
+      ───────────────
       </MenuItem>
       
       <MenuItem>
@@ -217,15 +220,6 @@ export default function Navbar(props) {
             </Badge>
         </ListItemIcon>
         <Typography variant="inherit">Messages</Typography>
-      </MenuItem>
-      
-      <MenuItem>
-        <ListItemIcon aria-label="show 11 new notifications" color="inherit">
-            <NotificationsIcon />
-            <Badge badgeContent={11} color="secondary">
-          </Badge>
-        </ListItemIcon>
-        <Typography variant="inherit">Notifications</Typography>
       </MenuItem>
 
       <MenuItem onClick={handleMenuSettings}>
@@ -242,45 +236,6 @@ export default function Navbar(props) {
           <Typography variant="inherit">Logout</Typography>
       </MenuItem>
 
-    </Menu>
-  );
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      
-
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-
-      <MenuItem onClick={userLogout}>
-        <IconButton
-          aria-label="Logout..."
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <ExitToApp />
-        </IconButton>
-        <p>Log out</p>
-      </MenuItem>
     </Menu>
   );
 
@@ -317,13 +272,15 @@ export default function Navbar(props) {
 
           <div className={classes.grow}/>
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 0 new notifications" color="inherit">
-              <Badge badgeContent={0} color="secondary">
+
+            <IconButton color="inherit">
+              <Badge badgeContent={9} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+
             <IconButton
-              aria-label="account of current user"
+              aria-label="Your Account"
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
@@ -331,16 +288,6 @@ export default function Navbar(props) {
               <AccountCircle />
             </IconButton>
 
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit">
-              <MoreIcon />
-            </IconButton>
           </div>
         </Toolbar>
       </AppBar>
@@ -419,11 +366,20 @@ export default function Navbar(props) {
               <ListItemText primary="Sleep" />
 
             </ListItem>
+
+            <ListItem button onClick={() => history.push('/app/water-intake')}>
+              
+              <ListItemIcon>  
+                <LocalDrinkIcon />
+              </ListItemIcon>
+              <ListItemText primary="Water Intake" />
+
+            </ListItem>
+
           </List>
         </div>
       </Drawer>
 
-      {renderMobileMenu}
       {renderMenu}
     </div>
   );

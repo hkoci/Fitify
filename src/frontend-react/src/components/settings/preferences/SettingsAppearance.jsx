@@ -98,84 +98,88 @@ export default function SettingsAppearance(props) {
 
   return (
     <div className={classes.root}>
-    <Container fixed>
+      <Container fixed>
         <Typography variant="h5" component="h5" className={classes.headingsTextAlt}>
         Appearance
         </Typography>
-            <Paper>
+          <Paper>
             <Grid container spacing={2}>
-            <Grid item xs={10} xl={11}>
+              <Grid item xs={11} xl={11}>
                 <Typography className={classes.settingLabel}>
                     Appearance settings take effect when you change page
                 </Typography>
+
+                <Grid item xs={12}>
+                  <ColorPicker
+                    fullWidth
+                    name='primaryHexColour'
+                    label='Primary Theme Colour'
+                    defaultValue={'◼ Primary Colour'}
+                    value={appearance.primaryHexColour || sessionStorage.getItem("primaryHexColour") }
+                    onChange={colourVal => handleCheckedAppearanceColourChange({"target": {"name": "primaryHexColour", "value": colourVal} })}
+                  />
                 </Grid>
-            <Grid item xs={12}>
-            <ColorPicker
-                fullWidth
-                name='primaryHexColour'
-                label='Primary Theme Colour'
-                defaultValue={'◼ Primary Colour'}
-                value={appearance.primaryHexColour || sessionStorage.getItem("primaryHexColour") }
-                onChange={colourVal => handleCheckedAppearanceColourChange({"target": {"name": "primaryHexColour", "value": colourVal} })}
-            
-            />
-            </Grid>
 
-            <Grid item xs={12}>
-            <ColorPicker
-                fullWidth
-                name='secondaryHexColour'
-                label='Secondary Theme Colour'
-                defaultValue={'◼ Secondary Colour'}
-                value={appearance.secondaryHexColour || sessionStorage.getItem("secondaryHexColour")}
-                onChange={colourVal => handleCheckedAppearanceColourChange({"target": {"name": "secondaryHexColour", "value": colourVal} })}
-            
-            />
-            </Grid>
-
-            <Grid item xs={12}> 
-            <Typography id="discrete-slider" gutterBottom>
-                Font Size
-            </Typography>
-
-            <Grid container spacing={2}>
-                <Grid item>
-                <TextFormatIcon />
+                <Grid item xs={12}>
+                  <ColorPicker
+                    fullWidth
+                    name='secondaryHexColour'
+                    label='Secondary Theme Colour'
+                    defaultValue={'◼ Secondary Colour'}
+                    value={appearance.secondaryHexColour || sessionStorage.getItem("secondaryHexColour")}
+                    onChange={colourVal => handleCheckedAppearanceColourChange({"target": {"name": "secondaryHexColour", "value": colourVal} })}
+                  />
                 </Grid>
-                <Grid item xs>
-                <Slider
-                    defaultValue={12}
-                    aria-labelledby="discrete-slider"
-                    valueLabelDisplay="auto"
-                    step={2}
-                    marks
-                    min={10}
-                    max={30}
-                />
-                </Grid>
-                <Grid item>
-                <FormatSizeIcon />
-                </Grid>
-            </Grid>
-            </Grid>
 
-            <Grid item xs={12}>
-            <FormControlLabel
-                control={<Checkbox checked={appearance.darkMode} onChange={handleCheckedAppearanceChange} name="darkMode" />}
-                label="Dark Mode"
-            />
-            </Grid>
+                <Grid item xs={12}> 
+                  <Typography id="discrete-slider" gutterBottom>
+                      Font Size
+                  </Typography>
 
-            <Grid item xs={12}>
-            <FormControlLabel
-                control={<Checkbox checked={appearance.highContrast || sessionStorage.getItem("highContrast")} onChange={handleCheckedAppearanceChange} name="highContrast" />}
-                label="High Contrast"
-            />
-            </Grid>
-            
-            </Grid>
+                  <Grid container spacing={2}>
+                      <Grid item>
+                        <TextFormatIcon />
+                      </Grid>
+                      
+                      <Grid item xs>
+                        <Slider
+                            defaultValue={12}
+                            aria-labelledby="discrete-slider"
+                            valueLabelDisplay="auto"
+                            step={2}
+                            marks
+                            min={10}
+                            max={30}
+                        />
+                      </Grid>
+
+                      <Grid item>
+                        <FormatSizeIcon />
+                      </Grid>
+                  </Grid>
+                  
+                </Grid>
+
+                <Grid item xs={12} spacing={2}>
+                  <FormControlLabel
+                      control={<Checkbox checked={appearance.darkMode} onChange={handleCheckedAppearanceChange} name="darkMode" />}
+                      label="Dark Mode"
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <FormControlLabel
+                      control={<Checkbox checked={appearance.highContrast || sessionStorage.getItem("highContrast")} onChange={handleCheckedAppearanceChange} name="highContrast" />}
+                      label="High Contrast"
+                  />
+                </Grid>
+
+              </Grid>
+          </Grid>
+          
         </Paper>
-    </Container>
+        
+      </Container>
     </div>
   );
 }

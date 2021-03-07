@@ -34,7 +34,7 @@ export default function SleepTable() {
         }, []);
 
     return (
-        <div style={{ height: 440, width: '98%' }}>
+        <div style={{ height: '50vh', width: '98%' }}>
         <DataGrid
             columns={tableColumns}
             rows={tableRows}

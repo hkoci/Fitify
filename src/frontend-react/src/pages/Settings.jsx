@@ -2,7 +2,7 @@
 import React from 'react';
 
 import Navbar from '../components/Navbar';
-import SettingsView from '../components/SettingsView';
+import SettingsView from '../components/settings/SettingsView';
 
 import Box from '@material-ui/core/Box';
 

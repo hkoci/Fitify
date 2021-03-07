@@ -6,18 +6,20 @@ import { Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
 //Stylesheets
 import './components/main.css';
 
-//Page Components
-import Landing from './pages/Landing';
-import About from './pages/About';
-import Help from './pages/Help';
-import ContactUs from './pages/ContactUs';
-import Weight from './pages/Weight';
+//App Componenets
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Activities from './pages/Activities';
+import Weight from './pages/Weight';
 import Sleep from './pages/Sleep';
 import Settings from './pages/Settings';
+
+// Static Components
+import LandingPage from './static/Landing page/landingPage'
+import HomePage from './static/Home page/home'
+import ReviewPage from './static/Review page/review'
+import HelpPage from './static/Help page/help'
 
 //Import Authentication class to determine if user is authenticated
 import Authentication from './services/login/authentication';
@@ -26,10 +28,10 @@ import Authentication from './services/login/authentication';
 const routs = (
    <Router>
       <div>
-         <Route exact path="/" component={Landing} />
-         <Route path="/about" component={About} />
-         <Route path="/help" component={Help} />
-         <Route path="/contactus" component={ContactUs} />
+         <Route exact path="/" component={LandingPage} />
+         <Route path="/home" component={HomePage} />
+         <Route path="/help" component={HelpPage} />
+         <Route path="/review" component={ReviewPage} />
          <RedirectRoute path="/app/login" component={Login} />
          <RedirectRoute path="/app/register" component={Register} />
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />

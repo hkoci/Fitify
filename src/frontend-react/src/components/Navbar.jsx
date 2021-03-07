@@ -198,27 +198,50 @@ export default function Navbar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+
       <MenuItem onClick={handleMenuClose}>
         <ListItemIcon>
           <Avatar style={avatarColour}>{sessionStorage.getItem("FirstName").charAt(0)}</Avatar>
         </ListItemIcon>
         <Typography variant="inherit" display="inline">{sessionStorage.getItem("FirstName")} {sessionStorage.getItem("LastName")}</Typography>
       </MenuItem>
+
       <MenuItem>
         <Typography variant="inherit">{sessionStorage.getItem("FitPoints")} FitPoints</Typography>
       </MenuItem>
+      
+      <MenuItem>
+        <ListItemIcon aria-label="show 4 new mails" color="inherit">
+            <MailIcon />
+            <Badge badgeContent={4} color="secondary">
+            </Badge>
+        </ListItemIcon>
+        <Typography variant="inherit">Messages</Typography>
+      </MenuItem>
+      
+      <MenuItem>
+        <ListItemIcon aria-label="show 11 new notifications" color="inherit">
+            <NotificationsIcon />
+            <Badge badgeContent={11} color="secondary">
+          </Badge>
+        </ListItemIcon>
+        <Typography variant="inherit">Notifications</Typography>
+      </MenuItem>
+
       <MenuItem onClick={handleMenuSettings}>
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
           <Typography variant="inherit">Settings</Typography>
       </MenuItem>
+
       <MenuItem onClick={userLogout}>
           <ListItemIcon>
             <ExitToApp />
           </ListItemIcon>
           <Typography variant="inherit">Logout</Typography>
       </MenuItem>
+
     </Menu>
   );
 
@@ -233,23 +256,7 @@ export default function Navbar(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
+      
 
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -328,9 +335,9 @@ export default function Navbar(props) {
           <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"
-              aria-controls={mobileMenuId}
+              aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
+              onClick={handleProfileMenuOpen}
               color="inherit">
               <MoreIcon />
             </IconButton>

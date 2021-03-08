@@ -13,13 +13,12 @@ class waterIntakeStore {
         activityType,
         moodRating,
         waterIntake,
-        description
     ){
         //Create the activity record
-        const activityResponse = await this.createActivity(startDateTime, endDateTime, activityType, moodRating, waterIntake, sessionStorage.getItem('UserID'))
+        const activityResponse = await this.createActivity(startDateTime, endDateTime, activityType, moodRating, sessionStorage.getItem('UserID'))
 
         //Create the parent water intake activity record
-        const waterIntakeResponse = await this.createWaterIntake(activityResponse, waterIntake, description)
+        const waterIntakeResponse = await this.createWaterIntake(activityResponse, waterIntake)
 
         return waterIntakeResponse
     }
@@ -59,13 +58,11 @@ class waterIntakeStore {
     async createWaterIntake(
         activityID,
         waterIntake,
-        description
     ){
-        return axios.post(`${SpringHostURL}/api/activities/waterIntake`,{
+        return axios.post(`${SpringHostURL}/api/activities/water`,{
             //Json Body content
             "activityID": activityID,
-            "waterIntake": waterIntake,
-            "description": description
+            "litres": waterIntake,
         },{
             headers: {
                 //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)

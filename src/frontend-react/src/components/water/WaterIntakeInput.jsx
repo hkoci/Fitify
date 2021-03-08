@@ -110,7 +110,6 @@ export default function WaterIntakeInput() {
       activityType: 'waterIntake',
       moodRating: 0,
       waterIntake: 0,
-      description: '',
       invalidDate: false,
       invalidWaterIntake: false}
     );
@@ -124,7 +123,6 @@ export default function WaterIntakeInput() {
       activityType: 'waterIntake',
       moodRating: 0,
       waterIntake: 0,
-      description: null,
       invalidDate: false,
       invalidWaterIntake: false,
   });
@@ -177,7 +175,6 @@ export default function WaterIntakeInput() {
         activity.activityType,
         activity.moodRating,
         activity.waterIntake,
-        activity.description
       ).then(() => {
         //Successful Creation
         handleClose()
@@ -249,16 +246,6 @@ export default function WaterIntakeInput() {
             />
           </ListItem>
           <Divider />
-          <ListItem>
-          <TextField
-              label="Description (Optional)"
-              name="description"
-              id="description"
-              value={activity.description || null}
-              onChange={handleFormChange}
-              fullWidth
-            />
-          </ListItem>
           <ListItem>
             <Typography component="legend">How did you feel about this measurement?</Typography>
             <Rating

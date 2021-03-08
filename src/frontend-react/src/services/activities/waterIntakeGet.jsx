@@ -11,15 +11,21 @@ class waterIntakeGet {
         //Get Activity Data
         const activityDataRes = await this.getActivityData()
 
+        console.log('act', activityDataRes)
+
         //Filter just results by this user
         const userActivityRes = activityDataRes.filter(function(item){
-            return item.userID === sessionStorage.getItem('UserID');         
+            return item.userID == sessionStorage.getItem('UserID');         
         });
+
+        console.log('usr', userActivityRes)
 
         //Finally, filter results by water intake measurements
         const userActivityWaterIntake = userActivityRes.filter(function(item){
-            return item.activityType === 'waterIntake'        
+            return item.activityType == 'waterIntake'
         });
+
+        console.log('filt', userActivityWaterIntake)
 
         return userActivityWaterIntake
     }
@@ -71,7 +77,7 @@ class waterIntakeGet {
 
     //Method to get activity water intake data
     async getWaterIntakeData(){
-        return axios.get(`${SpringHostURL}/api/activities/waterIntake`,{
+        return axios.get(`${SpringHostURL}/api/activities/water`,{
             headers: {
                 //Set the post content as application/json (Spring will not recognise text for this auth endpoint PostMapping)
                 'Content-Type': 'application/json;charset=UTF-8',

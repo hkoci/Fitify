@@ -37,7 +37,7 @@ export default function RowsGrid() {
                     <CartesianGrid strokeDasharray="7 7" />
                     <Tooltip />
                     <Legend />
-                    <Area type="monotone" dataKey="Water Intake" name="Water Intake (in ml)" stroke="#8884d8" fillOpacity={1} fill="url(#WaterIntake)" unit=" ml"/>
+                    <Area type="monotone" dataKey="litres" name="Water Intake (in ml)" stroke="#8884d8" fillOpacity={1} fill="url(#WaterIntake)" unit=" ml"/>
                 </AreaChart>
 			</ResponsiveContainer>
 		);

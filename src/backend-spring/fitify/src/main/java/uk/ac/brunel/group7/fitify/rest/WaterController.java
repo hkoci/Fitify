@@ -18,7 +18,7 @@ import uk.ac.brunel.group7.fitify.service.WaterService;
 
 
 @RestController
-@RequestMapping(value = "/api/waters", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/activities/water", produces = MediaType.APPLICATION_JSON_VALUE)
 public class WaterController {
 
     private final WaterService waterService;

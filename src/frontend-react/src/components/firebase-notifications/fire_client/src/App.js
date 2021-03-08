@@ -9,6 +9,7 @@ function App() {
 
   getToken();
 
+
   const [show, setShow] = useState(false);
 
   onMessageListener().then(message => {

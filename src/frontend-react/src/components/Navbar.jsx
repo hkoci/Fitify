@@ -367,7 +367,7 @@ export default function Navbar(props) {
 
             </ListItem>
 
-            <ListItem button onClick={() => history.push('/app/water-intake')}>
+            <ListItem button onClick={() => history.push('/app/water')}>
               
               <ListItemIcon>  
                 <LocalDrinkIcon />

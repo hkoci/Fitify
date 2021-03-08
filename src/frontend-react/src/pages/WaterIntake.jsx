@@ -14,7 +14,7 @@ import ThemeSettings from '../services/settings/ThemeSettings'
 import WaterIntakeView from '../components/water/WaterIntakeView'
 
 //Create Landing class using Component instace
-class Sleep extends React.Component {
+class WaterIntake extends React.Component {
 
   //Appearance settings
   getPrimaryColour = () => {
@@ -63,7 +63,7 @@ class Sleep extends React.Component {
         }
       })}>
 
-      <Navbar title='Sleep' searchField='true' />
+      <Navbar title='Water Intake' searchField='true' />
 
       <WaterIntakeView />
 
@@ -75,4 +75,4 @@ class Sleep extends React.Component {
 }
 
 //Export class
-export default Sleep; 
+export default WaterIntake; 

@@ -9,11 +9,7 @@ import Grid from '@material-ui/core/Grid'
 
 //Import Activities Table
 import PostStatusCreation from './card/createPost';
-import cardPost from './card/cardPost';
-
-//Import Social service
-import PostGet from '../../services/post/postGet'
-import PostSet from '../../services/post/postSet'
+import PostTable from './visualisation/PostsTable';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -29,25 +25,12 @@ export default function SocialView(props) {
 
   const classes = useStyles();
 
-    //Load table data before render
-    useEffect(() => {
-      PostGet.getPosts().then(dataResponse => {
-          //Change ActivityID to id (required ID field for DataGrid)
-          var DataGridID = dataResponse.map(item => { return { ...item, id: item.postID }; });
-
-          console.log(DataGridID)
-
-          //Update Row fields
-          //setTableRow(DataGridID);
-        })
-      }, []);
-
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Grid container justify = "center">
         <PostStatusCreation />
-        <cardPost />
+        <PostTable/>
       </Grid>
     </div>
   );

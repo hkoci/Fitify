@@ -24,7 +24,7 @@ class PostSet {
         friendsVisibility,
         tags
     ){
-        return axios.post(`${SpringHostURL}/api/activities`,{
+        return axios.post(`${SpringHostURL}/api/posts`,{
             //Json Body content
             "userID": userID,
             "post": post,

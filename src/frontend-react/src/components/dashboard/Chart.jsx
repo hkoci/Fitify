@@ -5,8 +5,6 @@ import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer, BarChart, Ba
 // import { BarChart, Bar, CartesianGrid, Tooltip, Legend} from 'recharts';
 import Title from './Title';
 
-import './dashboard.css';
-
 // Generate Sales Data
 function createData(time, amount) {
   return { time, amount };

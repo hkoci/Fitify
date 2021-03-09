@@ -14,6 +14,7 @@ import Activities from './pages/Activities';
 import Weight from './pages/Weight';
 import Sleep from './pages/Sleep';
 import Settings from './pages/Settings';
+import Water from './pages/WaterIntake';
 
 // Static Components
 import LandingPage from './static/Landing page/landingPage'
@@ -38,6 +39,7 @@ const routs = (
          <AuthenticatedRoute path="/app/activities" component={Activities} />
          <AuthenticatedRoute path="/app/weight" component={Weight} />
          <AuthenticatedRoute path="/app/sleep" component={Sleep} />
+         <AuthenticatedRoute path="/app/water" component={Water} />
          <AuthenticatedRoute path="/app/settings" component={Settings} />
       </div>
    </Router>

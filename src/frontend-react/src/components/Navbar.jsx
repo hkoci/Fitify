@@ -320,7 +320,7 @@ export default function Navbar(props) {
 
             </ListItem>
 
-            <ListItem button>
+            <ListItem button onClick={() => history.push('/app/social')}>
               
               <ListItemIcon>  
                 <Group />

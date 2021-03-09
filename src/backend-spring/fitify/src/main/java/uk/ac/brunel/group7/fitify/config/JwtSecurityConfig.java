@@ -62,7 +62,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and()
                 .csrf().disable()
                 .authorizeRequests().
-                        antMatchers("/", "/api/users/**", "/authenticate", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll().
+                        antMatchers("/", "/api/reviews/**", "/api/users/**", "/authenticate", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll().
                         anyRequest().hasRole(USER).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .exceptionHandling().authenticationEntryPoint((request, response, ex) -> {

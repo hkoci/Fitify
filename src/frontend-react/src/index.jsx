@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Activities from './pages/Activities';
+import Social from './pages/Social';
 import Weight from './pages/Weight';
 import Sleep from './pages/Sleep';
 import Settings from './pages/Settings';
@@ -35,6 +36,7 @@ const routs = (
          <RedirectRoute path="/app/login" component={Login} />
          <RedirectRoute path="/app/register" component={Register} />
          <AuthenticatedRoute path="/app/dashboard" component={Dashboard} />
+         <AuthenticatedRoute path="/app/social" component={Social} />
          <AuthenticatedRoute path="/app/activities" component={Activities} />
          <AuthenticatedRoute path="/app/weight" component={Weight} />
          <AuthenticatedRoute path="/app/sleep" component={Sleep} />
